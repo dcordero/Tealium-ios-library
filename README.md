@@ -15,6 +15,16 @@ It provides:
 - implemented with the user in mind. All tracking calls are asynchronous as to not interfere or degrade the user experience. 
 
 
+
+Table of Repo Contents
+-------------
+- **TealiumiOSLibrary** folder contains all files necessary to run Tealium iOS Tagger in your app
+- **TealiumiOSSampleApps** folder contains ARC and nonARC sample apps for reference or to start a project from.  Note: TealiumiOSLibrary files may need to be reimported to test/use
+- **TealiumiOSTagger** folder is used by Tealium to test the library and to generate docsets. Can ignore
+- **.gitignore** file is a required git file. Can Ignore
+- **README.md** file is this document file
+
+
 Tealium Requirements
 --------------------
 First, ensure an active Tealium account exists. You will need the following items:
@@ -24,6 +34,33 @@ First, ensure an active Tealium account exists. You will need the following item
   - TealiumTargetProd
   - TealiumTargetQA
   - TealiumTargetDev
+
+
+Installation
+------------
+Installation of the TealiumiOSLibrary requires three simple steps:
+
+  1. Add the following frameworks to your project:
+      - SystemConfiguration.framework
+      - CoreTelephony.framework
+      <p></p>
+  2. Copy the **TealiumiOSLibrary** folder into your project's source tree. The folder contains the following files:
+      - TealiumiOSTagger.h
+      - TealiumiOSTagger.m
+      - TealiumReachability.h
+      - TealiumReachability.m
+      <p></p>
+  3. Add the TealiumiOSTagger.h to your app's prefix.pch file - in the following block:
+
+  ```objective-c
+  #ifdef __OBJC__
+      ...
+      #import "TealiumiOSTagger.h"
+  #endif
+  ```
+
+  Note the minimum app deployment target must be iOS 5.0 or higher.
+
 
 Automatic Reference Counting (ARC)
 ----------------------------------
@@ -37,68 +74,39 @@ of this library. It is based on the original (non-ARC compliant) [library provid
 
 The library is already included with the Tealium tagger, so there is no need to download the externally referenced version. 
 
-Installation
-------------
-At this time, the simplest installation of the tagger is to include the following files in your project's source tree:
-
-- TealiumiOSTagger.h
-- TealiumiOSTagger.m
-- TealiumReachability.h
-- TealiumReachability.m
 
 How To Use
 ----------------------------------
 
-### Simple Tagger Setup
+### Simple Auto-Tracking Setup
 
-The Tagger needs to be setup from within your AppDelegate, ensuring the following messages are called from within in the various lifecycle methods:
+The Tagger needs to be setup from within your AppDelegate, ensuring the following message is called:
 
-- initInstance needs to be called from didFinishLaunchingWithOptions
-- sleep should be called from applicationWillResignActive *and* applicationWillTerminate
-- wakeUp should be called from applicationDidBecomeActive or applicationWillEnterForeground
+- initSharedInstance needs to be called from didFinishLaunchingWithOptions
 
 
-```objective-c
+  ```objective-c
 
-#import "TealiumiOSTagger.h"
+  - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
+  {
+      //depending on how you setup your application, provide a reference to your navigation controller
+      UINavigationController *navigationController = ...;
+      [TealiumiOSTagger initSharedInstance: @"your_account"
+                                   profile:@"your_profile" 
+                                   target:@"TealiumTargetEnvironment" 
+                     navigationController:navigationController];
+     return YES;
+  }
 
-@implementation MyDelegate
+  @end
 
-- (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
-{
-    //depending on how you setup your application, provide a reference to your navigation controller
-    UINavigationController *navigationController = ...;
-    TealiumiOSTagger* tagger = [TealiumiOSTagger initSharedInstance: @"your_account"
-        profile:@"your_profile" target: TealiumTargetDev navigationController:navigationController];
-    return YES;
-}
+  ```
 
-- (void)applicationWillResignActive:(UIApplication*) application {
-    [[TealiumiOSTagger sharedInstance] sleep];
-}
+  The fact that the navigationController is passed into the init method enables the automatic tracking of view displays.
+  Therefore if you do nothing else, the Tealium Tagger will track the views each time a view controller is displayed.  
 
-- (void)applicationDidEnterBackground:(UIApplication*) application {
-    [[TealiumiOSTagger sharedInstance] sleep];
-}
+  Note: You may pass **nil** into the navigationController argument which will disable the auto-tracking feature.
 
-- (void)applicationDidBecomeActive:(UIApplication*) application {
-    [[TealiumiOSTagger sharedInstance] wakeUp];
-}
-
-- (void)applicationWillTerminate:(UIApplication*) application {
-     [[TealiumiOSTagger sharedInstance] sleep];
-}
-
-@end
-
-```
-
-NOTE: don't worry about all the calls to sleep. The tagger library is idempotent,
-therefore is smart enough to only perform the sleep code once in the case it is called multiple times.
-
-
-The fact that the navigationController is passed into the init method enables the automatic tracking of view displays.
-Therefore if you do nothing else, the Tealium Tagger will track the views each time a view controller is displayed.  
 
 ### Custom Item Click Tracking
 
@@ -133,6 +141,87 @@ Below is an example of how to use it:
 
 ...
 ```
+
+
+### UUIDs
+Tealium's tagger includes methods to create, retrieve and set a Universally Unique Identifier.  The following method will retrieve the auto-created UUID:
+
+```objective-c
+...
+    NSString *uuid = [[TealiumiOSTagger sharedInstance] retrieveUUID];
+...
+```
+
+If you are already implementing your own UUID system, you can set the Tagger's UUID to match:
+
+```objective-c
+...
+    NSString *yourUUID;
+    [[TealiumiOSTagger sharedInstance] setUUID:yourUUID];
+...
+```
+
+
+Documentation
+-------
+To access the tagger class documentation from XCode's Organizer & quick help, copy the **TealiumiOSLibrary** file:
+  - com.tealium.TealiumiOSTagger.docset
+
+  into XCode's default docset location:
+  - /Users/(user)/Library/Developer/Shared/Documentation/DocSets/
+
+  then restart XCode.
+
+
+Tealium IQ Hook up Example
+--------
+This example is for mapping a Google Analytics account to your app through the Tealium Management Console.  This sample presumes you have already done the following:
+- Setup a Google analytics account from www.google.com/analytics/
+- Have added Tealium tracking code to your project
+- Have a Tealium account at www.tealium.com
+
+The steps to properly map data from your app are:
+
+1. Load the Account:Profile:Version that matches the Account and Profile in your *initWithSharedInstance:profile:target:navigationController:* method. Any TealiumIQ version is acceptable.
+
+2. Goto the **Tags** tab and create a new tag - Select Google Analytics
+
+3. Enter your Google Analytics product id into the account id field (usually starts with the letters *UA*-)
+
+4. Goto the **Variables** tab and add 2 variables:  
+      - screen_title
+      - link_id
+
+  Note: leave them as the default type: Universal Data Object.  *screen_title* are your views' titles.  *link_id* are the custom titles from the *trackItemClicked:withEventData:* methods in your app.
+    
+5. Goto the **Extensions** tab:
+      - add an extension, 
+      - goto the *Events* tab
+      - click on the *Link Tracking* option
+      - close dialog box
+
+  Note: This allows your event data from the *trackItemClicked:withEventData:* methods to be properly read by Google Analytics
+    
+6. Go back to the **Tags** tab:
+      - open the *Google Analytics* option
+      - click on the *Edit Variable Mappings* button in the lower-right
+      - in the *Add a mapping for:* dropdown - select *screen_title(js)* - click on *Add Mapping* button
+      - in the *Add a mapping for:* dropdown - select *link_id(js)* - click on *Add Mapping* button
+      - on the *screen_title* row - click on the *Open Tag Mapping Toolbox* button on right - select *Page Name (Override Default)* - Save
+      - on the *link_id* row - click on the *Open Tag Mapping Toolbox* button - select *Event Cat* - Save
+      - same as above but select *Event Action* - Save
+      - same as above but select *Event Label* - Save
+      - click on the *Apply* button
+
+  Note: The *link_id* variable needs to be mapped to the Event Category, Action and Labels because Google Analytics requires three levels of categorization.  Alternativelly you can auto set all but one of these fields from the Extensions tab.
+    
+7. Click on the *Save/Publish* button in the upper-right
+      - Enter any *Version Notes* regarding this deployment
+      - Select the *Publish Location* that matches the *environmentName* in your *initSharedInstance:profile:target:navigationController:* method
+
+  Note: it may take up to several minutes for your newly published settings to take effect.
+
+
 Support
 -------
 

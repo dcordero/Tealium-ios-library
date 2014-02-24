@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TealiumiOSTagger.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TealiumiOSTagger</TokenIdentifier>
+			<Abstract type="html">Primary TealiumiOS Tagger library class. For additional information consult included XCode docset or goto:  https://github.com/Tealium/ios-tagger (requires a valid Tealium account to access).</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/setAutoViewTrackingEnabled:</TokenIdentifier>
+			<Abstract type="html">A Boolean value that indicates whether Tealium should auto track views. This is normally auto set by the init method but can be overridden.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>@property BOOL autoViewTrackingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/autoViewTrackingEnabled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TealiumiOSTagger/autoViewTrackingEnabled</TokenIdentifier>
+			<Abstract type="html">A Boolean value that indicates whether Tealium should auto track views. This is normally auto set by the init method but can be overridden.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>@property BOOL autoViewTrackingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/autoViewTrackingEnabled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/setMobileHtmlUrlOverride:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSString *mobileHtmlUrlOverride</Declaration>
+			
+			
+			<Anchor>//api/name/mobileHtmlUrlOverride</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TealiumiOSTagger/mobileHtmlUrlOverride</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSString *mobileHtmlUrlOverride</Declaration>
+			
+			
+			<Anchor>//api/name/mobileHtmlUrlOverride</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TealiumiOSTagger/initSharedInstance:profile:target:navigationController:</TokenIdentifier>
+			<Abstract type="html">Recommended class-level init method.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>+ (TealiumiOSTagger *)initSharedInstance:(id)accountName profile:(NSString *)profileName target:(NSString *)environmentName navigationController:(UINavigationController *)firstNavigationController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>accountName</Name>
+					<Abstract type="html">Name of Tealium account</Abstract>
+				</Parameter><Parameter>
+					<Name>profileName</Name>
+					<Abstract type="html">Target Account profile</Abstract>
+				</Parameter><Parameter>
+					<Name>environmentName</Name>
+					<Abstract type="html">Target profile environment (dev, qa, etc.)</Abstract>
+				</Parameter><Parameter>
+					<Name>firstNavigationController</Name>
+					<Abstract type="html">Root navigation controller. If parameter passed is nil then autoTracking will be disabled.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initSharedInstance:profile:target:navigationController:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TealiumiOSTagger/initInstance:profile:target:navigationController:</TokenIdentifier>
+			<Abstract type="html">(Deprecated. User initSharedInstance:profile:target:navigationController: instead.)</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>+ (TealiumiOSTagger *)initInstance:(id)accountName profile:(NSString *)profileName target:(NSString *)environmentName navigationController:(UINavigationController *)firstNavigationController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>accountName</Name>
+					<Abstract type="html">Name of Tealium account</Abstract>
+				</Parameter><Parameter>
+					<Name>profileName</Name>
+					<Abstract type="html">Target Account profile</Abstract>
+				</Parameter><Parameter>
+					<Name>environmentName</Name>
+					<Abstract type="html">Target profile environment (dev, qa, etc.)</Abstract>
+				</Parameter><Parameter>
+					<Name>firstNavigationController</Name>
+					<Abstract type="html">Root navigation controller</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initInstance:profile:target:navigationController:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TealiumiOSTagger/sharedInstance</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>+ (TealiumiOSTagger *)sharedInstance</Declaration>
+			
+			
+			<Anchor>//api/name/sharedInstance</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TealiumiOSTagger/getInstance</TokenIdentifier>
+			<Abstract type="html">(Deprecated. Use +(TealiumiOSTagger*)sharedInstance instead.)</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>+ (TealiumiOSTagger *)getInstance</Declaration>
+			
+			
+			<Anchor>//api/name/getInstance</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/init:profile:target:navigationController:</TokenIdentifier>
+			<Abstract type="html">Optional initialization method if needing to track more than one UINavigationController hierarchy.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (TealiumiOSTagger *)init:(NSString *)accountName profile:(NSString *)profileName target:(NSString *)environmentName navigationController:(UINavigationController *)navigationController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>accountName</Name>
+					<Abstract type="html">Name of Tealium account</Abstract>
+				</Parameter><Parameter>
+					<Name>profileName</Name>
+					<Abstract type="html">Name of Tealium account profile to attach tagger singleton to</Abstract>
+				</Parameter><Parameter>
+					<Name>environmentName</Name>
+					<Abstract type="html">Target Tealium enviornment (dev, qa, etc.)</Abstract>
+				</Parameter><Parameter>
+					<Name>navigationController</Name>
+					<Abstract type="html">Root navigation controller</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/init:profile:target:navigationController:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/sleep</TokenIdentifier>
+			<Abstract type="html">Method is idempotent, calling multiple times is safe. If using auto-tracking (default) this method will automatically be called.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)sleep</Declaration>
+			
+			
+			<Anchor>//api/name/sleep</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/wakeUp</TokenIdentifier>
+			<Abstract type="html">Method is idempotent, calling multiple times is safe. If using auto-tracking (default) this will automatically be called.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)wakeUp</Declaration>
+			
+			
+			<Anchor>//api/name/wakeUp</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/autoTrackNavigationController:</TokenIdentifier>
+			<Abstract type="html">For auto-tracking multiple UINavigationControllers.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)autoTrackNavigationController:(UINavigationController *)navigationController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>navigationController</Name>
+					<Abstract type="html">Navigtation controller to track</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/autoTrackNavigationController:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/autoTrackTitleForObject:</TokenIdentifier>
+			<Abstract type="html">Looks though available properties of an object to auto-fill title for autoTrack methods.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)autoTrackTitleForObject:(id)object</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">Source object, typically a UIViewController but can be a subclass of</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Found title</Abstract></ReturnValue>
+			<Anchor>//api/name/autoTrackTitleForObject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackScreenViewedWithTitle:</TokenIdentifier>
+			<Abstract type="html">(Deprecated. Use trackScreenViewedWithTitle:withEventData: passing a nil or NSNull argument to withEventData: instead.)</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackScreenViewedWithTitle:(NSString *)title</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>title</Name>
+					<Abstract type="html">Custom title of view to track</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackScreenViewedWithTitle:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackScreenViewedWithTitle:withEventData:</TokenIdentifier>
+			<Abstract type="html">To track a view not being auto-tracked.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackScreenViewedWithTitle:(NSString *)title withEventData:(NSDictionary *)eventData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>title</Name>
+					<Abstract type="html">Custom title of view to track</Abstract>
+				</Parameter><Parameter>
+					<Name>eventData</Name>
+					<Abstract type="html">Required format for utag data</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackScreenViewedWithTitle:withEventData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackScreenViewedWithViewController:</TokenIdentifier>
+			<Abstract type="html">(Deprecated. Use trackScreenViewedWithViewController:WithEventData: passing nil or NSNull to WithEventData: instead.)</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackScreenViewedWithViewController:(UIViewController *)viewController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>viewController</Name>
+					<Abstract type="html">UIViewController to track</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackScreenViewedWithViewController:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackScreenViewedWithViewController:WithEventData:</TokenIdentifier>
+			<Abstract type="html">To track a view not being auto-tracked.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackScreenViewedWithViewController:(UIViewController *)viewController WithEventData:(NSDictionary *)eventData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>viewController</Name>
+					<Abstract type="html">UIViewController to track</Abstract>
+				</Parameter><Parameter>
+					<Name>eventData</Name>
+					<Abstract type="html">Required format for utag data</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackScreenViewedWithViewController:WithEventData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackItemClicked:</TokenIdentifier>
+			<Abstract type="html">Use to track a click-type action (segue, click, etc). Analytic vendors will track this as a &apos;link&apos; click.(Deprecated. Use trackItemClicked:withEventData: passing in nil or NSNull to the eventData argument.)</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackItemClicked:(NSString *)clickableItemId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>clickableItemId</Name>
+					<Abstract type="html">Uniquely assigned item identification string</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackItemClicked:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackItemClicked:withEventData:</TokenIdentifier>
+			<Abstract type="html">Use to track a click-type action (segue, click, etc). Analytic vendors will track this as a &apos;link&apos; click.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackItemClicked:(NSString *)clickableItemId withEventData:(NSDictionary *)eventData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>clickableItemId</Name>
+					<Abstract type="html">Uniquely assigned item identification string</Abstract>
+				</Parameter><Parameter>
+					<Name>eventData</Name>
+					<Abstract type="html">Required format for utag data</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackItemClicked:withEventData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/trackCustomEvent:withEventData:</TokenIdentifier>
+			<Abstract type="html">Use to pass any other action that a vendor tag might utilize. This will only be useful when used in conjunction with the proper configuration from within the Tealium console.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)trackCustomEvent:(NSString *)eventType withEventData:(NSDictionary *)eventData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>eventType</Name>
+					<Abstract type="html">Tealium event type</Abstract>
+				</Parameter><Parameter>
+					<Name>eventData</Name>
+					<Abstract type="html">Required format for utag data</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/trackCustomEvent:withEventData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/baseCustomerUTagVariables</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)baseCustomerUTagVariables</Declaration>
+			
+			
+			<Anchor>//api/name/baseCustomerUTagVariables</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/setVariables:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)setVariables:(NSDictionary *)variablesDict</Declaration>
+			
+			
+			<Anchor>//api/name/setVariables:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/setVariable:forKey:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)setVariable:(NSString *)value forKey:(NSString *)key</Declaration>
+			
+			
+			<Anchor>//api/name/setVariable:forKey:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/getCompositeDictionaryWithDictionary:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)getCompositeDictionaryWithDictionary:(NSDictionary *)optionalDictionary</Declaration>
+			
+			
+			<Anchor>//api/name/getCompositeDictionaryWithDictionary:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/webViewDidFinishLoad:</TokenIdentifier>
+			<Abstract type="html">Ensures usable UIWebView is available.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)webViewDidFinishLoad:(UIWebView *)webView</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>webView</Name>
+					<Abstract type="html">UIWebview created by TealiumiOSTagger</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/webViewDidFinishLoad:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TealiumiOSTagger/navigationController:didShowViewController:animated:</TokenIdentifier>
+			<Abstract type="html">Used by auto-view tracking methods.</Abstract>
+			<DeclaredIn>TealiumiOSTagger.h</DeclaredIn>			
+			
+			<Declaration>- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>navigationController</Name>
+					<Abstract type="html">UINavigationController being auto-tracked</Abstract>
+				</Parameter><Parameter>
+					<Name>viewController</Name>
+					<Abstract type="html">UIViewController being displayed by navigationController</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">Animate the view transition</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/navigationController:didShowViewController:animated:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>
