@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		712813B51798672A003A9108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813B41798672A003A9108 /* UIKit.framework */; };
+		712813B71798672A003A9108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813B61798672A003A9108 /* Foundation.framework */; };
+		712813B91798672A003A9108 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813B81798672A003A9108 /* CoreGraphics.framework */; };
+		712813BF1798672A003A9108 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 712813BD1798672A003A9108 /* InfoPlist.strings */; };
+		712813C11798672A003A9108 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 712813C01798672A003A9108 /* main.m */; };
+		712813C51798672A003A9108 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 712813C41798672A003A9108 /* AppDelegate.m */; };
+		712813C71798672A003A9108 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 712813C61798672A003A9108 /* Default.png */; };
+		712813C91798672A003A9108 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 712813C81798672A003A9108 /* Default@2x.png */; };
+		712813CB1798672A003A9108 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 712813CA1798672A003A9108 /* Default-568h@2x.png */; };
+		712813CE1798672A003A9108 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 712813CC1798672A003A9108 /* MainStoryboard.storyboard */; };
+		712813D11798672A003A9108 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712813D01798672A003A9108 /* ViewController.m */; };
+		712813D91798672A003A9108 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813D81798672A003A9108 /* SenTestingKit.framework */; };
+		712813DA1798672A003A9108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813B41798672A003A9108 /* UIKit.framework */; };
+		712813DB1798672A003A9108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813B61798672A003A9108 /* Foundation.framework */; };
+		712813E31798672A003A9108 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 712813E11798672A003A9108 /* InfoPlist.strings */; };
+		712813E61798672A003A9108 /* TealiumIOSBlankAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 712813E51798672A003A9108 /* TealiumIOSBlankAppTests.m */; };
+		712813F017986739003A9108 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813EF17986739003A9108 /* SystemConfiguration.framework */; };
+		712813F21798673E003A9108 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813F11798673E003A9108 /* MediaPlayer.framework */; };
+		712813F417986742003A9108 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813F317986742003A9108 /* AVFoundation.framework */; };
+		712813F617986745003A9108 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813F517986745003A9108 /* CoreMotion.framework */; };
+		712813F817986749003A9108 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813F717986749003A9108 /* CoreMedia.framework */; };
+		712813FA1798674C003A9108 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712813F91798674C003A9108 /* CoreTelephony.framework */; };
+		71D6F1CC179F068B001C1755 /* TealiumMobileCompanion_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1C8179F068B001C1755 /* TealiumMobileCompanion_icon.png */; };
+		71D6F1CD179F068B001C1755 /* TealiumMobileCompanion_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1C8179F068B001C1755 /* TealiumMobileCompanion_icon.png */; };
+		71D6F1CE179F068B001C1755 /* TealiumMobileCompanion_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1C9179F068B001C1755 /* TealiumMobileCompanion_refresh.png */; };
+		71D6F1CF179F068B001C1755 /* TealiumMobileCompanion_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1C9179F068B001C1755 /* TealiumMobileCompanion_refresh.png */; };
+		71D6F1D0179F068B001C1755 /* TealiumPopup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1CA179F068B001C1755 /* TealiumPopup.nib */; };
+		71D6F1D1179F068B001C1755 /* TealiumPopup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F1CA179F068B001C1755 /* TealiumPopup.nib */; };
+		71D6F1D2179F068B001C1755 /* TealiumiOSLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D6F1CB179F068B001C1755 /* TealiumiOSLibrary.framework */; };
+		71D6F1D3179F068B001C1755 /* TealiumiOSLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D6F1CB179F068B001C1755 /* TealiumiOSLibrary.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		712813DC1798672A003A9108 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 712813A91798672A003A9108 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 712813B01798672A003A9108;
+			remoteInfo = TealiumIOSBlankApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		712813B11798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TealiumiOSBlankApp.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		712813B41798672A003A9108 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		712813B61798672A003A9108 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		712813B81798672A003A9108 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		712813BC1798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TealiumiOSBlankApp.temp_caseinsensitive_rename-Info.plist"; sourceTree = "<group>"; };
+		712813BE1798672A003A9108 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		712813C01798672A003A9108 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		712813C21798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TealiumiOSBlankApp.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
+		712813C31798672A003A9108 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		712813C41798672A003A9108 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		712813C61798672A003A9108 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		712813C81798672A003A9108 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		712813CA1798672A003A9108 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		712813CD1798672A003A9108 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		712813CF1798672A003A9108 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		712813D01798672A003A9108 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		712813D71798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TealiumiOSBlankApp.temp_caseinsensitive_renameTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		712813D81798672A003A9108 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		712813E01798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TealiumiOSBlankApp.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = "<group>"; };
+		712813E21798672A003A9108 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		712813E41798672A003A9108 /* TealiumIOSBlankAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumIOSBlankAppTests.h; sourceTree = "<group>"; };
+		712813E51798672A003A9108 /* TealiumIOSBlankAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TealiumIOSBlankAppTests.m; sourceTree = "<group>"; };
+		712813EF17986739003A9108 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		712813F11798673E003A9108 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		712813F317986742003A9108 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		712813F517986745003A9108 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		712813F717986749003A9108 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		712813F91798674C003A9108 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		71D6F1C8179F068B001C1755 /* TealiumMobileCompanion_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TealiumMobileCompanion_icon.png; sourceTree = "<group>"; };
+		71D6F1C9179F068B001C1755 /* TealiumMobileCompanion_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TealiumMobileCompanion_refresh.png; sourceTree = "<group>"; };
+		71D6F1CA179F068B001C1755 /* TealiumPopup.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = TealiumPopup.nib; sourceTree = "<group>"; };
+		71D6F1CB179F068B001C1755 /* TealiumiOSLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TealiumiOSLibrary.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		712813AE1798672A003A9108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813FA1798674C003A9108 /* CoreTelephony.framework in Frameworks */,
+				712813F817986749003A9108 /* CoreMedia.framework in Frameworks */,
+				712813F617986745003A9108 /* CoreMotion.framework in Frameworks */,
+				712813F417986742003A9108 /* AVFoundation.framework in Frameworks */,
+				712813F21798673E003A9108 /* MediaPlayer.framework in Frameworks */,
+				712813F017986739003A9108 /* SystemConfiguration.framework in Frameworks */,
+				712813B51798672A003A9108 /* UIKit.framework in Frameworks */,
+				712813B71798672A003A9108 /* Foundation.framework in Frameworks */,
+				712813B91798672A003A9108 /* CoreGraphics.framework in Frameworks */,
+				71D6F1D2179F068B001C1755 /* TealiumiOSLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		712813D31798672A003A9108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813D91798672A003A9108 /* SenTestingKit.framework in Frameworks */,
+				712813DA1798672A003A9108 /* UIKit.framework in Frameworks */,
+				712813DB1798672A003A9108 /* Foundation.framework in Frameworks */,
+				71D6F1D3179F068B001C1755 /* TealiumiOSLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		712813A81798672A003A9108 = {
+			isa = PBXGroup;
+			children = (
+				712813BA1798672A003A9108 /* TealiumiOSBlankApp */,
+				712813DE1798672A003A9108 /* TealiumiOSBlankAppTests */,
+				712813B31798672A003A9108 /* Frameworks */,
+				712813B21798672A003A9108 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		712813B21798672A003A9108 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				712813B11798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename.app */,
+				712813D71798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		712813B31798672A003A9108 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				712813F91798674C003A9108 /* CoreTelephony.framework */,
+				712813F717986749003A9108 /* CoreMedia.framework */,
+				712813F517986745003A9108 /* CoreMotion.framework */,
+				712813F317986742003A9108 /* AVFoundation.framework */,
+				712813F11798673E003A9108 /* MediaPlayer.framework */,
+				712813EF17986739003A9108 /* SystemConfiguration.framework */,
+				712813B41798672A003A9108 /* UIKit.framework */,
+				712813B61798672A003A9108 /* Foundation.framework */,
+				712813B81798672A003A9108 /* CoreGraphics.framework */,
+				712813D81798672A003A9108 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		712813BA1798672A003A9108 /* TealiumiOSBlankApp */ = {
+			isa = PBXGroup;
+			children = (
+				71D6F1C6179F068B001C1755 /* TealiumiOSLibrary */,
+				712813C31798672A003A9108 /* AppDelegate.h */,
+				712813C41798672A003A9108 /* AppDelegate.m */,
+				712813CC1798672A003A9108 /* MainStoryboard.storyboard */,
+				712813CF1798672A003A9108 /* ViewController.h */,
+				712813D01798672A003A9108 /* ViewController.m */,
+				712813BB1798672A003A9108 /* Supporting Files */,
+			);
+			name = TealiumiOSBlankApp;
+			path = TealiumIOSBlankApp;
+			sourceTree = "<group>";
+		};
+		712813BB1798672A003A9108 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				712813BC1798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename-Info.plist */,
+				712813BD1798672A003A9108 /* InfoPlist.strings */,
+				712813C01798672A003A9108 /* main.m */,
+				712813C21798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename-Prefix.pch */,
+				712813C61798672A003A9108 /* Default.png */,
+				712813C81798672A003A9108 /* Default@2x.png */,
+				712813CA1798672A003A9108 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		712813DE1798672A003A9108 /* TealiumiOSBlankAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				712813E41798672A003A9108 /* TealiumIOSBlankAppTests.h */,
+				712813E51798672A003A9108 /* TealiumIOSBlankAppTests.m */,
+				712813DF1798672A003A9108 /* Supporting Files */,
+			);
+			name = TealiumiOSBlankAppTests;
+			path = TealiumIOSBlankAppTests;
+			sourceTree = "<group>";
+		};
+		712813DF1798672A003A9108 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				712813E01798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests-Info.plist */,
+				712813E11798672A003A9108 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71D6F1C6179F068B001C1755 /* TealiumiOSLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				71D6F1C7179F068B001C1755 /* Resources */,
+				71D6F1CB179F068B001C1755 /* TealiumiOSLibrary.framework */,
+			);
+			path = TealiumiOSLibrary;
+			sourceTree = "<group>";
+		};
+		71D6F1C7179F068B001C1755 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				71D6F1C8179F068B001C1755 /* TealiumMobileCompanion_icon.png */,
+				71D6F1C9179F068B001C1755 /* TealiumMobileCompanion_refresh.png */,
+				71D6F1CA179F068B001C1755 /* TealiumPopup.nib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		712813B01798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 712813E91798672A003A9108 /* Build configuration list for PBXNativeTarget "TealiumiOSBlankApp.temp_caseinsensitive_rename" */;
+			buildPhases = (
+				712813AD1798672A003A9108 /* Sources */,
+				712813AE1798672A003A9108 /* Frameworks */,
+				712813AF1798672A003A9108 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TealiumiOSBlankApp.temp_caseinsensitive_rename;
+			productName = TealiumIOSBlankApp;
+			productReference = 712813B11798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename.app */;
+			productType = "com.apple.product-type.application";
+		};
+		712813D61798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 712813EC1798672A003A9108 /* Build configuration list for PBXNativeTarget "TealiumiOSBlankApp.temp_caseinsensitive_renameTests" */;
+			buildPhases = (
+				712813D21798672A003A9108 /* Sources */,
+				712813D31798672A003A9108 /* Frameworks */,
+				712813D41798672A003A9108 /* Resources */,
+				712813D51798672A003A9108 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				712813DD1798672A003A9108 /* PBXTargetDependency */,
+			);
+			name = TealiumiOSBlankApp.temp_caseinsensitive_renameTests;
+			productName = TealiumIOSBlankAppTests;
+			productReference = 712813D71798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		712813A91798672A003A9108 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Tealium;
+			};
+			buildConfigurationList = 712813AC1798672A003A9108 /* Build configuration list for PBXProject "TealiumiOSBlankApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 712813A81798672A003A9108;
+			productRefGroup = 712813B21798672A003A9108 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				712813B01798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename */,
+				712813D61798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_renameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		712813AF1798672A003A9108 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813BF1798672A003A9108 /* InfoPlist.strings in Resources */,
+				712813C71798672A003A9108 /* Default.png in Resources */,
+				712813C91798672A003A9108 /* Default@2x.png in Resources */,
+				712813CB1798672A003A9108 /* Default-568h@2x.png in Resources */,
+				712813CE1798672A003A9108 /* MainStoryboard.storyboard in Resources */,
+				71D6F1CC179F068B001C1755 /* TealiumMobileCompanion_icon.png in Resources */,
+				71D6F1CE179F068B001C1755 /* TealiumMobileCompanion_refresh.png in Resources */,
+				71D6F1D0179F068B001C1755 /* TealiumPopup.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		712813D41798672A003A9108 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813E31798672A003A9108 /* InfoPlist.strings in Resources */,
+				71D6F1CD179F068B001C1755 /* TealiumMobileCompanion_icon.png in Resources */,
+				71D6F1CF179F068B001C1755 /* TealiumMobileCompanion_refresh.png in Resources */,
+				71D6F1D1179F068B001C1755 /* TealiumPopup.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		712813D51798672A003A9108 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		712813AD1798672A003A9108 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813C11798672A003A9108 /* main.m in Sources */,
+				712813C51798672A003A9108 /* AppDelegate.m in Sources */,
+				712813D11798672A003A9108 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		712813D21798672A003A9108 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712813E61798672A003A9108 /* TealiumIOSBlankAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		712813DD1798672A003A9108 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 712813B01798672A003A9108 /* TealiumiOSBlankApp.temp_caseinsensitive_rename */;
+			targetProxy = 712813DC1798672A003A9108 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		712813BD1798672A003A9108 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				712813BE1798672A003A9108 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		712813CC1798672A003A9108 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				712813CD1798672A003A9108 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		712813E11798672A003A9108 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				712813E21798672A003A9108 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		712813E71798672A003A9108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		712813E81798672A003A9108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		712813EA1798672A003A9108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TealiumIOSBlankApp/TealiumiOSLibrary\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TealiumIOSBlankApp/TealiumiOSBlankApp.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "TealiumIOSBlankApp/TealiumiOSBlankApp.temp_caseinsensitive_rename-Info.plist";
+				PRODUCT_NAME = TealiumiOSBlankApp.temp_caseinsensitive_rename;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		712813EB1798672A003A9108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TealiumIOSBlankApp/TealiumiOSLibrary\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TealiumIOSBlankApp/TealiumiOSBlankApp.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "TealiumIOSBlankApp/TealiumiOSBlankApp.temp_caseinsensitive_rename-Info.plist";
+				PRODUCT_NAME = TealiumiOSBlankApp.temp_caseinsensitive_rename;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		712813ED1798672A003A9108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TealiumIOSBlankApp.app/TealiumIOSBlankApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/TealiumIOSBlankApp/TealiumiOSLibrary\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TealiumIOSBlankApp/TealiumIOSBlankApp-Prefix.pch";
+				INFOPLIST_FILE = "TealiumIOSBlankAppTests/TealiumiOSBlankApp.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = TealiumiOSBlankApp.temp_caseinsensitive_renameTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		712813EE1798672A003A9108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TealiumIOSBlankApp.app/TealiumIOSBlankApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/TealiumIOSBlankApp/TealiumiOSLibrary\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TealiumIOSBlankApp/TealiumIOSBlankApp-Prefix.pch";
+				INFOPLIST_FILE = "TealiumIOSBlankAppTests/TealiumiOSBlankApp.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = TealiumiOSBlankApp.temp_caseinsensitive_renameTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		712813AC1798672A003A9108 /* Build configuration list for PBXProject "TealiumiOSBlankApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				712813E71798672A003A9108 /* Debug */,
+				712813E81798672A003A9108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		712813E91798672A003A9108 /* Build configuration list for PBXNativeTarget "TealiumiOSBlankApp.temp_caseinsensitive_rename" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				712813EA1798672A003A9108 /* Debug */,
+				712813EB1798672A003A9108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		712813EC1798672A003A9108 /* Build configuration list for PBXNativeTarget "TealiumiOSBlankApp.temp_caseinsensitive_renameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				712813ED1798672A003A9108 /* Debug */,
+				712813EE1798672A003A9108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 712813A91798672A003A9108 /* Project object */;
+}
