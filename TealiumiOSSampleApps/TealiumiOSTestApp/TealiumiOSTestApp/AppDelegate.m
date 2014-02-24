@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+//#import <TealiumiOSLibrary/TealiumiOSTagger.h>     // uncomment if your version of XCode is not reading from your .pch file during development
+
 
 @implementation AppDelegate
 
@@ -14,7 +16,15 @@
 {
     // Override point for customization after application launch.
 
-    [TealiumiOSTagger initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" rootController:nil];
+    /******************************************************************************************
+     Import the TealiumiOSLibrary.framework into your project then uncomment the init code below.
+     XCode will then add the correct framework search path to your project. The necessary linker
+     flag has already been added, the required frameworks, and import statements
+     to both the .pch file and this class's header (uncomment either to enable).
+    *******************************************************************************************/
+    
+//    [TealiumiOSTagger initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" options:0];
+    
 
     return YES;
 }

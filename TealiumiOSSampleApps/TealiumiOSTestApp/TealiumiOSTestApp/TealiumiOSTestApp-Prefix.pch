@@ -11,5 +11,6 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import <TealiumiOSLibrary/TealiumiOSTagger.h>
+//    #import <TealiumiOSLibrary/TealiumiOSTagger.h>    // uncomment after importing the library
+
 #endif

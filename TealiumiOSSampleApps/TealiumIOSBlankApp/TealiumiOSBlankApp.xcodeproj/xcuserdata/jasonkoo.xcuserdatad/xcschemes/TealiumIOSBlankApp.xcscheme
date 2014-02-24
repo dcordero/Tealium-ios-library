@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "712813B01798672A003A9108"
-               BuildableName = "TealiumIOSBlankApp.app"
+               BuildableName = "TealiumiOSBlankApp.temp_caseinsensitive_rename.app"
                BlueprintName = "TealiumiOSBlankApp.temp_caseinsensitive_rename"
                ReferencedContainer = "container:TealiumiOSBlankApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "712813D61798672A003A9108"
-               BuildableName = "TealiumIOSBlankAppTests.octest"
+               BuildableName = "TealiumiOSBlankApp.temp_caseinsensitive_renameTests.octest"
                BlueprintName = "TealiumiOSBlankApp.temp_caseinsensitive_renameTests"
                ReferencedContainer = "container:TealiumiOSBlankApp.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "712813B01798672A003A9108"
-            BuildableName = "TealiumIOSBlankApp.app"
+            BuildableName = "TealiumiOSBlankApp.temp_caseinsensitive_rename.app"
             BlueprintName = "TealiumiOSBlankApp.temp_caseinsensitive_rename"
             ReferencedContainer = "container:TealiumiOSBlankApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "712813B01798672A003A9108"
-            BuildableName = "TealiumIOSBlankApp.app"
+            BuildableName = "TealiumiOSBlankApp.temp_caseinsensitive_rename.app"
             BlueprintName = "TealiumiOSBlankApp.temp_caseinsensitive_rename"
             ReferencedContainer = "container:TealiumiOSBlankApp.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "712813B01798672A003A9108"
-            BuildableName = "TealiumIOSBlankApp.app"
+            BuildableName = "TealiumiOSBlankApp.temp_caseinsensitive_rename.app"
             BlueprintName = "TealiumiOSBlankApp.temp_caseinsensitive_rename"
             ReferencedContainer = "container:TealiumiOSBlankApp.xcodeproj">
          </BuildableReference>

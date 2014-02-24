@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+//#import <TealiumiOSLibrary/TealiumiOSTagger.h> // Uncomment to import
 
 @implementation AppDelegate
 
@@ -14,8 +15,15 @@
 {
     // Override point for customization after application launch.
     
+    /******************************************************************************************
+     Import the TealiumiOSLibrary.framework into your project then uncomment the init code below.
+     XCode will then add the correct framework search path to your project. The necessary linker
+     flag has already been added, the required frameworks, and import statements
+     to both the .pch file and this class's header (uncomment either to enable).
+     *******************************************************************************************/
     
-    [TealiumiOSTagger initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" rootController:nil];
+    // uncomment after importing the library
+//    [TealiumiOSTagger initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" rootController:nil];
     
     return YES;
 }

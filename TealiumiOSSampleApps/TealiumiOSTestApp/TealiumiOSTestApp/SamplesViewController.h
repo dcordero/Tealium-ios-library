@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SamplesViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface SamplesViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISwitch *testSwitch;
 
 @end

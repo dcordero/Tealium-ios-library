@@ -10,10 +10,7 @@
 		712EDBFE16C44B5D0003C8F2 /* SamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712EDBFD16C44B5D0003C8F2 /* SamplesViewController.m */; };
 		712EDC0516C4839E0003C8F2 /* appIcon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 712EDC0416C4839E0003C8F2 /* appIcon_57.png */; };
 		712EDC0716C483A60003C8F2 /* appIcon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 712EDC0616C483A60003C8F2 /* appIcon_114.png */; };
-		71CB2C30179F13BA007797F1 /* TealiumMobileCompanion_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71CB2C2C179F13B9007797F1 /* TealiumMobileCompanion_icon.png */; };
-		71CB2C31179F13BA007797F1 /* TealiumMobileCompanion_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 71CB2C2D179F13B9007797F1 /* TealiumMobileCompanion_refresh.png */; };
-		71CB2C32179F13BA007797F1 /* TealiumPopup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 71CB2C2E179F13B9007797F1 /* TealiumPopup.nib */; };
-		71CB2C33179F13BA007797F1 /* TealiumiOSLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB2C2F179F13BA007797F1 /* TealiumiOSLibrary.framework */; };
+		71A6386B17FA42ED00CFB8D3 /* SamplesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A6386A17FA42ED00CFB8D3 /* SamplesTableViewController.m */; };
 		71E97D3A16C2D009000133DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E97D3916C2D009000133DE /* UIKit.framework */; };
 		71E97D3C16C2D009000133DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E97D3B16C2D009000133DE /* Foundation.framework */; };
 		71E97D3E16C2D009000133DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E97D3D16C2D009000133DE /* CoreGraphics.framework */; };
@@ -41,10 +38,8 @@
 		712EDBFD16C44B5D0003C8F2 /* SamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplesViewController.m; sourceTree = "<group>"; };
 		712EDC0416C4839E0003C8F2 /* appIcon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon_57.png; sourceTree = "<group>"; };
 		712EDC0616C483A60003C8F2 /* appIcon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon_114.png; sourceTree = "<group>"; };
-		71CB2C2C179F13B9007797F1 /* TealiumMobileCompanion_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TealiumMobileCompanion_icon.png; sourceTree = "<group>"; };
-		71CB2C2D179F13B9007797F1 /* TealiumMobileCompanion_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TealiumMobileCompanion_refresh.png; sourceTree = "<group>"; };
-		71CB2C2E179F13B9007797F1 /* TealiumPopup.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = TealiumPopup.nib; sourceTree = "<group>"; };
-		71CB2C2F179F13BA007797F1 /* TealiumiOSLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TealiumiOSLibrary.framework; sourceTree = "<group>"; };
+		71A6386917FA42ED00CFB8D3 /* SamplesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplesTableViewController.h; sourceTree = "<group>"; };
+		71A6386A17FA42ED00CFB8D3 /* SamplesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplesTableViewController.m; sourceTree = "<group>"; };
 		71E97D3516C2D009000133DE /* TealiumiOSTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TealiumiOSTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E97D3916C2D009000133DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71E97D3B16C2D009000133DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,32 +82,12 @@
 				71E97D3A16C2D009000133DE /* UIKit.framework in Frameworks */,
 				71E97D3C16C2D009000133DE /* Foundation.framework in Frameworks */,
 				71E97D3E16C2D009000133DE /* CoreGraphics.framework in Frameworks */,
-				71CB2C33179F13BA007797F1 /* TealiumiOSLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		71CB2C2A179F13B9007797F1 /* TealiumiOSLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				71CB2C2B179F13B9007797F1 /* Resources */,
-				71CB2C2F179F13BA007797F1 /* TealiumiOSLibrary.framework */,
-			);
-			path = TealiumiOSLibrary;
-			sourceTree = "<group>";
-		};
-		71CB2C2B179F13B9007797F1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				71CB2C2C179F13B9007797F1 /* TealiumMobileCompanion_icon.png */,
-				71CB2C2D179F13B9007797F1 /* TealiumMobileCompanion_refresh.png */,
-				71CB2C2E179F13B9007797F1 /* TealiumPopup.nib */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		71E97D2A16C2D009000133DE = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +126,6 @@
 		71E97D3F16C2D009000133DE /* TealiumiOSTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				71CB2C2A179F13B9007797F1 /* TealiumiOSLibrary */,
 				71E97D4816C2D009000133DE /* AppDelegate.h */,
 				71E97D4916C2D009000133DE /* AppDelegate.m */,
 				71E97D5116C2D009000133DE /* MainStoryboard_iPhone.storyboard */,
@@ -160,6 +134,8 @@
 				71E97D5816C2D009000133DE /* ViewController.m */,
 				712EDBFC16C44B5D0003C8F2 /* SamplesViewController.h */,
 				712EDBFD16C44B5D0003C8F2 /* SamplesViewController.m */,
+				71A6386917FA42ED00CFB8D3 /* SamplesTableViewController.h */,
+				71A6386A17FA42ED00CFB8D3 /* SamplesTableViewController.m */,
 				71E97D6116C2D0D3000133DE /* VideoSamplesViewController.h */,
 				71E97D6216C2D0D3000133DE /* VideoSamplesViewController.m */,
 				71E97D4016C2D009000133DE /* Supporting Files */,
@@ -242,9 +218,6 @@
 				71E97D6016C2D0A4000133DE /* sample.mp4 in Resources */,
 				712EDC0516C4839E0003C8F2 /* appIcon_57.png in Resources */,
 				712EDC0716C483A60003C8F2 /* appIcon_114.png in Resources */,
-				71CB2C30179F13BA007797F1 /* TealiumMobileCompanion_icon.png in Resources */,
-				71CB2C31179F13BA007797F1 /* TealiumMobileCompanion_refresh.png in Resources */,
-				71CB2C32179F13BA007797F1 /* TealiumPopup.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +231,7 @@
 				71E97D4616C2D009000133DE /* main.m in Sources */,
 				71E97D4A16C2D009000133DE /* AppDelegate.m in Sources */,
 				71E97D5916C2D009000133DE /* ViewController.m in Sources */,
+				71A6386B17FA42ED00CFB8D3 /* SamplesTableViewController.m in Sources */,
 				71E97D6316C2D0D3000133DE /* VideoSamplesViewController.m in Sources */,
 				712EDBFE16C44B5D0003C8F2 /* SamplesViewController.m in Sources */,
 			);
@@ -348,14 +322,16 @@
 		71E97D5D16C2D009000133DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TealiumiOSTestApp/TealiumiOSLibrary\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TealiumiOSTestApp/TealiumiOSTestApp-Prefix.pch";
 				INFOPLIST_FILE = "TealiumiOSTestApp/TealiumiOSTestApp-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -363,14 +339,16 @@
 		71E97D5E16C2D009000133DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TealiumiOSTestApp/TealiumiOSLibrary\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TealiumiOSTestApp/TealiumiOSTestApp-Prefix.pch";
 				INFOPLIST_FILE = "TealiumiOSTestApp/TealiumiOSTestApp-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

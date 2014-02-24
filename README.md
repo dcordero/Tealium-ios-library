@@ -1,5 +1,5 @@
-Tealium iOS Library - Version 2.2
-==================================
+Tealium iOS Library - Version 3.0.1
+===================================
 
 This library framework provides Tealium customers the means to tag their native iOS applications for the purpose of leveraging the vendor-neutral tag management platform offered by Tealium.  
 
@@ -9,34 +9,29 @@ This framework provides for:
 - automatic object and event tracking (see list of autotrackable objects below)
 - automatic video player tracking
 - automatic lifecycle tracking
-- video milestone tracking
-- custom action tracking
-- intelligent network-sensitive & power-save caching
+- optional video milestone tracking
+- optional custom action tracking
+- intelligent network-sensitive caching
+- optional power save batching of calls
 - simple to use messages, including singleton or dependency-injection-friendly instances.
 - simple setup and remote configuration
 - implemented with the user in mind. All tracking calls are asynchronous as to not interfere or degrade the user experience. 
 
-Known limitations of current build:
-- Limited autotracking support for storyboards
-- Tealium Reference Ids are not guaranteed for objects created in storyboards
-- Buttons within UIToolBars not guaranteed to be auto tracked
-
-
-These instructions presume you have valid accounts with both Tealium and the analytic services you will be mapping data to.
+These instructions presume you have valid accounts with both Tealium and the analytic services you want to map data to.
 
 Implementation is a three part process:
-1. Download and implement the library into your project
-2. Configure your Tealium IQ
-3. Optionally enable the iOS Library Manager Extension in IQ
+1. Download and add the library to your iOS XCode Project
+2. Configure your Tealium IQ dashboard with a Tag and the "Enable Mobile App Support" option enabled
+3. Optionally enable the iOS Library Manager Extension in the IQ Extensions tab
 
 
 Table of Repo Contents
 ----------------------
 - **TealiumiOSLibrary** folder contains all files necessary to run the Tealium iOS Library in your app and consists of the following:
-  - Resources folder: contains graphic and interface builder files that should not be edited
-  - TealiumiOSLibrary.framework: contains the actual library and header file (which can be edited)
-- **TealiumiOSSampleApps** folder contains ARC and nonARC sample apps for reference or to start a project from.  Note: The TealiumiOSLibrary folder may need to be reimported to those projects to test/use
-- **.gitignore** file is an optional git file that can ignored
+  - Resources folder: legacy folder that no longer contains any data
+  - TealiumiOSLibrary.framework: contains the actual library and header file (read-only)
+- **TealiumiOSSampleApps** folder contains ARC and nonARC sample apps for reference or to start a project from.  Note: The TealiumiOSLibrary.framework will need to be imported to those projects to test/use (simply click and drag into your Xcode project)
+- **.gitignore** file is a git file that can ignored
 - **README.md** file is this document file
 
 
@@ -60,45 +55,57 @@ New Installation
 ----------------
 Installing the TealiumiOSLibrary into your app requires the following steps:
 
+  0. Copy the **TealiumiOSLibrary.framework** folder into your project's source folder. The library folder contains the TealiumiOSTagger.h header file, which also lists all the public methods available.
   1. Add the following frameworks to your project:
       - AVFoundation.framework          (for tracking AVPlayer video objects)
-      - CoreMotion.framework            (used by Mobile Companion)
+      - CoreGraphics.framework		(used internally)
       - CoreMedia.framework             (for tracking MPMoviePlayer video objects)
       - CoreTelephony.framework         (for tracking carrier data)
       - MediaPlayer.framework           (for tracking video)
-      - SystemConfiguration.framework   (for connectivity checks)
+      - SystemConfiguration.framework   (for connectivity data)
       <p></p>
-  2. Copy the **TealiumiOSLibrary** folder into your project's source tree. The folder contains the following subfolders:
-      - Resources                       (contains graphic files for Mobile Companion)
-      - TealiumiOSLibrary.framework     (contains the TealiumiOSTagger.h header file and the actual library)
-      <p></p>
-  3. Add the TealiumiOSTagger.h to your app's prefix.pch file - in the following block:
+  2. In your project's Build Settings: Linking: Other Linker Flags add "-all_load -ObjC" as a flag option
+  3. Initialize the library singleton with the initSharedInstance:profile:target:options: method.
+  4. Add the following import statement into every class using the library:
+  ```objective-c
+  #import <TealiumiOSLibrary/TealiumiOSTagger.h>
+  ```
+
+OR add this statement to your app's prefix.pch file - in the following block:
 
   ```objective-c
   #ifdef __OBJC__
       ...
+      // This is a global import option
       #import <TealiumiOSLibrary/TealiumiOSTagger.h>
   #endif
   ```
-  4. Initialize the library singleton with the initSharedInstance:profile:target:rootController: method.
 
 
-Updating from a legacy library
-------------------------------
-If you're updating from a prior copy of the ios-tagger library (version 1), do the following:
+Updating from prior versions
+----------------------------
+
+If you're updating from version 2.0, do the following:
+  1. Add the following frameworks to your project:
+      - CoreGraphics.framework		(used internally)
+  2. In your project's Build Settings: Linking: Other Linker Flags add "all_load -ObjC" as a flag option
+
+
+If you're updating from a the ios-tagger (version 1.0), do the following:
 
   1. Add additional frameworks:
       - AVFoundation.framework          (for tracking AVPlayer video objects)
       - CoreMotion.framework            (used by Mobile Companion)
       - CoreMedia.framework             (for tracking MPMoviePlayer video objects)
       - MediaPlayer.framework           (for tracking video)
+      - SystemConfiguration.framework	(for connectivity checks)
       <p></p>
-  2. Replace the original TealiumiOSLibrary folder with the new TealiumiOSLibrary folder that has the following contents:
+  2. In your project's Build Settings: Linking: Other Linker Flags add "all_load -ObjC" as a flag option
+  3. Replace the original TealiumiOSLibrary folder with the new TealiumiOSLibrary folder that has the following contents:
       - Resources folder
       - TealiumiOSLibrary.framework
       <p></p>
-  3. Replace the original import statement:
-  4. 
+  4. Replace the original import statement:
   ```objective-c
   #ifdef __OBJC__
       ...
@@ -137,21 +144,17 @@ How To Use
 
 ### Simple Setup
 
-The library needs to be setup from within your AppDelegate (or any other object that controls the instantiation of your root view controller), ensure the following message is called:
-
-- initSharedInstance:profile:target:rootController: needs to be called from the application:didFinishLaunchingWithOptions: method
+The library typically should be setup from within your AppDelegate or wherever your root view controller is created, using the initSharedInstance:profile:target:option: method like so:
 
 
   ```objective-c
 
   - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
   {
-      //depending on how you setup your application, provide a reference to your navigation controller, tab bar controller or splitview controller
-      UINavigationController *navigationController = ...;
       [TealiumiOSTagger initSharedInstance: @"(your account name)"
                                    profile: @"(profile name)"
                                     target: @"(dev, qa or prod)"
-                            rootController: navigationController];
+                                   options: 0;
       return YES;
   }
 
@@ -159,15 +162,44 @@ The library needs to be setup from within your AppDelegate (or any other object 
 
   ```
 
-  The fact that a UINavigationController, UITabBarController or a UISplitviewController is passed into the root controller argument enables the automatic tracking of views and objects. Meaning the appearance of all views and trackable objects can be automatically tracked.
-  If you want to disable the auto tracking feature, you must call the disableAutotracking method.
+  Upgrading from ios-tagger and version 2.0: The initSharedInstance:profile:target:navigationController: and the initSharedInstance:profile:target:rootController: methods have been deprecated but will continue to work for the time being.
+  
 
-  If **nil** is passed in as a root controller argument then the library will attempt to auto locate your app's root view controlling object instead of disabling the autotracking feature as in the legacy ios-tagger.
+### Options
 
-  Upgrading from ios-tagger: The initSharedInstance:profile:target:navigationController: method has been deprecated but will continue to work for the time being.
+Most configuration options are now done using the Tealium IQ Library Manager extension, accessible in your Tealium IQ Dashboard. The following are the only dev side, code configuration options:
 
-  NOTE: When using Storyboard to manage views and viewControllers, the autotracking system can find the root level viewController but will be unable to track any views that are pushed in by segues alone.  The [[TealiumiOSTagger sharedInstance] autoTrackController:self] method will need to be inserted into that view's viewController viewDidLoad: method.  
+- TLSuppressLogs
+- TLDisplayVerboseLogs
+- TLDisableHTTPS
+- TLPauseInit
 
+These options are called at init time, multiple options being separated by a "|" (pipe) character and done like:
+
+  ```objective-c
+
+  - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
+  {
+      [TealiumiOSTagger initSharedInstance: @"(your account name)"
+                                   profile: @"(profile name)"
+                                    target: @"(dev, qa or prod)"
+                                   options: TLDisableHTTPS | TLPauseInit;
+      return YES;
+  }
+
+  @end
+
+  ```
+
+#TLSuppressLogs# Will suppress all but warning and error logs from the library. This is automatically enabled if you're target environment has been set to 'prod' (production)
+
+#TLDisableExceptionHandling# Disables the library's hook into the OS's app exception (crash) handling. Use this option if you are implementing you're own exception handling.  Note: you will have to add a manual track call to your custom exception handler for the library to make crash data available to your IQ mappings.
+
+#TLDisableHTTPS# Uses HTTP to communicate with your mobile.html configuration page. Recommended only during development, this automatically ignored if your target environment has been set to 'prod' (production).
+
+#TLDisplayVerboseLogs# Displays detailed log output from the library. Recommended only you suspect the library is causing your app to crash.
+
+#TLPauseInit# use this if you will be overriding the default mobile.html url address location or if there is global custom data you wish to add to the library before it's first dispatch (usually a launch lifecycle dispatch).  Remember to use the resumeInit: method afterwards or the library will not finish initializing.
 
 
 ### Network Sensitive Caching
@@ -176,25 +208,18 @@ The library's own reachability class keeps tabs on the connectivity of the host 
 
 Currently there is no limit to the size of the queue, except for the maximum memory allocation given to your app.
 
-### Power Save Mode
+### Power Save Call Limit
 
-When a user's device is charging or at full power, the library will dispatch tracking data as they are processed.  In the event that a device is running on battery power, the library's power save system will cache call dispatches until one of the following occurs:
-- The Power Save Call Limit is reached (default 25 events)
-- The app moves to the background
-- The app moves to the foreground
-- The webview is otherwise reloaded (ie from Mobile Companion, re-launched, etc.)
-
-The following optional methods affect the Power Save system:
-- (void) disablePowerSaveMode;
-- (void) enablePowerSaveMode;
-- (void) setPowerSaveCallLimit:(int)limit;
-
-NOTE: When the power save mode is disabled, dispatches will be sent as they are processed
-
+The Power save feature is now entirely controlled by the Library Manager.  If no manager extension is present during load time, the library will NOT power save and will send calls out as they are processed.  In the library manager extension you can set a Power Save Call Limit. A number greater than zero will force the library to queue calls until the that number of calls have been reached, before attempting to dispatch all. This feature will ignore the battery charge state and will only force deliver if the web view is refreshed, when the app launches or returns from the background.
 
 ### AutoTracking Feature
 
-When initialized using the recommended initSharedInstance:profile:target:rootController: method, the library will automatically enable the autotracking system, which allows it to track view appearances and basic ui object interactions without any additional coding.  To disable this feature, use the disableAutotracking method.  Note: if disabled, you will have to manually implement all tracking calls.
+The Tealium auto tracking feature is automatically enabled and is DISABLED under the following conditions
+- Your mobile.html can not be reached (no internet connection + no saved configuration)
+- Your mobile.html does not have any tags (no target destination for tracking data available)
+- Your mobile.html has the Library Manager extension enabled but ALL of the following are DISABLED: Track All Views, Track All Events, Custom Tracking  
+
+Note: if auto tracking is disabled, manual track calls will still dispatch.
 
 The following is the current list of auto trackable objects:
 
@@ -209,53 +234,30 @@ The following is the current list of auto trackable objects:
 - MPMoviePlayerViewControllers
 - MPMoviePlayerControllers
 
-### AutoTracking Objects
+### Manually tracking objects
 
-If the autoTracking feature is enabled (default on) yet the library is unable to detect a particular object, you may manually register a normally autotrackable object  (see list above) and optionally assign your own Tealium Reference ID to that object.  The library will attempt to self-assign an id if nil is passed in as an argument.  Library generated Tealium Reference IDs are always 5 characters long, so it is recommended that you use 6 or more characters if you are manually assigning one.
-
-```objective-c
-- (void) autotrackObject:(id)object tealiumId:(NSString*)tealiumId;
-
-Example usage:
-
-- (void) buttonCreated:(UIButton*)button
-{
-    ...
-    [[TealiumiOSTagger sharedInstance] autotrackObject:button tealiumId:@”MyButton_1”];
-    ...
-}
-```
-
-NOTE: If the library has already assigned a Tealium Reference ID to an object during it’s initialization scan, then your manually assigned id will be ignored.
-
-### Universal Event Tracking (new)
-
-This is the recommended method for manually tracking custom screen/page appearances, events and tappable actions. This method allows you to take advantage of the setVariable:Value:To: and setGlobalVariable:Value: methods:
+The following method is recommended for manual dispatches:
 
 ```objective-c
-- (void) trackObject:(id)object title:(NSString)title eventData:(NSDictionary*)eventData;
+- (void) track:(id)object customData:(NSDictionary*)eventData as:(NSString*)callType;
 ```
 
-By passing in the object (ie UIButton, UIViewController, etc.) allows you to take advantage of the automatically detected free data sources (such as app_name, object_class, etc.). 
+and can be used like:
 
-
-The title and eventData arguments are optional and "nil" may be assigned.  Passing in a title will override the library's own naming scheme for objects.  For example, most events will automatically be given a title like:  "UIButton: Buy Button: tapped".
-
-Below is an example of how to use it to track a view appearance from a UIViewController:
 ```objective-c
 ...
 
 - (void)viewDidAppear
 {
     ...
-        [[TealiumiOSTagger sharedInstance] trackObject:self title:@"Store Page" eventData:nil];
+	// This code within a UIViewController class
+        [[TealiumiOSTagger sharedInstance] track:self customData:@{@"screen_title:"Store Page"} as:TealiumViewCall];
     ...
 }
-
 ...
 ```
 
-And an example of how to use it to track button action:
+and will fire off a tracking call for this UIViewController's view as a view appearance. The same method could be used to track an event from an object like:
 
 ```objective-c
 ...
@@ -264,12 +266,44 @@ And an example of how to use it to track button action:
 {
     ...
     NSDictionary *customData = @{@"ProductId":@"31a, @"Price":@"15.00"};
-    [[TealiumiOSTagger sharedInstance] trackObject:sender title:nil eventData:customData];
+    [[TealiumiOSTagger sharedInstance] track:sender customData:customData as:TealiumEventCall];
     ...
 }
-
 ...
 ```
+
+The 'as:' argument option can take the TealiumViewCall, TealiumEventCall or nil (the library will auto determine the call type). Nil is actually recommended as the library will usually be able to determine whether a view or an event link call is appropriate for the tracked object.  However, if you want to force the manual call to track as either a view or an event, use this option.  For example, if you want to track the above button tap as a view appearance call, you could code the following:
+
+```objective-c
+...
+
+- (IBAction) tap:(id)sender
+{
+    ...
+    [[TealiumiOSTagger sharedInstance] track:sender customData:@{@"Price":@"15.00"} as:TealiumViewCall];
+    ...
+}
+...
+```
+
+This method replaces the trackObject:title:eventData: universal tracking method, and works with the new addCustomData:to: and addGlobalCustomData: methods.
+
+
+### Overriding Tealium ID
+You can overwrite or assign a Tealium ID to any trackable object by using the setTealiumId:to: method like so:
+
+```objective-c
+...
+- (void) buttonCreated:(UIButton*)button
+{
+    ...
+    [[TealiumiOSTagger sharedInstance] setTealiumId:@"myIdentificationString" to:button];
+    ...
+}
+...
+```
+
+NOTE: This will overwrite any previously assigned Tealium Id to this object.
 
 
 ### Custom Item Click Tracking (Legacy)
@@ -325,7 +359,7 @@ To use:
 ```objective-c
 ...
 
-- (void)viewDidAppear
+- (void)viewDidAppear:(BOOL)animated
 {
     ...
         [[TealiumiOSTagger sharedInstance] trackScreenViewedWithTitle:@"Login Page" eventData:nil];
@@ -337,7 +371,7 @@ To use:
 
 ### Default Data Sources
 
-The following variables are some of the variables sent with all autotracked views and objects:
+The following are some of the data source variables sent with all autotracked views and objects:
 
 - app_id                  (composite of app_name + app_version)
 - app_name                (applicaton name)
@@ -357,9 +391,9 @@ The following variables are some of the variables sent with all autotracked view
 - os_version              (version of operating system on device)
 - platform                (os type - iOS)
 - platform_version        (composite of platform + os_version)
-- timestamp               (GMT timestamp of event occurrance)
+- timestamp               (GMT timestamp of event occurrence)
 - timestamp_gmtoffset     (GMT offset of device)
-- timestamp_local         (Local timestamp of event occurance)
+- timestamp_local         (Local timestamp of event occurrence)
 - timestamp_unix	  (GMT timestamp in unix format)
 - uuid                    (universally unique id OR custom assigned id)
 
@@ -399,16 +433,14 @@ NOTE: True lifecycle data sources will not be sent if false.  So in IQ you can s
 Please visit the Tealium Learning Community site for the complete list of default data sources sent by the library for specific object classes.
 
 
-### Extending Data Points
+### Adding Custom Data Sources
 
-The following methods below allow you to extend the default and element specific datapoints:
+The following methods below allow you to extend the default and element specific data points:
 
-- (BOOL) addVariable:(NSString*)variable value:(NSObject*)value to:(id)object;
-- (BOOL) addEventData:(NSDictionary*)eventData to:(NSObject*)object;
-- (BOOL) addGlobalVariable:(NSString*)variable value:(NSObject*)value;
-- (BOOL) addGlobalEventData:(NSDictionary*)eventData
+- (BOOL) addCustomData:(NSDictionary*)customData to:(NSObject*)object
+- (BOOL) addGlobalCustomData:(NSDictionary*)customData;
 
-The addVariable:value:to method adds one key-value pair of data to an object or a view controller whenever calls related to it are made. For example, an NSString object has been created to record a client id for video files (ie _clientId). If you want that client id added to every auto-tracked play/pause event for that video:
+The addCustomData:to: method adds a dictionary of data to a single NSObject subclass. For example, say your movie handling class has a property named "client_id". If you want that id added to every auto-tracked video event, you could add the following code:
 
 Example usage:
 
@@ -417,27 +449,14 @@ Example usage:
 {
     …
      MPMoviePlayerController *player = (MPMoviePlayerController*)[notification object];
-    [[TealiumiOSTagger sharedInstance] addVariable:@”clientId” value:_clientId to:player];
+    [[TealiumiOSTagger sharedInstance] addCustomData:@{@”clientId”:_clientId} to:player];
     ...
 }
 ```
 
-Alternatively, if you have several key-value pairs you would like passed, you can use the the addEventData:To: to attach a dictionary of key-value pairs to that object.
+Which would add the data source key 'clientId' with a value of the _clientId property to every video this class was handling.
 
-Example usage:
-
-```objective-c
-- (void) mpMoviePlayerControllerStateChanged:(NSNotification*) notification{
-{
-    …
-     MPMoviePlayerController *player = (MPMoviePlayerController*)[notification object];
-    NSDictionary *extraData = [NSDictionary dictionaryWithObjectsAndKeys:@”C_23B”, @”clientId”, @”Kansas”, @”broadcastRegion”, @”KTM1”, @”broadcastStation”];   
-    [[TealiumiOSTagger sharedInstance] addEventData:extraData to:player];
-    ...
-}
-```
-
-Lastly you can add a global key-value pair of data with the addGlobalVariable:value: method.  This data will be added to ALL outbound calls.
+The addGlobalCustomData: method allows you to add a dictionary of additional data to ALL outbound calls:
 
 Example usage:
 
@@ -445,70 +464,25 @@ Example usage:
 - (void) viewDidLoad:(id)viewController
 {
     …
-    // presuming the calling viewController has an NSString property named ‘_state’ that has been populated by another method that has retrieved the user’s current location
-    [[TealiumiOSTagger sharedInstance] addGlobalVariable:@”Location_State” value:_state];
+    // presuming the calling viewController has NSNumber properties named ‘_longitude’ and '_latitude' that have been populated by other methods
+    [[TealiumiOSTagger sharedInstance] addGlobalCustomData:@{@”Longitude”:_longitude,@"Latitude":_latitude];
     ...
 }
 ```
 
-### Developer Options
-
-Several public override methods exist that will supercede the library's default operations:
-
-- (void) checkForNewPublishedSettings; 
-- (void) rescan;          
-- (void) disable;
-- (void) enable;
-- (void) disableAutotracking;
-- (void) enableAutotracking;
-
-*checkForNewPublishedSettings* The library normally checks for new published configuration settings when it wakes from the background or at startup.  Use this method within a timer if you want the library to periodically check or add to a IBAction to have it triggered by your own UI object
-
-*rescan* By default the library rescans your app for trackable elements after any view appearance or trackable event occurs. If you have a long running animation that occurs before your view actually updates, add this call to your completion block
-
-*disable* Puts the library to permanent sleep. Use this if you offer your clients the ability to toggle off usage tracking
-
-*enable* Used only to reawake the library from a disable call
-
-*disableAutotracking* If for any reason you do not want the library to autotrack views and events, use this method.  Warning! If enabled in your release version, no published configuration setting can re-enable autotracking.
-
-*enableAutotracking* Activates the autotracking feature if it has been turned off by the disableAutotracking method.
-
-
-### Debug Options
-
-Two methods and several properties may be toggled within the library to aide in debugging and development:
-
-- (void) unlockMobileCompanion          // see description below
-- (void) suppressTealiumLogs            // see description below
-
-@property BOOL displayConciseLogs       // show minimal operations logs - default YES
-@property BOOL displayErrorLogs         // logs and errors encountered - default YES
-@property BOOL displaySkipLogs          // logs any elements skipped by library - default NO
-@property BOOL displayVerboseLogs       // show detailed logs regarding operations - default NO
-
-the methods can be used as follows:
+NOTE: The library will automatically convert numbers to strings for dispatches, if you require a particular number formatting (i.e. to within a set number of decimal points), we recommend you pre format your data string before passing it to the library, for example:
 
 ```objective-c
-...
-    [[TealiumiOSTagger sharedInstance] unlockMobileCompanion];
-    [[TealiumiOSTagger sharedInstance] suppressTealiumLogs];
-...
+- (void) viewDidLoad:(id)viewController
+{
+    …
+    // presuming the calling viewController has NSNumber properties named ‘_longitude’ and '_latitude' that have been populated by other methods
+    NSString *longFormatted = [NSString stringWithFormat:@"%.4f", _longitude];
+    NSString *latFormatted = [NSString stringWithFormat:@"%.4f", _latitude];
+    [[TealiumiOSTagger sharedInstance] addGlobalCustomData:@{@”Longitude”:longFormatted,@"Latitude":latitudeFormatted];
+    ...
+}
 ```
-and for the properties:
-
-```objective-c
-...
-    [[TealiumiOSTagger sharedInstance].displaySkipLogs = YES;
-    [[TealiumiOSTagger sharedInstance].displayErrorLogs = NO;
-...
-```
-
-When the unlockMobileCompanion method is called, the Mobile Companion feature will unlock itself. This must be enabled if you wish to test Mobile Companion in the simulator.  Call this just after the class level initSharedInstance:profile:target:rootController init method.The library will suppress this setting when your target environment is not set to 'Dev', otherwise, it will override any published extension settings it encounters. 
-
-It is HIGHLY recommended that you comment or remove this method before generating your release version for distribution through the the app store or for enterprise distribution.
-
-When the suppressTealiumLogs method is called, the library will no longer display library related logs to the console.  Tealium logs are enabled by default.
 
 
 ### Mobile Companion Feature
@@ -553,25 +527,26 @@ If you are implementing your own UUID system, you can set the Tagger's UUID to m
 ```
 
 
-Tealium IQ Hook up Example
---------------------------
-This example is for mapping two variables to a Google Analytics account to your app through the Tealium Management Console.  This sample presumes you have already done the following:
+Tealium IQ Basic Set Up + Verification Test
+-------------------------------------------
+This example is for mapping two variables to a Google Analytics account to your app through the Tealium Management Console.  This example presumes you have already done the following:
 - Setup a Google analytics account from www.google.com/analytics/
-- Have added Tealium tracking code to your project
+- Have added Tealium tracking code to your project (see instructions above)
 - Have a Tealium account at www.tealium.com
 
-The steps to properly map data from your app are:
+Verification steps are:
 
-1. Load the Account:Profile:Version that matches the Account and Profile in your *initWithSharedInstance:profile:target:navigationController:* method. Any TealiumIQ version is acceptable.
+1. Log into your Tealium account
 
+2. Load the Account and Profile that matches the Account and Profile used in your *initWithSharedInstance:profile:target:* method.
 
-4. Goto the **Data Sources** tab and add the following new data sources:  
+3. Goto the **Data Sources** tab and add the following new data source:  
       - screen_title
-      - link_id
 
-  Note: leave them as the default type: Data Layer.  *screen_title* are your views' viewcontroller title or nibName property.  *link_id* are the custom titles from any trackable objects found in your app.
+  Note: leave them as the default type: Data Layer.  *screen_title* are your views' viewcontroller title or nibName property.
+  Optional: copy and paste the entire set of predefined Data Sources found at: https://community.tealiumiq.com/series/3333/posts/625639
     
-5. Go to the **Tags** tab:
+4. Go to the **Tags** tab:
       - click on the *+Add Tag* button
       - select Google Analytics
       - enter any title (ie "GAN") in the title field
@@ -582,26 +557,20 @@ The steps to properly map data from your app are:
       - in the *Source Values* dropdown - select *screen_title(js)* - click on *Select Variable*
       - select *Page Name (Override)* option in the Mapping Toolbox
       - click *save*
-      - in the *Source Values* dropdown - select *link_id(js)* - click on *Select Variable*
-      - select *Event Action* option in the Mapping Toolbox
       - click *save*
       - click on the *finish*
-
-Note: The *link_id* variable may need to be mapped to the Event Category, Event Action and Event Label variables because Google Analytics requires three levels of categorization.  Alternativelly you can auto set all but one of these fields from the Extensions tab.
-  
-6. Goto the **Extensions** tab:
-      - add an iOS Handler extension
-      - (Default will unlock the 1st stage of the Mobile Companion unlock sequence and will track all views) 
          
-7. Click on the *Save/Publish* button
-      - Click on "Configure Publish Settings..."
-      - Make sure the "Enable Mobile App Support" option is checked on.  Click the "Apply" button
-      - Enter any *Version Notes* regarding this deployment
-      - Select the *Publish Location* that matches the *environmentName* in your *initSharedInstance:profile:target:rootController:* method
+5. Click on the *Save/Publish* button
       - Click on Configure Publish Options... The Publish Settings dialog box will appear. Make certain the "Enable Mobile App Support" option is checked on and click "Apply". 
+      - Enter any *Version Notes* regarding this deployment
+      - Select the *Publish Location* that matches the *environmentName*, or target argument from your *initSharedInstance:profile:target:* method
       - Click "Save"
 
   NOTE: It may take up to five minutes for your newly published settings to take effect.
+
+6. Log into your Google Analytics dash board - goto your real time tracking section
+
+7. Launch your app and interact with it.  You should see view appearances (page changes) show in your Google Analytics dashboard
 
 
 FAQ
@@ -615,6 +584,7 @@ ANSWER:   This should not be done in code. The library should be configured to t
 
 QUESTION: Why does one of my views produce a screen_title value like "94X-KC-KQz-view-FQQ-5O-q5P"?
 ANSWER: Views created by storyboards are given these types of identifiers. To assign a more meaningful title to your views, simply add in a value to the view's viewController title property in code or in interface builder. 
+
 
 Troubleshooting
 ---------------
@@ -644,8 +614,39 @@ PROBLEM: Video objects are firing both MPMoviePlayer and AVPlayer notifications
 SOLUTION: Certain video objects trigger both types of notifications.  In your Tealium IQ Panel, simply do not map these unwanted calls or add an extension to filter them. 
 
 
+Known Limitations of Current Build
+----------------------------------
+- Tealium Reference Ids are not guaranteed in scenarios where an object is added to it's view controllers view hierarchy after creation time (i.e. is dynamically added by another object or by an triggered event)
+- Buttons within UIToolBars not guaranteed to be auto tracked
+
+
 Versions
 --------
+*3.0.1*
+-   TLDisableExceptionTracking option added to init options
+-   Dispatch log order of sequence reporting corrected
+-   Bug in remote disabling of Mobile Companion fixed
+-   Bug in object_class reporting from certain objects fixed
+
+*3.0*
+-   Ivars and Properties now auto trackable (configurable from the new Library Manager)
+-   Mobile Companion now resizable
+-   Mobile Companion now displays an alert for data points found in it's tableview cells (double tap to activate)
+-   Major backend refactoring for more consistent & faster event tracking, smaller library
+-   More accurate conditional tracking processing
+-   Clearer method names replace older, more ambiguous methods
+-   Multiple, similar functioning methods combined into single methods
+-   Extraneous optional methods removed
+-   More configuration options now remotely accessible and set (library manager)
+-   UITableView cell auto tracking removed for increased stability
+
+*2.3*
+-   "useInsecure" option added to permit HTTP Proxying of library during dev
+-   setMobileHtmlUrlOverride method fixed
+-   Autotracking system updated
+-   Webview loading refactored
+-   Tealium logs refactored
+
 *2.2*
 -   UITableView cell selections auto tracked
 -   UIGestureRecognizers auto tracked
@@ -686,8 +687,15 @@ Versions
 -   Works with reconfigurable tag mapping through Tealium IQ
 -   Worked with iOS 5.0+
 
+
 Support
 -------
 
-For additional help and support, please send all inquires to mobile_support@tealium.com
+For additional help and support, please send all inquires to mobile_support@tealium.com or post questions on our community site at: https://community.tealiumiq.com
+
+
+About
+-----
+iOS Library developed by Charles Glommen, Gautam Day and Jason Koo
+Copyright © 2014 Tealium, Inc. All rights reserved.
 
