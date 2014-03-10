@@ -1,5 +1,27 @@
-Tealium iOS Library - Version 3.0.1
-===================================
+Tealium iOS Library - Version 3.1 & 3.1c
+========================================
+
+********** UPDATE NOTICE **********
+***********************************
+If updating from a previous version of the
+Tealium iOS Library, you will need to update
+your import statement:
+
+```objective-c
+...
+
+// FROM	
+// #import <TealiumiOSLibrary/TealiumiOSTagger.h>
+// TO	
+#import <TealiumLibrary/Tealium.h>
+...
+```
+
+“TealiumiOSTagger” can still be used as the library’s 
+class name for previous implementations, but using 
+“Tealium” is now recommended moving forward.
+***********************************
+
 
 This library framework provides Tealium customers the means to tag their native iOS applications for the purpose of leveraging the vendor-neutral tag management platform offered by Tealium.  
 
@@ -27,10 +49,9 @@ Implementation is a three part process:
 
 Table of Repo Contents
 ----------------------
-- **TealiumiOSLibrary** folder contains all files necessary to run the Tealium iOS Library in your app and consists of the following:
-  - Resources folder: legacy folder that no longer contains any data
-  - TealiumiOSLibrary.framework: contains the actual library and header file (read-only)
-- **TealiumiOSSampleApps** folder contains ARC and nonARC sample apps for reference or to start a project from.  Note: The TealiumiOSLibrary.framework will need to be imported to those projects to test/use (simply click and drag into your Xcode project)
+- TealiumLibrary.framework: contains the actual library and header file (read-only)
+- **TealiumCompact** folder contains the compact version of the library (automatic UI event tracking + mobile companion removed)
+- **TealiumSampleApps** folder contains a sample app and a blank app from which you can start a project from.  Note: The TealiumLibrary.framework will need to be imported to those projects to test/use (simply click and drag into your Xcode project)
 - **.gitignore** file is a git file that can ignored
 - **README.md** file is this document file
 
@@ -51,11 +72,11 @@ You will need the following items:
 - Minimum iOS version deployment of 5.0 or higher
 
 
-New Installation
-----------------
-Installing the TealiumiOSLibrary into your app requires the following steps:
+New Installation - FULL VERSION
+-------------------------------
+Installing the TealiumLibrary into your app requires the following steps:
 
-  0. Copy the **TealiumiOSLibrary.framework** folder into your project's source folder. The library folder contains the TealiumiOSTagger.h header file, which also lists all the public methods available.
+  0. Copy the **TealiumLibrary.framework** folder into your project's source folder. The library folder contains the Tealium.h header file, which also lists all the public methods available.
   1. Add the following frameworks to your project:
       - AVFoundation.framework          (for tracking AVPlayer video objects)
       - CoreGraphics.framework		(used internally)
@@ -64,11 +85,12 @@ Installing the TealiumiOSLibrary into your app requires the following steps:
       - MediaPlayer.framework           (for tracking video)
       - SystemConfiguration.framework   (for connectivity data)
       <p></p>
+
   2. In your project's Build Settings: Linking: Other Linker Flags add "-all_load -ObjC" as a flag option
   3. Initialize the library singleton with the initSharedInstance:profile:target:options: method.
   4. Add the following import statement into every class using the library:
   ```objective-c
-  #import <TealiumiOSLibrary/TealiumiOSTagger.h>
+  #import <TealiumLibrary/Tealium.h>
   ```
 
 OR add this statement to your app's prefix.pch file - in the following block:
@@ -77,9 +99,21 @@ OR add this statement to your app's prefix.pch file - in the following block:
   #ifdef __OBJC__
       ...
       // This is a global import option
-      #import <TealiumiOSLibrary/TealiumiOSTagger.h>
+      #import <TealiumLibrary/Tealium.h>
   #endif
   ```
+
+New Installation - COMPACT VERSION (3.1c)
+————————————————————
+Installation requirements for the compact version are the same as for the full version, with the following exceptions:
+  1. The compact library only requires 2 frameworks (but linking full version's required 6 recommended during dev for fast switching):
+      - CoreTelephony.framework         (for tracking carrier data)
+      - SystemConfiguration.framework   (for connectivity data)
+      <p></p>
+
+The Compact version is a lighter weight library with the auto tracking and mobile companion features removed.  Certain data points are still provided (such as app name, carrier data and timestamps), but auto view change and event tracking is completely removed.  Additionally, the Compact Library is compiled ONLY for use with devices, so will not run or compile in the simulator.
+
+To access the Compact library, simply swap the framework for the one found in the TealiumCompact folder.  Both libraries use the same namespace and class names so you will not have to update any code when switching between them.  To verify which version you are using, check the Tealium.h header which will explicitly state which version of the library you are on (3.1 or 3.1c)
 
 
 Updating from prior versions
@@ -151,10 +185,10 @@ The library typically should be setup from within your AppDelegate or wherever y
 
   - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
   {
-      [TealiumiOSTagger initSharedInstance: @"(your account name)"
-                                   profile: @"(profile name)"
-                                    target: @"(dev, qa or prod)"
-                                   options: 0;
+      [Tealium initSharedInstance: @"(your account name)"
+                          profile: @"(profile name)"
+                           target: @"(dev, qa or prod)"
+                          options: 0;
       return YES;
   }
 
@@ -180,10 +214,10 @@ These options are called at init time, multiple options being separated by a "|"
 
   - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
   {
-      [TealiumiOSTagger initSharedInstance: @"(your account name)"
-                                   profile: @"(profile name)"
-                                    target: @"(dev, qa or prod)"
-                                   options: TLDisableHTTPS | TLPauseInit;
+      [Tealium initSharedInstance: @"(your account name)"
+                          profile: @"(profile name)"
+                           target: @"(dev, qa or prod)"
+                          options: TLDisableHTTPS | TLPauseInit;
       return YES;
   }
 
@@ -191,15 +225,15 @@ These options are called at init time, multiple options being separated by a "|"
 
   ```
 
-#TLSuppressLogs# Will suppress all but warning and error logs from the library. This is automatically enabled if you're target environment has been set to 'prod' (production)
+**TLSuppressLogs** Will suppress all but warning and error logs from the library. This is automatically enabled if you're target environment has been set to 'prod' (production)
 
-#TLDisableExceptionHandling# Disables the library's hook into the OS's app exception (crash) handling. Use this option if you are implementing you're own exception handling.  Note: you will have to add a manual track call to your custom exception handler for the library to make crash data available to your IQ mappings.
+**TLDisableExceptionHandling** Disables the library's hook into the OS's app exception (crash) handling. Use this option if you are implementing you're own exception handling.  Note: you will have to add a manual track call to your custom exception handler for the library to make crash data available to your IQ mappings.
 
-#TLDisableHTTPS# Uses HTTP to communicate with your mobile.html configuration page. Recommended only during development, this automatically ignored if your target environment has been set to 'prod' (production).
+**TLDisableHTTPS** Uses HTTP to communicate with your mobile.html configuration page. Recommended only during development, this automatically ignored if your target environment has been set to 'prod' (production).
 
-#TLDisplayVerboseLogs# Displays detailed log output from the library. Recommended only you suspect the library is causing your app to crash.
+**TLDisplayVerboseLogs** Displays detailed log output from the library. Recommended only you suspect the library is causing your app to crash.
 
-#TLPauseInit# use this if you will be overriding the default mobile.html url address location or if there is global custom data you wish to add to the library before it's first dispatch (usually a launch lifecycle dispatch).  Remember to use the resumeInit: method afterwards or the library will not finish initializing.
+**TLPauseInit** use this if you will be overriding the default mobile.html url address location or if there is global custom data you wish to add to the library before it's first dispatch (usually a launch lifecycle dispatch).  Remember to use the resumeInit: method afterwards or the library will not finish initializing.
 
 
 ### Network Sensitive Caching
@@ -251,7 +285,7 @@ and can be used like:
 {
     ...
 	// This code within a UIViewController class
-        [[TealiumiOSTagger sharedInstance] track:self customData:@{@"screen_title:"Store Page"} as:TealiumViewCall];
+        [[Tealium sharedInstance] track:self customData:@{@"screen_title:"Store Page"} as:TealiumViewCall];
     ...
 }
 ...
@@ -266,7 +300,7 @@ and will fire off a tracking call for this UIViewController's view as a view app
 {
     ...
     NSDictionary *customData = @{@"ProductId":@"31a, @"Price":@"15.00"};
-    [[TealiumiOSTagger sharedInstance] track:sender customData:customData as:TealiumEventCall];
+    [[Tealium sharedInstance] track:sender customData:customData as:TealiumEventCall];
     ...
 }
 ...
@@ -280,7 +314,7 @@ The 'as:' argument option can take the TealiumViewCall, TealiumEventCall or nil 
 - (IBAction) tap:(id)sender
 {
     ...
-    [[TealiumiOSTagger sharedInstance] track:sender customData:@{@"Price":@"15.00"} as:TealiumViewCall];
+    [[Tealium sharedInstance] track:sender customData:@{@"Price":@"15.00"} as:TealiumViewCall];
     ...
 }
 ...
@@ -297,7 +331,7 @@ You can overwrite or assign a Tealium ID to any trackable object by using the se
 - (void) buttonCreated:(UIButton*)button
 {
     ...
-    [[TealiumiOSTagger sharedInstance] setTealiumId:@"myIdentificationString" to:button];
+    [[Tealium sharedInstance] setTealiumId:@"myIdentificationString" to:button];
     ...
 }
 ...
@@ -334,7 +368,7 @@ Below is an example of how to use it:
 
 - (void)insertNewObject:(id)sender {
     ...
-    [[TealiumiOSTagger sharedInstance] trackItemClicked:@"new row added"];
+    [[Tealium sharedInstance] trackItemClicked:@"new row added"];
 }
 
 ...
@@ -362,7 +396,7 @@ To use:
 - (void)viewDidAppear:(BOOL)animated
 {
     ...
-        [[TealiumiOSTagger sharedInstance] trackScreenViewedWithTitle:@"Login Page" eventData:nil];
+        [[Tealium sharedInstance] trackScreenViewedWithTitle:@"Login Page" eventData:nil];
     ...
 }
 
@@ -449,7 +483,7 @@ Example usage:
 {
     …
      MPMoviePlayerController *player = (MPMoviePlayerController*)[notification object];
-    [[TealiumiOSTagger sharedInstance] addCustomData:@{@”clientId”:_clientId} to:player];
+    [[Tealium sharedInstance] addCustomData:@{@”clientId”:_clientId} to:player];
     ...
 }
 ```
@@ -465,7 +499,7 @@ Example usage:
 {
     …
     // presuming the calling viewController has NSNumber properties named ‘_longitude’ and '_latitude' that have been populated by other methods
-    [[TealiumiOSTagger sharedInstance] addGlobalCustomData:@{@”Longitude”:_longitude,@"Latitude":_latitude];
+    [[Tealium sharedInstance] addGlobalCustomData:@{@”Longitude”:_longitude,@"Latitude":_latitude];
     ...
 }
 ```
@@ -479,7 +513,7 @@ NOTE: The library will automatically convert numbers to strings for dispatches, 
     // presuming the calling viewController has NSNumber properties named ‘_longitude’ and '_latitude' that have been populated by other methods
     NSString *longFormatted = [NSString stringWithFormat:@"%.4f", _longitude];
     NSString *latFormatted = [NSString stringWithFormat:@"%.4f", _latitude];
-    [[TealiumiOSTagger sharedInstance] addGlobalCustomData:@{@”Longitude”:longFormatted,@"Latitude":latitudeFormatted];
+    [[Tealium sharedInstance] addGlobalCustomData:@{@”Longitude”:longFormatted,@"Latitude":latitudeFormatted];
     ...
 }
 ```
@@ -513,7 +547,7 @@ Tealium's tagger includes methods to create, retrieve and set a Universally Uniq
 
 ```objective-c
 ...
-    NSString *uuid = [[TealiumiOSTagger sharedInstance] retrieveUUID];
+    NSString *uuid = [[Tealium sharedInstance] retrieveUUID];
 ...
 ```
 
@@ -522,7 +556,7 @@ If you are implementing your own UUID system, you can set the Tagger's UUID to m
 ```objective-c
 ...
     NSString *yourUUID = ...;
-    [[TealiumiOSTagger sharedInstance] setUUID:yourUUID];
+    [[Tealium sharedInstance] setUUID:yourUUID];
 ...
 ```
 
@@ -613,15 +647,36 @@ SOLUTION: Add the missing frameworks, in this case: the CoreMotion.framework and
 PROBLEM: Video objects are firing both MPMoviePlayer and AVPlayer notifications
 SOLUTION: Certain video objects trigger both types of notifications.  In your Tealium IQ Panel, simply do not map these unwanted calls or add an extension to filter them. 
 
+PROBLEM: Undefined symbols for architecture armv7:
+  "_llvm_gcda_emit_function", referenced from:
+      ___llvm_gcov_writeout in TealiumLibrary…
+SOLUTION: In your build settings, try changing your Apple LLVM compiler - code generation setting “Instrument Program Flow” to YES.
+
 
 Known Limitations of Current Build
 ----------------------------------
-- Tealium Reference Ids are not guaranteed in scenarios where an object is added to it's view controllers view hierarchy after creation time (i.e. is dynamically added by another object or by an triggered event)
-- Buttons within UIToolBars not guaranteed to be auto tracked
+- Tealium Reference Ids are not guaranteed for dynamically created objects. For example,  where an object (button, image, etc.) is added to it's view controller’s view hierarchy after creation time (i.e. is added by some triggering event)
+- Buttons within UIToolBars are not guaranteed to be auto tracked
+- All touch events on device are now tracked
 
 
 Versions
 --------
+
+*3.1*
+- TealiumiOSTagger.h renamed to Tealium.h
+- TealiumiOSTaggerLibrary.framework renamed to TealiumLibrary.framework
+- Sample Apps renamed to TealiumBlankApp & TealiumTestApp
+- Compact version introduced, use framework found in TealiumCompact folder
+- Native 64-bit simulator support added
+- Git commit logs cleaned. Using git, you can roll back to any prior stable version of the Tealium iOS library
+- All lifecycle calls made priority tracking calls
+
+*3.0.2*
+-   TLDisableLifecycleTracking option added to init options
+-   Tracking exclusion feature upgraded to stop autotracking of objects dependent on Library Manager conditional settings
+
+
 *3.0.1*
 -   TLDisableExceptionTracking option added to init options
 -   Dispatch log order of sequence reporting corrected
