@@ -1,12 +1,12 @@
 //
-//  TealiumiOSTagger.h
+//  Tealium.h
 //
 //  ------------
 //  *** INFO ***
 //  ------------
-//  Version: 3.0.1
+//  Version: 3.1
 //  Minimum OS Version supported: iOS 5.0+
-//  Brief: The is the primary TealiumiOS library class object for tracking analytics data on iOS devices.  It includes both the autotracking and Mobile Companion   features. The below methods in this header file are the only public methods needed to initialize and run the library. Configuration should be done from Tealium's IQ dashboard at https://www.tealium.com
+//  Brief: The is the primary TealiumiOS library class object for tracking analytics data on iOS devices.  It includes both the autotracking and Mobile Companion features. The below methods in this header file are the only public methods needed to initialize and run the library. Configuration should be done from Tealium's IQ dashboard at https://www.tealium.com
 //  Authors: Originally Created by Charles Glommen and Gautam Day, rewritten and maintained by Jason Koo
 //  Copyright: (c) 2014 Tealium, Inc. All rights reserved.
 //
@@ -26,9 +26,9 @@
 // 
 //  3. Add "-all_load -ObjC" as a flag option to your project's Build Settings: Other Linker Flags
 // 
-//  3. Add the class level init method (initSharedInstance:profile:target:options:) to your app delegate or wherever your primary root controller is initialized
+//  4. Add the class level init method (initSharedInstance:profile:target:options:) to your app delegate or wherever your primary root controller is initialized
 // 
-//  4. Add "#import <TealiumTealiumiOSLibrary/TealiumiOSTagger.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ statement for app wide access. Otherwise, add this import statment in the header file of every object that will make use of the library.
+//  5. Add "#import <TealiumTealiumiOSLibrary/TealiumiOSTagger.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ statement for app wide access. Otherwise, add this import statment in the header file of every object that will make use of the library.
 //
 //  -----------------------
 //  *** ADDITIONAL INFO ***
@@ -40,7 +40,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <UIKit/UIKit.h>
 
-@interface TealiumiOSTagger : NSObject
+@interface Tealium : NSObject
 
 #pragma mark - INITIALIZATION
 /*
@@ -48,12 +48,16 @@
 enum {
     TLNone                      = 0,
     TLSuppressLogs              = 1 << 0, /** Suppresses all non-error logs*/
-    TLDisableExceptionHandling  = 1 << 1, /** Turns of crash tracking*/
-    TLDisableHTTPS              = 1 << 2, /** Switches from HTTPS to HTTP - NOT recommended for production release*/
-    TLDisplayVerboseLogs        = 1 << 3, /** Print verbose logs to the console*/
-    TLPauseInit                 = 1 << 4  /** Delays startup until resumeInit method called*/
+    TLDisableExceptionHandling  = 1 << 1, /** Turns off crash tracking*/
+    TLDisableLifecycleTracking  = 1 << 2, /** Turns off launch, wake, sleep & terminate reporting */
+    TLDisableHTTPS              = 1 << 3, /** Switches from HTTPS to HTTP - NOT recommended for production release*/
+    TLDisplayVerboseLogs        = 1 << 4, /** Print verbose logs to the console*/
+    TLPauseInit                 = 1 << 5  /** Delays startup until resumeInit method called*/
 };
 typedef NSUInteger TealiumOptions;
+
+// Support for pre 3.1 release namespace - Will be deprecated in next version
+typedef Tealium TealiumiOSTagger;
 
 /**
  Recommended Class-level init method. Available version 3.0+
@@ -64,7 +68,7 @@ typedef NSUInteger TealiumOptions;
  @param environmentName NSString Target environment (dev/qa/prod)
  @param options Tealium Options to configure the library. Multiple options may be used using a pipe (|) operator between options. Enter "0" or TLNone for no options.
  */
-+ (TealiumiOSTagger*) initSharedInstance: (NSString*) accountName
++ (Tealium*) initSharedInstance: (NSString*) accountName
                                  profile: (NSString*) profileName
                                   target: (NSString*) environmentName
                                  options: (TealiumOptions) options ;
@@ -77,7 +81,7 @@ typedef NSUInteger TealiumOptions;
  @param profileName Target Account profile
  @param environmentName Target profile environment (dev, qa, etc.)
  */
-+ (TealiumiOSTagger*) initSharedInstance: (NSString*) accountName
++ (Tealium*) initSharedInstance: (NSString*) accountName
                                  profile: (NSString*) profileName
                                   target: (NSString*) environmentName;
 
@@ -89,7 +93,7 @@ typedef NSUInteger TealiumOptions;
  @param enviornmentName NSString of the target environment (dev/qa/prod)
  @param rootController UIViewController object that is root controlling object - library now auto finds this
  */
-+ (TealiumiOSTagger*) initSharedInstance: (NSString*) accountName
++ (Tealium*) initSharedInstance: (NSString*) accountName
                                  profile: (NSString*) profileName
                                   target: (NSString*) environmentName
                           rootController: (id) rootController;
@@ -97,7 +101,7 @@ typedef NSUInteger TealiumOptions;
 /**
  For accessing the Tealium Library Singleton
  */
-+ (TealiumiOSTagger *) sharedInstance;
++ (Tealium*) sharedInstance;
 
 /**
  Optional initialization method for creating multiple instances of the Tealium Tagger. This is NOT a recommended best practice, as additional mapping and tag configuration should occur within Tealium IQ.  This method is provided in the event you need to map data to 2 or more Tealium accounts.  Note, if autotracking is enabled (on by default), duplicate calls will result.
@@ -108,7 +112,7 @@ typedef NSUInteger TealiumOptions;
  @param environmentName Target profile environment (dev, qa, etc.)
  @param rootController Root view controller. May be a UINavigationController, UITabeBarController or UISplitViewController. If parameter passed is nil then autoTracking will be disabled.
  */
-- (TealiumiOSTagger*) init: (NSString*) accountName
+- (Tealium*) init: (NSString*) accountName
                    profile: (NSString*) profileName
                     target: (NSString*) environmentName
                    options: (TealiumOptions) options;
@@ -152,14 +156,14 @@ extern NSString * const TealiumViewCall;
  @param dict NSDictionary of any additional data to pass to Tealium. Can not be nil
  @param object The object to attach the dict data to. Can not be nil
  */
--(void) addCustomData:(NSDictionary*)customData to:(NSObject*)object;
+- (void) addCustomData:(NSDictionary*)customData to:(NSObject*)object;
 
 /**
  Adds multiple data source-value pairs to ALL objects for all future tracking calls
  
  @param customData NSDictionary of key-value pairs to become data source-value pairs in Tealium IQ. Nil will result in a NO return
  */
--(void) addGlobalCustomData:(NSDictionary*)customData;
+- (void) addGlobalCustomData:(NSDictionary*)customData;
 
 
 #pragma mark - INFORMATION
@@ -175,7 +179,7 @@ extern NSString * const TealiumViewCall;
  
  @return An NSString object
  */
--(NSString*) retrieveUUID;
+- (NSString*) retrieveUUID;
 
 #pragma mark - OVERRIDE COMMANDS
 
@@ -201,7 +205,7 @@ extern NSString * const TealiumViewCall;
  @param uuid NSString to set Tealium UUID with
  @return BOOL answer if new UUID successfully overwrote Tealium's default
  */
--(BOOL) setUUID:(NSString*)uuid;
+- (BOOL) setUUID:(NSString*)uuid;
 
 #pragma mark - AUTOTRACKING METHODS
 
@@ -232,6 +236,7 @@ extern NSString * const TealiumViewCall;
  */
 - (void) autoTrackVideoDurationPercentMilestones:(NSArray*)milestones of:(id)object;
 
+
 #pragma mark - DEPRECATED (NO LONGER SUPPORTED) METHODS
 /**
  Deprecated method. Use addCustomData:to: instead. Add a custom data source-value pair to an object for all it's event tracking calls.
@@ -241,7 +246,7 @@ extern NSString * const TealiumViewCall;
  @param object The NSObject to assign the variable-value pair to
  @return Boolean indicating whether or not the data pair was successfully assigned to the object
  */
--(BOOL) addVariable:(NSString*)variable value:(NSObject*)value to:(id)object __attribute__((deprecated));
+- (BOOL) addVariable:(NSString*)variable value:(NSObject*)value to:(id)object __attribute__((deprecated));
 
 /**
  Deprecated method. Use addCustomData:to: instead. Add multiple variable-value pairs of data to an object.
@@ -249,7 +254,7 @@ extern NSString * const TealiumViewCall;
  @param dict NSDictionary of any additional data to pass to Tealium
  @param object The object to attach the dict data to
  */
--(BOOL) addEventData:(NSDictionary*)dict to:(NSObject*)object __attribute__((deprecated));
+- (BOOL) addEventData:(NSDictionary*)dict to:(NSObject*)object __attribute__((deprecated));
 
 /**
  Deprecated method. Use addGlobalCustomData: instead. Adds a variable-value for ALL objects for all event tracking calls
@@ -258,7 +263,7 @@ extern NSString * const TealiumViewCall;
  @param value The value of the variable as an NSObject subclass
  @return Boolean indicating whether or not the variable and value were successfully saved.
  */
--(BOOL) addGlobalVariable:(NSString*)variable value:(NSObject*)value __attribute__((deprecated));
+- (BOOL) addGlobalVariable:(NSString*)variable value:(NSObject*)value __attribute__((deprecated));
 
 /**
  Deprecated method. Use addGlobalCustomData: insteadl. Adds multiple variable-value pairs to ALL objects for all event tracking calls
@@ -267,15 +272,20 @@ extern NSString * const TealiumViewCall;
  @param key
  @return Boolean indicating whether or not the data dictionary was successfully added to the global utagVariables.
  */
--(BOOL) addGlobalEventData:(NSDictionary*)dictionary __attribute__((deprecated));
+- (BOOL) addGlobalEventData:(NSDictionary*)dictionary __attribute__((deprecated));
 
 /*
- Deprecated method. Use library manager extension in Tealium IQ or pauseAutotrackingOf: instead.
- Exclude an object from the autotracking system. Note: if a viewcontroller object is targeted, it's view and subsequent subviews will also be excluded. Overrides any remote tracking configuration for target object.
+ Exclude an object from the autotracking system. Note: If targeting a viewcontroller for exclusion, it's view and objects within it's view may also be excluded as well. Overrides any remote Library Manager settings for target object. Recommend using only for security reasons or if a particular object is causing problems with your build.
  
  @param object The NSObject subclass to exclude.
  */
 - (void) excludeObjectFromAutotracking:(id)object __attribute__((deprecated));
+
+/*
+ Exclude multiple classes and their subclasses from the autotracking system. Ignores case.
+ @param classNamesAsStrings Array of string values representing class types, as retrieved by NSStringFromClass() method.
+ */
+- (void) excludeClassesFromAutotracking:(NSArray*)classNamesAsStrings __attribute__((deprecated));
 
 /**
  Deprecated method. Library will scan as needed.
