@@ -172,7 +172,7 @@ Initialization Time                                 |+0.1 sec | +0.1 sec
 Memory Usage                                        |+12 MB |+13 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
 [UI Autotracking](../../wiki/advanced-guide#ui-autotracking)          |No  |  Yes
-[Mobile Companion](../../wiki/advanced-guide#mobile-companion) |No  |  Yes
+[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
 
 (A) Continue with the Compact version, add any needed [additional tracking calls](../../wiki/API-3.x#trackcustomdataas) for events or view appearances.
 
