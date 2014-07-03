@@ -1,13 +1,11 @@
 //
 //  Tealium.h
 //
-
-
 //  ------------
 //  *** INFO ***
 //  ------------
 //
-//  Version: 3.2
+//  Version: 3.2c
 //
 //  Minimum OS Version supported: iOS 5.0+
 //  Brief: The is the primary TealiumiOS library class object for tracking analytics data on iOS devices.  It includes both the UI Autotracking and Mobile Companion features. The below methods in this header file are the only public methods needed to initialize and run the library. Configuration should be done from Tealium's IQ dashboard at https://www.tealium.com
@@ -22,10 +20,7 @@
 // 2. Link the following framework to your project:
 //
 //      * SystemConfiguration.framework
-//      * AVFoundation.framework
-//      * CoreGraphics.framework
-//      * CoreMedia.framework
-//
+// 
 // 2a. Optionally link the following framework:
 // 
 // * CoreTelephony.framework (for carrier data tracking)
@@ -33,8 +28,6 @@
 // 3. Add the class level init method (initSharedInstance:profile:target:options:globalCustomData:) to your app delegate or wherever your primary root controller is initialized
 // 
 // 4. Add "#import <Tealium/Tealium.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ block statement for app wide access. Otherwise, add this import statment to the header file of every class that will use the library.
-//
-// 5. Add "-all_load -ObjC" as a flag option to your project's Build Settings: Other Linker Flags
 //
 //  -----------------------
 //  *** ADDITIONAL INFO ***
@@ -145,13 +138,6 @@
 - (void) addGlobalCustomData:(NSDictionary*)customData __attribute__((deprecated));
 
 /**
- Deprecated method for tracking video player milestones.  See the new code snippets library to further customize tracking within your app.
- @param milestones NSArray of percent video completed as NSNumber floats (0.5 = halfway, 1.0 = finished). Does not need to be ordered.
- @param object The AVPlayerItem, AVPlayer, MPMoviePlayerViewController or MPMoviePlayerController to add milestone tracking to.
- */
-- (void) autoTrackVideoDurationPercentMilestones:(NSArray*)milestones of:(id)object __attribute__((deprecated));
-
-/**
  
  Deprecated method to put library to permenant sleep. Use the new disable: class method instead. This is an optional method if your app has a manual option for users to disable analytic tracking. Enable must be called to reactivate. Supercedes any remote configuration settings.
  */
@@ -175,18 +161,6 @@
       profile: (NSString*) profileName
        target: (NSString*) environmentName
       options: (TealiumOptions) options __attribute__((deprecated));
-
-/**
- Deprecated method to temporarily delay a call associated with the target object (View calls for views and UIViewController, events calls for buttons, sliders, etc.). This feature is no longer supported, use the Library Manager conditionals to exclude any target objects. Calls will be staged into a delay queue and will remain there until the resumeAutoTrackingOf: message is called. This method only works on autotracked objects and will not affect manual track calls.
- @param object Target object to pause tracking of
- */
-- (void) pauseAutoTrackingOf:(id)object __attribute__((deprecated));
-
-/**
- Deprecated method to continue autotracking calls associated with the target object. This feature is no longer supported. All calls in the delay queue will be dispatched in the order they were saved.
- @param object Target object to continue tracking
- */
-- (void) resumeAutoTrackingOf:(id)object __attribute__((deprecated));
 
  /**
  Deprecated method to use if the TLPauseInit option was used in the library's init method to finalize the startup sequence. This option was required if you wish to add global custom data BEFORE the initial wake calls. Use the class level method with customData argument now.
