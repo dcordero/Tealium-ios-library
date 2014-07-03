@@ -1,4 +1,4 @@
-Tealium iOS Library - 3.1 & 3.1c
+Tealium iOS Library - 3.2 & 3.2c
 ==================================
 
 **********************
@@ -19,7 +19,7 @@ Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-managemen
     - [3. Link Frameworks](#3-link-frameworks)
     - [4. Import and Init](#4-import-and-init)
     - [5. Compile and Run](#5-compile-and-run)
-    - [6. Use Proxy to Verify (optional)](#6-use-proxy-to-verify-optional)
+    - [6. Dispatch Verification Options](#6-dispatch-verification-options)
 - [What Next](#what-next)
 - [Contact Us](#contact-us)
 
@@ -29,7 +29,7 @@ Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-managemen
 - Minimum target iOS Version 5.0+
 
 ###Quick Start###
-This guide presumes you have already created an [iOS app using XCode](https://developer.apple.com/library/iOS/referencelibrary/GettingStarted/RoadMapiOS/index.html).  Follow the below steps to add Tealium's Compact library (3.1c) to it. Discussion on which version is ultimately best for you can be found in the [What Next](#what-next) section.
+This guide presumes you have already created an [iOS app using XCode](https://developer.apple.com/library/iOS/referencelibrary/GettingStarted/RoadMapiOS/index.html).  Follow the below steps to add Tealium's Compact library (3.2c) to it. Discussion on which version is ultimately best for you can be found in the [What Next](#what-next) section.
 
 ####1. Clone/Copy Library####
 onto your dev machine by clicking on the *Clone to Desktop* or *Download ZIP* buttons on the main repo page.
@@ -49,8 +49,8 @@ onto your dev machine by clicking on the *Clone to Desktop* or *Download ZIP* bu
 ####3. Link Frameworks
 [Link the following Apple frameworks](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/Articles/AddingaLibrarytoaTarget.html) to your project:
 
-- CoreTelephony
 - SystemConfiguration
+- CoreTelephony (optional)
 
 Your project-target-General tab should now look similar to:
 
@@ -73,7 +73,7 @@ Your project-target-General tab should now look similar to:
 {
     //...
 
-    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev" options:0];
+    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev"];
     
     // (!) Don't forget to replace "tealiummobile", "demo" and "dev" with your own account-profile-target settings before creating your production build.
 
@@ -84,70 +84,102 @@ Your project-target-General tab should now look similar to:
 Your app is now ready to compile and run.  In the console output you should see a variation of:
 
 ```objective-c
-2014-04-07 17:07:15.470 UICatalog[1561:60b] TEALIUM 3.1c: Loading...
-2014-04-07 17:07:15.471 UICatalog[1561:60b] TEALIUM 3.1c: Loading saved remote Library Manager settings
-2014-04-07 17:07:15.472 UICatalog[1561:60b] TEALIUM 3.1c: Waking up
-2014-04-07 17:07:15.483 UICatalog[1561:60b] TEALIUM 3.1c: Priority call saved to event queue 1 total
-2014-04-07 17:07:15.960 UICatalog[1561:60b] TEALIUM 3.1c: Webview LOADED https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?ts=65
-2014-04-07 17:07:15.974 UICatalog[1561:60b] TEALIUM 3.1c: Library manager settings updated
-2014-04-07 17:07:16.482 UICatalog[1561:60b] TEALIUM 3.1c: Dispatch successfully PACKAGED with 34 Data Sources: (
+2014-07-03 11:05:32.183 UICatalog[5794:1803] TEALIUM 3.2c: Initializing...
+2014-07-03 11:05:32.411 UICatalog[5794:60b] TEALIUM 3.2c: Waking Up.
+2014-07-03 11:05:32.412 UICatalog[5794:60b] TEALIUM 3.2c: Launch detected.
+2014-07-03 11:05:32.435 UICatalog[5794:60b] TEALIUM 3.2c: Enabled for tealiummobile / demo / dev.
+2014-07-03 11:05:33.065 UICatalog[5794:60b] TEALIUM 3.2c: Connection established with https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?ts=50.
+2014-07-03 11:05:33.947 UICatalog[5794:60b] TEALIUM 3.2c: Reading remote config...
+2014-07-03 11:05:33.969 UICatalog[5794:60b] TEALIUM 3.2c: Webkit ready.
+2014-07-03 11:05:33.980 UICatalog[5794:60b] TEALIUM 3.2c: Remote library manager Configuration updated.
+2014-07-03 11:05:33.997 UICatalog[5794:60b] TEALIUM 3.2c: Successfully packaged dispatch with Data Sources: (
     "app_id = UICatalog 2.10",
     "app_name = UICatalog",
+    "app_rnds = com.example.apple-samplecode.UICatalog",
     "app_version = 2.10",
     "autotracked = true",
-    "call_eventtype = lifecycle",
+    "call_eventtype = action",
     "call_type = link",
-    "carrier = unknown",
-    "connection_type = unknown",
-    "device = iPhone Simulator",
+    "carrier = AT&T",
+    "carrier_iso = us",
+    "carrier_mcc = 310",
+    "carrier_mnc = 410",
+    "connection_type = wifi",
+    "device = iPhone",
+    "device_architecture = 32",
+    "device_cputype = ARMV7s",
+    "device_language = en",
     "device_resolution = 320x568",
-    "library_version = 3.1c",
-    "lifecycle_dayofweek_local = 2",
+    "ivar_accessibilityActivationPoint = NSConcreteValue",
+    "ivar_accessibilityElementsHidden = 0",
+    "ivar_accessibilityFrame = NSConcreteValue",
+    "ivar_accessibilityTraits = 0",
+    "ivar_accessibilityViewIsModal = 0",
+    "ivar_dispatchBlock = __NSMallocBlock__",
+    "ivar_isAccessibilityElement = 0",
+    "ivar_shouldGroupAccessibilityChildren = 0",
+    "library_version = 3.2c",
+    "lifecycle_dayofweek_local = 5",
     "lifecycle_dayssincelastwake = 0",
-    "lifecycle_dayssincelaunch = 5",
-    "lifecycle_firstlaunchdate = 2014-04-02T17:55:09Z",
-    "lifecycle_firstlaunchdate_MMDDYYYY = 04/02/2014",
-    "lifecycle_hourofday_local = 17",
-    "lifecycle_lastsimilarcalldate = 2014-04-08 00:06:24 +0000",
-    "lifecycle_launchcount = 5",
-    "lifecycle_totallaunchcount = 5",
-    "lifecycle_totalwakecount = 5",
+    "lifecycle_dayssincelaunch = 6",
+    "lifecycle_dayssinceupdate = 0",
+    "lifecycle_firstlaunchdate = 2014-06-27 05:02:16 +0000",
+    "lifecycle_firstlaunchdate_MMDDYYYY = 06/26/2014",
+    "lifecycle_hourofday_local = 11",
+    "lifecycle_lastsimilarcalldate = 2014-07-02 21:52:51 +0000",
+    "lifecycle_launchcount = 51",
+    "lifecycle_priorsecondsawake = 72761.02707201242",
+    "lifecycle_secondsawake = 0",
+    "lifecycle_sleepcount = 12",
+    "lifecycle_terminatecount = 0",
+    "lifecycle_totallaunchcount = 51",
+    "lifecycle_totalsecondsawake = 440",
+    "lifecycle_totalsleepcount = 12",
+    "lifecycle_totalwakecount = 62",
     "lifecycle_type = launch",
-    "lifecycle_wakecount = 5",
-    "link_id = launch",
-    "orientation = Portrait",
+    "lifecycle_wakecount = 62",
+    "link_id = TealiumLifecycle: launch",
+    "object_class = TealiumLifecycle",
+    "origin = mobile",
     "platform = iOS",
-    "platform.version = iOS 7.1",
+    "platform.version = iOS 7.1.1",
     "status = launch",
-    "tealium_id = LIFE",
-    "timestamp = 2014-04-08T00:07:15Z",
-    "timestamp_local = 2014-04-07T17:07:15",
+    "timestamp = 2014-07-03T18:05:32Z",
+    "timestamp_local = 2014-07-03T11:05:32",
     "timestamp_offset = -7",
-    "timestamp_unix = 1396915635",
-    "uuid = 0076B066-4DDA-4ED4-A2C8-32D1C47842BD"
+    "timestamp_unix = 1404410732",
+    "uuid = 9676C3BA-B618-4833-A206-73EC5D22994Dâ€
 )
-2014-04-07 17:07:16.984 UICatalog[1561:60b] TEALIUM 3.1c: Dispatch queue empty
+2014-07-03 11:05:34.007 UICatalog[5794:60b] TEALIUM 3.2c: All dispatches sent.
 ```
 
 Congratulations! You have successfully implemented the Tealium Compact library into your project.  
 
 This line: 
 ```objective-c
-TEALIUM 3.1c: Dispatch successfully PACKAGED with 34 Data Sources:
+TEALIUM 3.2c: Dispatch successfully PACKAGED with 34 Data Sources:
 ```
 shows how many data sources were detected and available for mapping in Tealium's IQ Dashboard.  The Library only actually sends those data sources and values that are mapped.
 
 If you have disabled internet connectivity to test offline caching, you will see a variation of:
 ```objective-c
-2014-04-07 17:09:13.873 UICatalog[1568:60b] TEALIUM 3.1c: Loading...
-2014-04-07 17:09:13.875 UICatalog[1568:60b] TEALIUM 3.1c: Loading saved remote Library Manager settings
-2014-04-07 17:09:13.876 UICatalog[1568:60b] TEALIUM 3.1c: Waking up
-2014-04-07 17:09:13.882 UICatalog[1568:60b] TEALIUM 3.1c: Priority call saved to event queue 1 total
+2014-07-03 11:08:16.007 UICatalog[5803:1803] TEALIUM 3.2c: Initializing...
+2014-07-03 11:08:16.212 UICatalog[5803:60b] TEALIUM 3.2c: Waking Up.
+2014-07-03 11:08:16.213 UICatalog[5803:60b] TEALIUM 3.2c: Launch detected.
+2014-07-03 11:08:16.238 UICatalog[5803:60b] TEALIUM 3.2c: Enabled for tealiummobile / demo / dev.
+2014-07-03 11:08:16.364 UICatalog[5803:1803] TEALIUM 3.2c: NO INTERNET connection detected.
 ```
-The last line indicates that an event was saved to the event queue. In this case, the initial launch event.
 
+####6. Dispatch Verification Options
+There are two recommended options to verify dispatches are being sent:
 
-####6. Use Proxy to Verify (optional)
+- AudienceStream Mobile Trace
+- HTTP Proxy
+
+*Mobile Trace* 
+This feature has been added to the Full Library version starting 3.2 and is accessible through the Mobile Companion feature.  Please contact your Tealium account manager for detailed instructions.
+
+*HTTP Proxy*
 You can use an HTTP proxy to confirm successful retrieval of configuration data from our multi-CDN and to confirm successful delivery of a tracking call. Several popular third-party options are:
 
 - [Charles Proxy](http://www.charlesproxy.com)
@@ -158,7 +190,9 @@ Tealium's multi-CDN configuration address is *http://tags.tiqcdn.com*.  You may 
 
 If you have access to the Tealium Community site, detailed instructions on how to setup Charles Proxy on an iDevice can be found at: https://community.tealiumiq.com/posts/624994
 
-Alternatively, you can use an analytic service with real-time reporting to confirm delivery of dispatches.  This verification method requires both an active analytics account (i.e. [Google Analytics](http://www.google.com/analytics/)) and an active [Tealium IQ](http://tealium.com) account to enable mapping.  If you have both of these, consult the Tealium community post at: https://community.tealiumiq.com/posts/568700
+To verify dispatches are mapped correctly, received and processed by your target analytic vendors, you will need to review dispatches sent through your vendor's provided dashboard.
+
+If you have not yet chosen a vendor to use, we recommend testing with an analytic service with real-time reporting, such as [Google Analytics](http://www.google.com/analytics/)), for detailed instructions, consult the Tealium community post at: https://community.tealiumiq.com/posts/568700
 
 
 ### What Next###
@@ -167,12 +201,13 @@ Now that you've successfully integrated the library, you should now determine if
 
 |     |Compact  |  Full
 -------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |200 KB | 400 KB
-Initialization Time                                 |+0.1 sec | +0.1 sec
-Memory Usage                                        |+12 MB |+13 MB
+Library Compile Size                                |~350 KB | ~550 KB
+Initialization Time                                 |+0.001 sec | +0.001 sec
+Memory Usage                                        |+7 MB |+20 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
 [UI Autotracking](../../wiki/advanced-guide#ui-autotracking)          |No  |  Yes
 [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
+Mobile Trace                                        | No | Yes |
 
 (A) Continue with the Compact version, add any needed [additional tracking calls](../../wiki/API-3.x#trackcustomdataas) for events or view appearances.
 
@@ -191,23 +226,23 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
-If upgrading from a Library version earlier than 3.1, you will need to update your import statement.
+####1. Upgrading from version earlier than 3.1, you will need to update your import statement.
 
 ```objective-c
 #import <TealiumLibrary/Tealium.h>                  // New import statement
 // #import <TealiumiOSLibrary/TealiumiOSTagger.h>   // Legacy import statement
 ```
 
-NOTE: "TealiumiOSTagger" can still be used as the singleton class type when making shared instance calls:
+####2. [Tealium sharedInstance] is no longer needed but will continue to work in version 3.2:
 
 ```objective-c
 - (void) myCode{
 
-    // The legacy class works with the updated header, so:
-    [[TealiumiOSTagger sharedInstance] trackObject:self title:@"myViewController" customData:nil];
+    // The legacy shared instance call:
+    [[Tealium sharedInstance] track:self customData:nil as:nil];
     
-    // is the same as using the new class:
-    [[Tealium sharedInstance] trackObject:self title:@"myViewController" customData:nil];
+    // is equal to the new recommended class method:
+    [Tealium trackCallType:nil customData:nil object:self];
 }
 ```
 **********************
