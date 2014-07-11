@@ -2,7 +2,7 @@ Tealium iOS Library - 3.2 & 3.2c
 ==================================
 
 **********************
-![](../../wiki/images/warning_30.png) Upgrading from an earlier version? See the [Upgrade  & Features Notice](#upgrade-features-notice)
+![](../../wiki/images/warning_30.png) Upgrading from an earlier version? See the [Upgrade & Features Notice](#upgrade-features-notice)
 **********************
 
 ###Brief###
