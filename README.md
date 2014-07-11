@@ -192,7 +192,7 @@ Memory Usage                                        |+7 MB |+20 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
 [UI Autotracking](../../wiki/advanced-guide#ui-autotracking)          |No  |  Yes
 [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
-[AudienceStream Trace](#../../wiki/advanced-guide#audiencestream-trace)   | No | Yes |
+[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No | Yes |
 
 (*) The library makes use of Link-Time Optimization, so it's end compile size is dependent on the host application. The numbers listed are the averages from test builds.
 
