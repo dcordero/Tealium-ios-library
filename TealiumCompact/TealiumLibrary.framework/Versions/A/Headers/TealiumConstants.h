@@ -11,14 +11,13 @@
 // --------------------
 // *** INIT OPTIONS ***
 // --------------------
-// These supercede any remote settings. The TLPauseInit option has been deprecated.  Use the globalCustomData argument in the initShared instance call to add data prior to the first track call
+// These supercede any remote settings. The TLDisableLifecycleTracking & TLPauseInit option has been deprecated.  Use the globalCustomData argument in the initShared instance call to add data prior to the first track call
 typedef NS_ENUM(NSUInteger, TealiumOptions) {
     TLNone                      = 0,
     TLSuppressLogs              = 1 << 0, /** Suppresses all non-error logs*/
     TLDisableExceptionHandling  = 1 << 1, /** Turns off crash tracking*/
-    TLDisableLifecycleTracking  = 1 << 2, /** Turns off launch, wake, sleep & terminate reporting */
-    TLDisableHTTPS              = 1 << 3, /** Switches from HTTPS to HTTP - NOT recommended for production release*/
-    TLDisplayVerboseLogs        = 1 << 4, /** Print verbose logs to the console*/
+    TLDisableHTTPS              = 1 << 2, /** Switches from HTTPS to HTTP - NOT recommended for production release*/
+    TLDisplayVerboseLogs        = 1 << 3, /** Print verbose logs to the console*/
 };
 
 // -------------------
@@ -93,6 +92,7 @@ extern NSString * const TealiumDSK_ObjectClass;
 extern NSString * const TealiumDSK_Orientation;
 extern NSString * const TealiumDSK_Origin;
 extern NSString * const TealiumDSK_OSVersion;
+extern NSString * const TealiumDSK_OverrideUrl;
 extern NSString * const TealiumDSK_Platform;
 extern NSString * const TealiumDSK_PlatformVersion;
 extern NSString * const TealiumDSK_PlaybackDuration;

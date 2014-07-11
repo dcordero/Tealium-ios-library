@@ -93,7 +93,7 @@
 	[self.window makeKeyAndVisible];
     
     // TODO: Replace with TIQ your account-profile-target environment settings
-    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev"];
+    [Tealium initSharedInstance:@"tealiummobile" profile:@"ios" target:@"dev" options:TLDisplayVerboseLogs];
     
     // Alternate init method with options + argument for adding/overwriting global custom data
 //    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev" options:TLDisableExceptionHandling | TLDisplayVerboseLogs globalCustomData:@{@"customGlobalKeySample":@"customGlobalValueSample", TealiumDSK_UUID:@"myOwnCustomUUID" }];
