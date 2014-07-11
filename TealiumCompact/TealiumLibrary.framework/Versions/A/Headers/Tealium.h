@@ -131,7 +131,7 @@
  */
 
 /**
- Deprecated method for adding data source-value pairs to future calls related to the target object. Use the class level customDataForObject: method to retrieve the NSMutableDictionary custom data store for a given object to modify it's contents.
+ Deprecated method for adding data source-value pairs to future calls related to the target object. Use the class level customDataForObject: method to retrieve the NSMutableDictionary custom data store for a given object to modify it's contents, like so:  [Tealium customDataFor:self][@"myKey"] = @"myValue";
  
  @param customData NSDictionary of any additional data to pass to Tealium. Can not be nil
  @param object The object to attach the dict data to. Can not be nil
@@ -139,7 +139,7 @@
 - (void) addCustomData:(NSDictionary*)customData to:(NSObject*)object __attribute__((deprecated));
 
 /**
- Deprecated method to add multiple data source-value pairs to ALL objects for all future tracking calls. Use the class level globalCustomData method to retrieve the global NSMutableDictionary store to modify it's contents.
+ Deprecated method to add multiple data source-value pairs to ALL objects for all future tracking calls. Use the class level globalCustomData method to retrieve the global NSMutableDictionary store to modify it's contents, like so: [Tealium globalCustomData][@"myKey"] = @"myValue".
  
  @param customData NSDictionary of key-value pairs to become data source-value pairs in Tealium IQ. Nil will result in a NO return
  */
