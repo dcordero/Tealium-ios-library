@@ -2,7 +2,7 @@ Tealium iOS Library - 3.2 & 3.2c
 ==================================
 
 **********************
-![](../../wiki/images/warning_30.png) Upgrading from an earlier version? See the [Upgrade & Features Notice](#upgrade-features-notice)
+![](../../wiki/images/warning_30.png) Upgrading from an earlier version? See the [Upgrade Notice](#upgrade-notice)
 **********************
 
 ###Brief###
@@ -211,7 +211,7 @@ Questions or comments?
 - Contact your Tealium account manager
 
 **********************
-### UPGRADE & FEATURES NOTICE ###
+### UPGRADE NOTICE ###
 
 ####1. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
