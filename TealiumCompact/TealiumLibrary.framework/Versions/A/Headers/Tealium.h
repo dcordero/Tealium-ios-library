@@ -4,205 +4,204 @@
 //  ------------
 //  *** INFO ***
 //  ------------
-//  Version: 3.1c
+//
+//  Version: 3.2c
+//
 //  Minimum OS Version supported: iOS 5.0+
-//  Brief: The is the Compact TealiumiOS library for tracking analytics data on iOS devices ONLY (will not run simulator).  It DOES NOT include either the autotracking or Mobile Companion features. The below methods in this header file are the only public methods needed to initialize and run this library. Configuration should be done from Tealium's IQ dashboard at https://www.tealium.com
-//  Authors: Originally Created by Charles Glommen and Gautam Day, rewritten and maintained by Jason Koo
+//
+//  Brief: The is the primary TealiumiOS library class object for tracking analytics data on iOS devices.  It includes both the UI Autotracking and Mobile Companion features. The below methods in this header file are the only public methods needed to initialize and run the library. Configuration should be done from Tealium's IQ dashboard at https://www.tealium.com
+//
+//  Authors: Originally Created by Charles Glommen and Gautam Dey, rewritten, extended and maintained by Jason Koo
+//
 //  Copyright: (c) 2014 Tealium, Inc. All rights reserved.
 //
-//  ----------------------------------
-//  *** QUICK INSTALL INSTRUCTIONS ***
-//  ----------------------------------
-//  1. Copy the entire TealiumiOSLibrary.framework folder (including this header file) into your XCode project
+// ----------------------------------
+// *** QUICK INSTALL INSTRUCTIONS ***
+// ----------------------------------
 //
-//  2. Link the following 6 frameworks to your project:
-//
-//    * CoreTelephony.framework
-//    * SystemConfiguration.framework
-//
-//  3. Add the class level init method (initSharedInstance:profile:target:options:) to your app delegate or wherever your primary root controller is initialized
-//
-//  4. Make certain in your Build Settings: Apple LLVM 5.0 - Code Generation: Instrument Program Flow is YES
+// 1. Copy/link the TealiumiOSLibrary.framework into your XCode project
 // 
-//  5. Add "#import <TealiumTealiumiOSLibrary/TealiumiOSTagger.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ statement for app wide access. Otherwise, add this import statment in the header file of every object that will make use of the library.
+// 2. Link the following framework to your project:
 //
-//  !!! NOTE !!! The compact library will only run on a device/release target, and will not compile for the simulator
+//      * SystemConfiguration.framework
+// 
+// 2a. Optionally link the following framework:
+// 
+//      * CoreTelephony.framework (for carrier data tracking)
+// 
+// 3. Add the class level init method (initSharedInstance:profile:target:options:globalCustomData:) to your app delegate or wherever your primary root controller is initialized
+// 
+// 4. Add "#import <TealiumLibrary/Tealium.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ block statement for app wide access. Otherwise, add this import statment to the header file of every class that will use the library.
 //
 //  -----------------------
 //  *** ADDITIONAL INFO ***
 //  -----------------------
-//  See the github Readme.md file at: https://github.com/Tealium/ios-library for the full developer instruction set and for a partical list of automatically tracked default data source keys and expected values. You will require a Github account and permissions approval by your Tealium Account Manager to access.
+//  This library runs the majority of it's operations on a background thread, so there is no need to wrap it, although doing so will not adversly affect it.
 // 
-//  Checkout our mobile related articles at http://community.tealiumiq.com for the most recent information, including an up-to-date list of all automatically tracked default data source keys and expected values. See your Tealium Account Manager for access.
+//  See the github Readme.md file and wiki at: https://github.com/Tealium/ios-library for full developer instructions. You will require a Github account and permissions approval by your Tealium Account Manager to access.
+//
+//  Checkout our mobile related articles at http://community.tealiumiq.com for supplemental information. See your Tealium Account Manager for access.
 
-#import <CoreFoundation/CoreFoundation.h>
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "TealiumConstants.h"
 
 @interface Tealium : NSObject
 
 #pragma mark - INITIALIZATION
-/*
- Available init option values - these must be set at init time and can not be changed remotely. NOTE: Setting your target environment to "prod" will force enable TLSuppressLogs option and ignore the TLDisableHTTPS option */
-enum {
-    TLNone                      = 0,
-    TLSuppressLogs              = 1 << 0, /** Suppresses all non-error logs*/
-    TLDisableExceptionHandling  = 1 << 1, /** Turns off crash tracking*/
-    TLDisableLifecycleTracking  = 1 << 2, /** Turns off launch, wake, sleep & terminate reporting */
-    TLDisableHTTPS              = 1 << 3, /** Switches from HTTPS to HTTP - NOT recommended for production release*/
-    TLDisplayVerboseLogs        = 1 << 4, /** Print verbose logs to the console*/
-    TLPauseInit                 = 1 << 5  /** Delays startup until resumeInit method called*/
-};
-typedef NSUInteger TealiumOptions;
 
-// Support for pre 3.1 release namespace - Will be deprecated in next version
-typedef Tealium TealiumiOSTagger;
+/*
+ Library status indicator.
+ 
+ @return Boolean whether the Tealium library is currently active.
+ */
++ (BOOL) isActive;
 
 /**
- Recommended Class-level init method. Available version 3.0+
+ The Class-level init method. Available version 3.2+.
  
- @warning Class-level messages are convenience messages for when a single account/profile/environment context exists. However, if more than one tealium context is needed (unlikely), or a dependency injection framework is already employed, it is recommended to directly utilize the instance init message init:profile:target:rootController:.
  @param accountName NSString of your Tealium account name
  @param profileName NSString of your account-profile name
  @param environmentName NSString Target environment (dev/qa/prod)
  @param options Tealium Options to configure the library. Multiple options may be used using a pipe (|) operator between options. Enter "0" or TLNone for no options.
  */
-+ (Tealium*) initSharedInstance: (NSString*) accountName
-                                 profile: (NSString*) profileName
-                                  target: (NSString*) environmentName
-                                 options: (TealiumOptions) options ;
++ (void) initSharedInstance: (NSString*) accountName
+                    profile: (NSString*) profileName
+                     target: (NSString*) environmentName
+                    options: (TealiumOptions) options
+           globalCustomData: (NSDictionary*)customData;
 
 /**
- Legacy version 1.0 Class-level init method.
+ Legacy version 3.0 Class-level init method. This method now calls the new recommended Class-level init method above, with no globalCustomData.
  
- This method now calls the new recommended Class-level init method above, with no options.
+ @param accountName Name of Tealium account
+ @param profileName Target Account profile
+ @param environmentName Target profile environment (dev, qa, etc.)
+ @param options USe Tealium Options constants to configure the library.
+ */
++ (void) initSharedInstance: (NSString*) accountName
+                    profile: (NSString*) profileName
+                     target: (NSString*) environmentName
+                    options: (TealiumOptions) options;
+
+/**
+ Legacy version 1.0 Class-level init method. This method now calls the new recommended Class-level init method above, with no options or globalCustomData.
+ 
  @param accountName Name of Tealium account
  @param profileName Target Account profile
  @param environmentName Target profile environment (dev, qa, etc.)
  */
-+ (Tealium*) initSharedInstance: (NSString*) accountName
-                                 profile: (NSString*) profileName
-                                  target: (NSString*) environmentName;
-
-/**
- Legacy version 2.0 Class-level init method. Use initSharedInstance:profile:target:options: instead. The root controller argument is now ignored and will be determined by the library - Will be deprecated next update.
- 
- @param accountName NSString of your Tealium account name
- @param profileName NSString of your Tealium account-profile
- @param enviornmentName NSString of the target environment (dev/qa/prod)
- @param rootController UIViewController object that is root controlling object - library now auto finds this
- */
-+ (Tealium*) initSharedInstance: (NSString*) accountName
-                                 profile: (NSString*) profileName
-                                  target: (NSString*) environmentName
-                          rootController: (id) rootController;
-
-/**
- For accessing the Tealium Library Singleton
- */
-+ (Tealium*) sharedInstance;
-
-/**
- Optional initialization method for creating multiple instances of the Tealium Tagger. This is NOT a recommended best practice, as additional mapping and tag configuration should occur within Tealium IQ.  This method is provided in the event you need to map data to 2 or more Tealium accounts.  Note, if autotracking is enabled (on by default), duplicate calls will result.
- 
- @warning Class-level messages are convenience messages for when a single account/profile/environment context exists. However, if more than one tealium context is needed (unlikely), or a dependency injection framework is already employed, it is recommended to directly utilize the instance init message init:profile:target:navigationController:
- @param accountName Name of Tealium account
- @param profileName Target Account profile
- @param environmentName Target profile environment (dev, qa, etc.)
- @param rootController Root view controller. May be a UINavigationController, UITabeBarController or UISplitViewController. If parameter passed is nil then autoTracking will be disabled.
- */
-- (Tealium*) init: (NSString*) accountName
-                   profile: (NSString*) profileName
-                    target: (NSString*) environmentName
-                   options: (TealiumOptions) options;
-
-/**
- Call this method if the TLPauseInit option was used in the library's init method to finalize the startup sequence. This option is required if you wish to add global custom data BEFORE the initial wake calls.
- */
-- (void) resumeInit;
-
-#pragma mark - MANUAL TRACKING METHODS
-/*
- *  --------------------------------------------------------------------------
- *  !!! WARNING !!! Use these methods directly only if the autotracking feature is DISABLED or unable to track the target object. Double call dispatches may result otherwise.
- *  --------------------------------------------------------------------------
- */
-
-// Call type options for manual track methods
-extern NSString * const TealiumEventCall;
-extern NSString * const TealiumViewCall;
++ (void) initSharedInstance: (NSString*) accountName
+                        profile: (NSString*) profileName
+                         target: (NSString*) environmentName;
 
 /**
  New universal method for firing all manual tracking calls. Takes advantage of the auto-detected default data sources and additional Custom Data methods below (ie addCustomData:to: and addGlobalCustomData:).
- @param object The NSObject associated with the call.  Use UIViewControllers instead of UIView's for view tracking
+ 
+ @param callType Enter either TealiumEventCall or TealiumViewCall for the appropriate track type
  @param eventData NSDictionary with custom data. Keys become Tealium IQ Data Sources. Values will be the value passed into the analytic variable mapped to the Data Source.
- @param callType NSString of call type - use either provided constants "TealiumViewCall" for views or "TealiumEventCall" for events - other string values reserved for future use.
- */
-- (void) track:(id) object
-    customData:(NSDictionary*) customData
-            as:(NSString*)callType;
-
-#pragma mark - ADDITIONAL CUSTOM DATA
-/*
- *  --------------------------------------------------------------------------
- *  *** NOTE *** The library's initial wake and view calls may occur before the below methods have had a chance to complete.  To ensure any custom global data is added to the library before these first calls, be sure to use the TLPauseInit option in the init method.  After all your custom data has been added, use the resumeInit call to complete the init process.
- *  --------------------------------------------------------------------------
- */
-
-/**
- Add data source-value pairs to future calls related to the target object.
- 
- @param dict NSDictionary of any additional data to pass to Tealium. Can not be nil
- @param object The object to attach the dict data to. Can not be nil
- */
-- (void) addCustomData:(NSDictionary*)customData to:(NSObject*)object;
-
-/**
- Adds multiple data source-value pairs to ALL objects for all future tracking calls
- 
- @param customData NSDictionary of key-value pairs to become data source-value pairs in Tealium IQ. Nil will result in a NO return
- */
-- (void) addGlobalCustomData:(NSDictionary*)customData;
-
-
-#pragma mark - INFORMATION
-/*
- *  --------------------------------------------------------------------------
- *  *** NOTE *** Mobile Companion is the recommended means of reading and confirming
- *  data tracked by the library outside of the dev console logs
- *  --------------------------------------------------------------------------
- */
-
-/**
- Retrieves a Tealium generated Universally Unique Identifier that distinguishes the current device and app from other devices with your application.  If this UUID is not already available, it will generate a new UUID before returning. Use this method if you want to make use of the same id. NOTE: Do not confuse this with the deprecated UDID, which is no longer permitted by Apple
- 
- @return An NSString object
- */
-- (NSString*) retrieveUUID;
-
-#pragma mark - OVERRIDE COMMANDS
+ @param object NSObject source of the call if you want auto property detection added to the tracking call for a particular object */
++ (void) trackCallType:(NSString*)callType customData:(NSDictionary*)data object:(NSObject*)object;
 
 /**
  Puts Tealium tagger to permenant sleep. This is an optional method if your app has a manual option for users to disable analytic tracking. Enable must be called to reactivate. Supercedes any remote configuration settings.
  */
-- (void) disable;
++ (void) disable;
 
 /**
  To re-enable the library from a disable call.
  */
-- (void) enable;
++ (void) enable;
+
+/*
+ Use this method to access the library's global custom data dictionary.
+ */
++ (NSMutableDictionary*) globalCustomData;
+
+/*
+ Use this method to access any custom data dictionary associated with a given object.
+ 
+ @param NSObject Required.
+ */
++ (NSMutableDictionary*) customDataForObject:(NSObject*)object;
+
+
+#pragma mark - DEPRECATED METHODS
+/*
+ The below methods are marked for deprecation.  Some of these methods will still continue to produce the intended results this version but the recommended alternatives are suggested. Additionaly these methods will be entirely removed in the next iteration.  Methods that no longer function at all will report an error log upon use.
+ */
 
 /**
- Method for overriding the default Tealium mobile html url destination for retrieving configuration and mapping data. Use a FULL url address (ie: HTTPS://www.mywebsite.com) NOTE: It is recommended you use the TLPauseInit option when using this method. Also note this method overrides the TLDisableHTTPS init option.
+ Deprecated method for adding data source-value pairs to future calls related to the target object. Use the class level customDataForObject: method to retrieve the NSMutableDictionary custom data store for a given object to modify it's contents, like so:  [Tealium customDataFor:self][@"myKey"] = @"myValue";
+ 
+ @param customData NSDictionary of any additional data to pass to Tealium. Can not be nil
+ @param object The object to attach the dict data to. Can not be nil
+ */
+- (void) addCustomData:(NSDictionary*)customData to:(NSObject*)object __attribute__((deprecated));
+
+/**
+ Deprecated method to add multiple data source-value pairs to ALL objects for all future tracking calls. Use the class level globalCustomData method to retrieve the global NSMutableDictionary store to modify it's contents, like so: [Tealium globalCustomData][@"myKey"] = @"myValue".
+ 
+ @param customData NSDictionary of key-value pairs to become data source-value pairs in Tealium IQ. Nil will result in a NO return
+ */
+- (void) addGlobalCustomData:(NSDictionary*)customData __attribute__((deprecated));
+
+/**
+ Deprecated method to put library to permenant sleep. Use the new disable: class method instead. This is an optional method if your app has a manual option for users to disable analytic tracking. Enable must be called to reactivate. Supercedes any remote configuration settings.
+ */
+- (void) disable __attribute__((deprecated));
+
+/**
+ Deprecated method to re-enable the library from a disable call. Use the new enable: class method instead.
+ */
+- (void) enable __attribute__((deprecated));
+
+ /**
+ Deprecated method to use if the TLPauseInit option was used in the library's init method to finalize the startup sequence. This option was required if you wish to add global custom data BEFORE the initial wake calls. Use the class level method with customData argument now.
+ */
+- (void) resumeInit __attribute__((deprecated));
+
+/*
+ Deprecated method to retrieves the Tealium generated Universally Unique Identifier that distinguishes the current device and app from other devices with your application.  Use the globalCustomData: class method instead to retrieve the global data dictionary with the "uuid" key, like so: NSString *uuid = [Tealium globalCustomData][TealiumDSK_UUID].  If needed, you can also replace the UUID with your own identifier like so: [Tealium globalCustomData][TealiumDSK_UUID] = @"myUUID";. NOTE: Do not confuse this with the deprecated UDID, which is no longer permitted by Apple.
+ 
+ @return An NSString object
+ */
+- (NSString*) retrieveUUID __attribute__((deprecated));
+
+/**
+ Deprecated method for overriding the default Tealium mobile html url destination for retrieving configuration and mapping data. Use the initSharedInstance:profile:target:options:globalCustomData: method and insert an NSString of the full URL address for the key TealiumDSK_OverrideUrl, like so:  [Tealium initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" options:0 globalCustomData:@{TealiumDSK_OverrideUrl:@"http://www.myOverrideAddress.com"}];.
+ 
  @param override NSString of the full URL to override default with
  */
-- (void) setMobileHtmlUrlOverride:(NSString*)override;
+- (void) setMobileHtmlUrlOverride:(NSString*)override __attribute__((deprecated));
+
+/*
+ Deprecated method for overriding automatically assigned Tealium ID.  Recommend using the new customData:forObject: method and override the "tealiumId" key, like so: [Tealium customDataForObject:self][TealiumDSK_TealiumId] = @"myTealiumId";.
+ 
+ @param tealiumId Tealium Reference ID of object to track.  Use 6 or more alphanumberic characters to avoid namespace collisions with automatically assigned library ids.
+ @param object Object to track - Must be a subclass of NSObject
+ */
+- (void) setTealiumId:(NSString*)tealiumId to:(id)object __attribute__((deprecated));
 
 /**
- Overwrites Tealium's UUID created string. NOTE: Do not confuse UUID with the deprecated UDID, the identifier no longer supported by Apple
+ Deprecated method to overwrites Tealium's UUID created string. Use the new globalCustomData: method to retrieve the global data containing the "uuid" key to manipulate the default uuid or set it from the initSharedInstance:profile:target:options:globalCustomData: class method by adding a "uuid" key-value pair to the globalCustomData: argument, like so: [Tealium initSharedInstance:@"myAccount" profile:@"myProfile" target:@"dev" options:0 globalCustomData:@{TealiumDSK_UUID:@"myOwnId"}];. NOTE: Do not confuse UUID with the deprecated UDID, the identifier no longer supported by Apple.
  
  @param uuid NSString to set Tealium UUID with
  @return BOOL answer if new UUID successfully overwrote Tealium's default
  */
-- (BOOL) setUUID:(NSString*)uuid;
+- (BOOL) setUUID:(NSString*)uuid __attribute__((deprecated));
+
+/**
+ Deprecated method for accessing the Tealium Library Singleton. No longer needed with class level use
+ */
++ (id) sharedInstance __attribute__((deprecated));
+
+/**
+ Deprecated method for firing all manual tracking calls. Use the new class level +trackCallType:customData:object: method instead.
+ 
+ @param object The NSObject associated with the call.  Use UIViewControllers instead of UIView's for view tracking
+ @param eventData NSDictionary with custom data. Keys become Tealium IQ Data Sources. Values will be the value passed into the analytic variable mapped to the Data Source.
+ @param callType NSString of call type - use either provided constants "TealiumViewCall" for views or "TealiumEventCall" for events - other string values reserved for future use.
+ */
+- (void) track:(NSObject*)object customData:(NSDictionary*)customData as:(NSString*)callType __attribute__ ((deprecated));
 
 @end
