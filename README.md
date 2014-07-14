@@ -190,7 +190,7 @@ Library Compile Size                                |~250* KB | ~600* KB
 Initialization Time                                 |+1 ms | +1 ms
 Memory Usage                                        |+7 MB |+20 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
-[UI Autotracking](../../wiki/advanced-guide#ui-autotracking)          |No  |  Yes
+[UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-onlu)          |No  |  Yes
 [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
 [AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No | Yes |
 
