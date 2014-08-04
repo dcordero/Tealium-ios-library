@@ -25,7 +25,7 @@ Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-managemen
 
 ###Requirements###
 
-- [XCode (5.0+ recommended)](https://developer.apple.com/xcode/downloads/)
+- [XCode (5.1.1+ recommended)](https://developer.apple.com/xcode/downloads/)
 - Minimum target iOS Version 5.0+
 
 ###Quick Start###
