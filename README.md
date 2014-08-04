@@ -25,7 +25,7 @@ Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-managemen
 
 ###Requirements###
 
-- [XCode (5.0+ recommended)](https://developer.apple.com/xcode/downloads/)
+- [XCode (5.1.1+ recommended)](https://developer.apple.com/xcode/downloads/)
 - Minimum target iOS Version 5.0+
 
 ###Quick Start###
@@ -162,7 +162,11 @@ If you have disabled internet connectivity to test offline caching, you will see
 There are two recommended options to verify dispatches are being sent:
 
 - [AudienceStream Trace](#2-audiencestream-trace)
+- Safari Web Inspector
 - HTTP Proxy
+
+*Safari Web Inspector
+A device with the Settings:Safari:Web Inspector option, connected to an OS X machine with Safari can directly interact with the webkit object within the library. Additional info on how to enable this can be found at [this site](http://webdesign.tutsplus.com/articles/quick-tip-using-web-inspector-to-debug-mobile-safari--webdesign-8787).  A special extension can also be added in your TIQ publish to enable debug output into this web inspection. Consult your account manager for details.
 
 *HTTP Proxy*
 You can use an HTTP proxy to confirm successful retrieval of configuration data from our multi-CDN and to confirm successful delivery of a tracking call. Several popular third-party options are:
@@ -190,7 +194,7 @@ Library Compile Size                                |~250* KB | ~600* KB
 Initialization Time                                 |+1 ms | +1 ms
 Memory Usage                                        |+7 MB |+20 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
-[UI Autotracking](../../wiki/advanced-guide#ui-autotracking)          |No  |  Yes
+[UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-only)          |No  |  Yes
 [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
 [AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No | Yes |
 
