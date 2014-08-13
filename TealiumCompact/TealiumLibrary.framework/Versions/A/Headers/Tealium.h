@@ -5,7 +5,7 @@
 //  *** INFO ***
 //  ------------
 //
-//  Version: 3.2c
+//  Version: 3.2.1c
 //
 //  Minimum OS Version supported: iOS 5.0+
 //

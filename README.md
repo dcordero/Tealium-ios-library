@@ -1,4 +1,4 @@
-Tealium iOS Library - 3.2 & 3.2c
+Tealium iOS Library - 3.2.1 & 3.2.1c
 ==================================
 
 **********************
@@ -217,13 +217,19 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
-####1. Self Thread Managing
+
+####1. Bug Fixes in 3.2.1
+- Library will now properly queue calls after an unsuccessful connection attempt
+- Exception track calls will now fire next launch
+- All current lifecycle counts now present for lifecycle dispatches
+
+####2. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
 
-####2. AudienceStream Trace
+####3. AudienceStream Trace
 This feature is now available in the Full Library version starting 3.2 and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
 
-####3. New Class Level Methods
+####4. New Class Level Methods
 [Tealium sharedInstance] is no longer needed but will continue to work in version 3.2:
 
 ```objective-c
@@ -239,7 +245,7 @@ This feature is now available in the Full Library version starting 3.2 and is ac
 }
 ```
 
-####4. Update Import Statement
+####5. Update Import Statement
 If upgrading from a version earlier than 3.1, you will need to update your import statement:
 
 ```objective-c
