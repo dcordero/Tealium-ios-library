@@ -92,7 +92,7 @@
 
 	[self.window makeKeyAndVisible];
     
-    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev"];
+    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev" options:0];
 }
 
 @end

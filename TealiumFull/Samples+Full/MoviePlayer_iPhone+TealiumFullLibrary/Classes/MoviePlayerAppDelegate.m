@@ -65,7 +65,7 @@ Copyright (C) 2014 Apple Inc. All Rights Reserved.
     window.rootViewController = tabBarController;
     [window makeKeyAndVisible];
     
-    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev"];
+    [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev" options:0 globalCustomData:nil];
 }
 
 /* Tells the delegate that the application is about to enter the foreground. */

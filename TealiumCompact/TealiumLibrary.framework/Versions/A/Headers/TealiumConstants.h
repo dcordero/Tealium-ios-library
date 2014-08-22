@@ -32,7 +32,7 @@ extern NSString * const TealiumViewCall;
 // ----------------
 // Formerly Data Source Keys. Use these constants to override autotracked UDO variable keys
 extern NSString * const TealiumDSK_AccessibilityLabel;
-extern NSString * const TealiumDSK_AirplayActive;           // TODO: deprecating next version
+extern NSString * const TealiumDSK_AirplayActive;           // TODO: deprecating - use TealiumDSK_VideoAirplayActive
 extern NSString * const TealiumDSK_AppId;
 extern NSString * const TealiumDSK_AppName;
 extern NSString * const TealiumDSK_AppRdns;
@@ -55,6 +55,7 @@ extern NSString * const TealiumDSK_ExceptionType;
 extern NSString * const TealiumDSK_ExceptionName;
 extern NSString * const TealiumDSK_ExceptionReason;
 extern NSString * const TealiumDSK_ExceptionTrace;
+extern NSString * const TealiumDSK_ExcludeClasses;
 extern NSString * const TealiumDSK_LibraryVersion;
 extern NSString * const TealiumDSK_LifecycleCurrentWakeCount;
 extern NSString * const TealiumDSK_LifecycleCurrentLaunchCount;
@@ -85,7 +86,7 @@ extern NSString * const TealiumDSK_LifecycleTotalSecondsAwake;
 extern NSString * const TealiumDSK_LifecycleType;
 extern NSString * const TealiumDSK_LifecycleUpdateLaunchDate;
 extern NSString * const TealiumDSK_LinkId;
-extern NSString * const TealiumDSK_MediaType;           // TODO: deprecating next version
+extern NSString * const TealiumDSK_MediaType;           // TODO: deprecating - use TealiumDSK_VideoMediaTyp
 //extern NSString * const TealiumDSK_MilestoneTime;
 //extern NSString * const TealiumDSK_MilestonePercent;
 extern NSString * const TealiumDSK_ObjectClass;
@@ -95,27 +96,27 @@ extern NSString * const TealiumDSK_OSVersion;
 extern NSString * const TealiumDSK_OverrideUrl;
 extern NSString * const TealiumDSK_Platform;
 extern NSString * const TealiumDSK_PlatformVersion;
-extern NSString * const TealiumDSK_PlaybackDuration;    // TODO: deprecating next version
-extern NSString * const TealiumDSK_PlaybackPercent;     // TODO: deprecating next version
-extern NSString * const TealiumDSK_PlaybackRate;        // TODO: deprecating next version
-extern NSString * const TealiumDSK_PlaybackTime;        // TODO: deprecating next version
-extern NSString * const TealiumDSK_PresentationHeight;  // TODO: deprecating next version
-extern NSString * const TealiumDSK_PresentationWidth;
+extern NSString * const TealiumDSK_PlaybackDuration;    // TODO: deprecating - use TealiumDSK_VideoPlaybackDuration
+extern NSString * const TealiumDSK_PlaybackPercent;     // TODO: deprecating - use TealiumDSK_VideoPlaybackPercent
+extern NSString * const TealiumDSK_PlaybackRate;        // TODO: deprecating - use TealiumDSK_VideoPlaybackTime
+extern NSString * const TealiumDSK_PlaybackTime;        // TODO: deprecating - use TealiumDSK_VideoPlaybackTime
+extern NSString * const TealiumDSK_PresentationHeight;  // TODO: deprecating - use TealiumDSK_VideoHeight
+extern NSString * const TealiumDSK_PresentationWidth;   // TODO: deprecating - use TealiumDSK_VideoWidth
 extern NSString * const TealiumDSK_ScreenTitle;
 extern NSString * const TealiumDSK_SelectedRow;
 extern NSString * const TealiumDSK_SelectedSection;
 extern NSString * const TealiumDSK_SelectedValue;
 extern NSString * const TealiumDSK_SelectedTitle;
 extern NSString * const TealiumDSK_SourceType;
-extern NSString * const TealiumDSK_Status;              // TODO: deprecating next version
+extern NSString * const TealiumDSK_Status;              // TODO: slated for future deprecation
 extern NSString * const TealiumDSK_TealiumId;
-extern NSString * const TealiumDSK_TimedMetadata;       // TODO: deprecating next version
+extern NSString * const TealiumDSK_TimedMetadata;       // TODO: deprecating - use TealiumDSK_VideoTimedMetadata
 extern NSString * const TealiumDSK_Timestamp;
 extern NSString * const TealiumDSK_TimestampGMT;
 extern NSString * const TealiumDSK_TimestampLocal;
 extern NSString * const TealiumDSK_TimestampUnix;
 extern NSString * const TealiumDSK_UUID;
-extern NSString * const TealiumDSK_UrlFilename;         // TODO: deprecating next version
+extern NSString * const TealiumDSK_UrlFilename;         // TODO: deprecating - use TealiumDSK_VideoURL or TealiumDSK_WebViewURL
 extern NSString * const TealiumDSK_VideoAirplayActive;
 extern NSString * const TealiumDSK_VideoHeight;
 extern NSString * const TealiumDSK_VideoMediaType;

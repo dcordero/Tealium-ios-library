@@ -5,7 +5,7 @@
 //  *** INFO ***
 //  ------------
 //
-//  Version: 3.2.1c
+//  Version: 3.3c
 //
 //  Minimum OS Version supported: iOS 5.0+
 //
@@ -63,6 +63,7 @@
  @param profileName NSString of your account-profile name
  @param environmentName NSString Target environment (dev/qa/prod)
  @param options Tealium Options to configure the library. Multiple options may be used using a pipe (|) operator between options. Enter "0" or TLNone for no options.
+ @param customData NSDictionary of additional global custom data added to every dispatch
  */
 + (void) initSharedInstance: (NSString*) accountName
                     profile: (NSString*) profileName

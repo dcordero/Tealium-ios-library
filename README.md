@@ -1,4 +1,4 @@
-Tealium iOS Library - 3.2.1 & 3.2.1c
+Tealium iOS Library - 3.3 & 3.3c
 ==================================
 
 **********************
@@ -84,78 +84,66 @@ Your project-target-General tab should now look similar to:
 Your app is now ready to compile and run.  In the console output you should see a variation of:
 
 ```objective-c
-2014-07-10 17:26:34.661 UICatalog[7812:60b] TEALIUM 3.2c: Initializing...
-2014-07-10 17:26:34.851 UICatalog[7812:60b] TEALIUM 3.2c: App Launch detected.
-2014-07-10 17:26:34.876 UICatalog[7812:60b] TEALIUM 3.2c: Initialization complete for tealiummobile / demo / dev.
-2014-07-10 17:26:35.130 UICatalog[7812:60b] TEALIUM 3.2c: Connection established with https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?ts=16.
-2014-07-10 17:26:36.075 UICatalog[7812:60b] TEALIUM 3.2c: Reading remote config...
-2014-07-10 17:26:36.093 UICatalog[7812:60b] TEALIUM 3.2c: Webkit ready.
-2014-07-10 17:26:36.097 UICatalog[7812:60b] TEALIUM 3.2c: Remote library manager Configuration updated.
-2014-07-10 17:26:36.102 UICatalog[7812:60b] TEALIUM 3.2c: Successfully packaged dispatch with Data Sources: (
-    "app_id = UICatalog 2.10",
-    "app_name = UICatalog",
-    "app_rnds = com.example.apple-samplecode.UICatalog",
-    "app_version = 2.10",
-    "call_eventtype = action",
-    "call_type = link",
-    "carrier = AT&T",
-    "carrier_iso = us",
-    "carrier_mcc = 310",
-    "carrier_mnc = 410",
-    "connection_type = wifi",
-    "device = iPhone",
-    "device_architecture = 32",
-    "device_cputype = ARMV7s",
-    "device_language = en",
-    "device_resolution = 320x568",
-    "library_version = 3.2c",
-    "lifecycle_dayofweek_local = 5",
-    "lifecycle_dayssincelastwake = 0",
-    "lifecycle_dayssincelaunch = 0",
-    "lifecycle_dayssinceupdate = 0",
-    "lifecycle_firstlaunchdate = 2014-07-10 20:14:57 +0000",
-    "lifecycle_firstlaunchdate_MMDDYYYY = 07/10/2014",
-    "lifecycle_hourofday_local = 17",
-    "lifecycle_lastsimilarcalldate = 2014-07-10 20:23:34 +0000",
-    "lifecycle_launchcount = 4",
-    "lifecycle_priorsecondsawake = 14580.63316595554",
-    "lifecycle_secondsawake = 14580",
-    "lifecycle_sleepcount = 0",
-    "lifecycle_terminatecount = 0",
-    "lifecycle_totallaunchcount = 4",
-    "lifecycle_totalsecondsawake = 14580",
-    "lifecycle_totalwakecount = 3",
-    "lifecycle_type = launch",
-    "lifecycle_wakecount = 3",
-    "link_id = launch",
-    "object_class = TealiumLifecycle",
-    "origin = mobile",
-    "platform = iOS",
-    "platform_version = iOS 7.1.1",
-    "status = launch",
-    "timestamp = 2014-07-11T00:26:34Z",
-    "timestamp_local = 2014-07-10T17:26:34",
-    "timestamp_offset = -7",
-    "timestamp_unix = 1405038394",
-    "uuid = 11EE1056-9C36-4C55-92AB-D67F23FED345"
-)
-2014-07-10 17:26:36.112 UICatalog[7812:60b] TEALIUM 3.2c: All dispatches sent.
+2014-08-22 11:12:29.109 UICatalog[1519:60b] TEALIUM 3.3: Init settings: {
+    AccountInfo =     {
+        Account = tealiummobile;
+        Profile = demo;
+        Target = dev;
+    };
+    Settings =     {
+        AdditionalCustomData =         {
+            testK = testV;
+        };
+        ExcludeClasses =         (
+            UIButton
+        );
+        LogVerbosity = 1;
+        UseExceptionTracking = 1;
+        UseHTTPS = 1;
+    };
+}
+2014-08-22 11:12:29.109 UICatalog[1519:60b] TEALIUM 3.3: Initializing...
+2014-08-22 11:12:29.133 UICatalog[1519:3e13] TEALIUM 3.3: Network is available.
+2014-08-22 11:12:29.133 UICatalog[1519:60b] TEALIUM 3.3: Mobile Companion Enabled and listening.
+2014-08-22 11:12:29.253 UICatalog[1519:60b] TEALIUM 3.3: Connection established with https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?platform=iOS&os_version=7.1&library_version=3.3&ts=61.
+2014-08-22 11:12:29.332 UICatalog[1519:60b] TEALIUM 3.3: Reading remote config...
+2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: Tags found - UTAG ready.
+2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: Initialized.
+2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: App Launch detected.
+2014-08-22 11:12:29.362 UICatalog[1519:60b] TEALIUM 3.3: Successfully packaged link dispatch for TealiumLifecycle : launch : 2014-08-22T11:12:29
+2014-08-22 11:12:29.642 UICatalog[1519:60b] TEALIUM 3.3: Successfully packaged view dispatch for MainViewController : appeared : 2014-08-22T11:12:29
 ```
 
 Congratulations! You have successfully implemented the Tealium Compact library into your project.  
 
-This line: 
-```objective-c
-TEALIUM 3.2c: Dispatch successfully PACKAGED with 34 Data Sources:
-```
-shows how many data sources were detected and available for mapping in Tealium's IQ Dashboard.  The Library only actually sends those data sources and values that are mapped.
-
 If you have disabled internet connectivity to test offline caching, you will see a variation of:
 ```objective-c
-2014-07-10 18:25:57.427 UICatalog[13998:60b] TEALIUM 3.2c: Initializing...
-2014-07-10 18:25:57.456 UICatalog[13998:60b] TEALIUM 3.2c: App Launch detected.
-2014-07-10 18:25:57.461 UICatalog[13998:60b] TEALIUM 3.2c: Initialization complete for tealiummobile / demo / dev.
-2014-07-10 18:25:57.480 UICatalog[13998:1303] TEALIUM 3.2c: NO INTERNET connection detected.
+2014-08-22 14:12:40.774 UICatalog[1589:60b] TEALIUM 3.3c: Init settings: {
+    AccountInfo =     {
+        Account = tealiummobile;
+        Profile = demo;
+        Target = dev;
+    };
+    Settings =     {
+        AdditionalCustomData =         {
+        };
+        ExcludeClasses =         (
+        );
+        LogVerbosity = 1;
+        UseExceptionTracking = 1;
+        UseHTTPS = 1;
+    };
+}
+2014-08-22 14:12:40.776 UICatalog[1589:60b] TEALIUM 3.3c: Initializing...
+2014-08-22 14:12:40.807 UICatalog[1589:60b] TEALIUM 3.3c: No saved remote library manager configuration found.
+2014-08-22 14:12:40.807 UICatalog[1589:3e13] TEALIUM 3.3c: Network is not available.
+2014-08-22 14:12:40.827 UICatalog[1589:60b] TEALIUM 3.3c: NO INTERNET connection detected.
+2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Library will continue running with last recorded settings & will queue calls until connection is re-established.
+2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Initialized.
+2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Firing pre-init queue.
+2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: App Launch detected.
+2014-08-22 14:12:40.833 UICatalog[1589:3d07] TEALIUM 3.3c: Queued view dispatch for MainViewController : appeared : 2014-08-22T14:12:40. 1 dispatch queued.
+2014-08-22 14:12:40.834 UICatalog[1589:60b] TEALIUM 3.3c: Queued link dispatch for TealiumLifecycle : launch : 2014-08-22T14:12:40. 2 dispatches queued.
 ```
 
 ####6. Dispatch Verification Options
@@ -217,20 +205,21 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
+####1. Exclusion Feature
+Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
 
-####1. Bug Fixes in 3.2.1
-- Library will now properly queue calls after an unsuccessful connection attempt
-- Exception track calls will now fire next launch
-- All current lifecycle counts now present for lifecycle dispatches
+####2. Recent Bug Fixes
+- Disable & Enable calls working properly
+- Manual track calls firing as expected with event call type overrides
 
-####2. Self Thread Managing
+####3. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
 
-####3. AudienceStream Trace
-This feature is now available in the Full Library version starting 3.2 and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
+####4. AudienceStream Trace
+Starting 3.2, this feature is available in the Full Library version and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
 
-####4. New Class Level Methods
-[Tealium sharedInstance] is no longer needed but will continue to work in version 3.2:
+####5. New Class Level Methods
+Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to work through version 3.3:
 
 ```objective-c
 - (void) myCode{
@@ -245,7 +234,7 @@ This feature is now available in the Full Library version starting 3.2 and is ac
 }
 ```
 
-####5. Update Import Statement
+####6. Update Import Statement
 If upgrading from a version earlier than 3.1, you will need to update your import statement:
 
 ```objective-c
