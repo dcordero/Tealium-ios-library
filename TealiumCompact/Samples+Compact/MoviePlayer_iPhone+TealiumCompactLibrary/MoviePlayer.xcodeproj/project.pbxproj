@@ -405,7 +405,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jasonkoo/Jason/ios-library-new/TealiumCompact",
+					"../../**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -430,7 +430,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jasonkoo/Jason/ios-library-new/TealiumCompact",
+					"../../**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MoviePlayer_Prefix.pch;

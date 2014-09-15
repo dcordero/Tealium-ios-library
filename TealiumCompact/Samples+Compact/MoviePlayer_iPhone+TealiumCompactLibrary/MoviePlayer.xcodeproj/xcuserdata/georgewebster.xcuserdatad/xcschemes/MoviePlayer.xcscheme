@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7118C91919634A7B0070DB34"
-               BuildableName = "Blank+TealiumCompactLibrary.app"
-               BlueprintName = "Blank+TealiumCompactLibrary"
-               ReferencedContainer = "container:Blank+TealiumCompactLibrary.xcodeproj">
+               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+               BuildableName = "MoviePlayer.app"
+               BlueprintName = "MoviePlayer"
+               ReferencedContainer = "container:MoviePlayer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7118C93D19634A7C0070DB34"
-               BuildableName = "Blank+TealiumCompactLibraryTests.xctest"
-               BlueprintName = "Blank+TealiumCompactLibraryTests"
-               ReferencedContainer = "container:Blank+TealiumCompactLibrary.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C91919634A7B0070DB34"
-            BuildableName = "Blank+TealiumCompactLibrary.app"
-            BlueprintName = "Blank+TealiumCompactLibrary"
-            ReferencedContainer = "container:Blank+TealiumCompactLibrary.xcodeproj">
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "MoviePlayer.app"
+            BlueprintName = "MoviePlayer"
+            ReferencedContainer = "container:MoviePlayer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -61,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C91919634A7B0070DB34"
-            BuildableName = "Blank+TealiumCompactLibrary.app"
-            BlueprintName = "Blank+TealiumCompactLibrary"
-            ReferencedContainer = "container:Blank+TealiumCompactLibrary.xcodeproj">
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "MoviePlayer.app"
+            BlueprintName = "MoviePlayer"
+            ReferencedContainer = "container:MoviePlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -79,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C91919634A7B0070DB34"
-            BuildableName = "Blank+TealiumCompactLibrary.app"
-            BlueprintName = "Blank+TealiumCompactLibrary"
-            ReferencedContainer = "container:Blank+TealiumCompactLibrary.xcodeproj">
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "MoviePlayer.app"
+            BlueprintName = "MoviePlayer"
+            ReferencedContainer = "container:MoviePlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
