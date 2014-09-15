@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7118C8C719633A070070DB34"
+               BlueprintIdentifier = "E77E038F19C75E3C009D81D5"
                BuildableName = "BlankApp+TealiumFullLibrary.app"
                BlueprintName = "BlankApp+TealiumFullLibrary"
+               ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E77E03A819C75E3D009D81D5"
+               BuildableName = "BlankApp+TealiumFullLibraryTests.xctest"
+               BlueprintName = "BlankApp+TealiumFullLibraryTests"
                ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7118C8EB19633A070070DB34"
+               BlueprintIdentifier = "E77E03A819C75E3D009D81D5"
                BuildableName = "BlankApp+TealiumFullLibraryTests.xctest"
                BlueprintName = "BlankApp+TealiumFullLibraryTests"
                ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">
@@ -42,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C8C719633A070070DB34"
+            BlueprintIdentifier = "E77E038F19C75E3C009D81D5"
             BuildableName = "BlankApp+TealiumFullLibrary.app"
             BlueprintName = "BlankApp+TealiumFullLibrary"
             ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">
@@ -61,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C8C719633A070070DB34"
+            BlueprintIdentifier = "E77E038F19C75E3C009D81D5"
             BuildableName = "BlankApp+TealiumFullLibrary.app"
             BlueprintName = "BlankApp+TealiumFullLibrary"
             ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">
@@ -79,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7118C8C719633A070070DB34"
+            BlueprintIdentifier = "E77E038F19C75E3C009D81D5"
             BuildableName = "BlankApp+TealiumFullLibrary.app"
             BlueprintName = "BlankApp+TealiumFullLibrary"
             ReferencedContainer = "container:BlankApp+TealiumFullLibrary.xcodeproj">

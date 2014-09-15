@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Blank+TealiumCompactLibrary.xcscheme</key>
+		<key>UICatalog.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7118C91919634A7B0070DB34</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7118C93D19634A7C0070DB34</key>
+		<key>1D6058900D05DD3D006BFB54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
