@@ -1,4 +1,4 @@
-Tealium iOS Library - 3.3 & 3.3c
+Tealium iOS Library - 3.3.1 & 3.3.1c
 ==================================
 
 **********************
@@ -205,20 +205,23 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
-####1. Exclusion Feature
+####1. iOS 8 Support
+3.3.1 Has been tested to work with iOS 8 as the deployment target. Sample apps updated.
+
+####2. Exclusion Feature
 Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
 
-####2. Recent Bug Fixes
+####3. Recent Bug Fixes
 - Disable & Enable calls working properly
 - Manual track calls firing as expected with event call type overrides
 
-####3. Self Thread Managing
+####4. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
 
-####4. AudienceStream Trace
+####5. AudienceStream Trace
 Starting 3.2, this feature is available in the Full Library version and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
 
-####5. New Class Level Methods
+####6. New Class Level Methods
 Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to work through version 3.3:
 
 ```objective-c
@@ -234,7 +237,7 @@ Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to 
 }
 ```
 
-####6. Update Import Statement
+####7. Update Import Statement
 If upgrading from a version earlier than 3.1, you will need to update your import statement:
 
 ```objective-c
