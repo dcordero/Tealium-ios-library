@@ -1,4 +1,4 @@
-Tealium iOS Library - 3.3.1 & 3.3.1c
+Tealium iOS Library - 4.0 & 4.0c
 ==================================
 
 **********************
@@ -6,9 +6,11 @@ Tealium iOS Library - 3.3.1 & 3.3.1c
 **********************
 
 ###Brief###
-These frameworks provide the means to tag native iOS applications for the purposes of leveraging [Tealium's tag management platform (Tealium IQ)](http://tealium.com/products/enterprise-tag-management/). 
+The frameworks included allow the native tagging of a mobile application once and then configuration of third-party analytic services remotely through [Tealium IQ](http://tealium.com/products/enterprise-tag-management/); all without needing to recode and redeploy an app for every update to these services.
 
-Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-management/mobile/) permits an app to add, remove or edit analytic services remotely, in real-time, without requiring a code rebuild or new release to take effect.
+First time implementations should read the [How Tealium Works](../../wiki/how-tealium-works) wiki page for a brief overview of how Tealium's SDK differs from conventional analytic SDKs. For any additional information, consult the [wiki home page](../../wiki/home).
+
+The remainder of this document provides quick install instructions for implementing the less memory intensive Compact library.
 
 ###Table of Contents###
 
@@ -19,14 +21,14 @@ Tealium's [mobile solution](http://tealium.com/products/enterprise-tag-managemen
     - [3. Link Frameworks](#3-link-frameworks)
     - [4. Import and Init](#4-import-and-init)
     - [5. Compile and Run](#5-compile-and-run)
-    - [6. Dispatch Verification Options](#6-dispatch-verification-options)
+    - [6. Dispatch Verification](#6-dispatch-verification)
 - [What Next](#what-next)
 - [Contact Us](#contact-us)
 
 ###Requirements###
 
-- [XCode (5.1.1+ recommended)](https://developer.apple.com/xcode/downloads/)
-- Minimum target iOS Version 5.0+
+- [XCode (6.0+ recommended)](https://developer.apple.com/xcode/downloads/)
+- Minimum target iOS Version 5.1.1+
 
 ###Quick Start###
 This guide presumes you have already created an [iOS app using XCode](https://developer.apple.com/library/iOS/referencelibrary/GettingStarted/RoadMapiOS/index.html).  Follow the below steps to add Tealium's Compact library (3.2c) to it. Discussion on which version is ultimately best for you can be found in the [What Next](#what-next) section.
@@ -84,7 +86,7 @@ Your project-target-General tab should now look similar to:
 Your app is now ready to compile and run.  In the console output you should see a variation of:
 
 ```objective-c
-2014-08-22 11:12:29.109 UICatalog[1519:60b] TEALIUM 3.3: Init settings: {
+2014-10-07 07:41:45.944 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Init settings: {
     AccountInfo =     {
         Account = tealiummobile;
         Profile = demo;
@@ -92,33 +94,31 @@ Your app is now ready to compile and run.  In the console output you should see 
     };
     Settings =     {
         AdditionalCustomData =         {
-            testK = testV;
         };
         ExcludeClasses =         (
-            UIButton
         );
         LogVerbosity = 1;
         UseExceptionTracking = 1;
         UseHTTPS = 1;
     };
 }
-2014-08-22 11:12:29.109 UICatalog[1519:60b] TEALIUM 3.3: Initializing...
-2014-08-22 11:12:29.133 UICatalog[1519:3e13] TEALIUM 3.3: Network is available.
-2014-08-22 11:12:29.133 UICatalog[1519:60b] TEALIUM 3.3: Mobile Companion Enabled and listening.
-2014-08-22 11:12:29.253 UICatalog[1519:60b] TEALIUM 3.3: Connection established with https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?platform=iOS&os_version=7.1&library_version=3.3&ts=61.
-2014-08-22 11:12:29.332 UICatalog[1519:60b] TEALIUM 3.3: Reading remote config...
-2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: Tags found - UTAG ready.
-2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: Initialized.
-2014-08-22 11:12:29.357 UICatalog[1519:60b] TEALIUM 3.3: App Launch detected.
-2014-08-22 11:12:29.362 UICatalog[1519:60b] TEALIUM 3.3: Successfully packaged link dispatch for TealiumLifecycle : launch : 2014-08-22T11:12:29
-2014-08-22 11:12:29.642 UICatalog[1519:60b] TEALIUM 3.3: Successfully packaged view dispatch for MainViewController : appeared : 2014-08-22T11:12:29
+2014-10-07 07:41:45.945 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Initializing...
+2014-10-07 07:41:46.101 UICatalog_TealiumFullLibrary[27003:861966] TEALIUM 4.0: Network is available.
+2014-10-07 07:41:46.386 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Connection established with mobile.html at https://tags.tiqcdn.com/utag/tealiummobile/demo/dev/mobile.html?platform=iOS&os_version=8.0&library_version=4.0&ts=27.
+2014-10-07 07:41:46.722 UICatalog_TealiumFullLibrary[27003:861964] TEALIUM 4.0: Queued view dispatch for MainViewController : appeared : 2014-10-07T07:41:46. 1 dispatch queued.
+2014-10-07 07:41:46.727 UICatalog_TealiumFullLibrary[27003:861963] TEALIUM 4.0: Queued view dispatch for UIInputWindowController : appeared : 2014-10-07T07:41:46. 2 dispatches queued.
+2014-10-07 07:41:46.885 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: UTAG Tags found in mobile.html: true
+2014-10-07 07:41:46.885 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Utag found. Reading remote config...
+2014-10-07 07:41:46.886 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Initialized.
+2014-10-07 07:41:46.887 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: App Launch detected.
+2014-10-07 07:41:46.891 UICatalog_TealiumFullLibrary[27003:861852] TEALIUM 4.0: Successfully packaged link dispatch for TealiumLifecycle : launch : 2014-10-07T07:41:46
 ```
 
 Congratulations! You have successfully implemented the Tealium Compact library into your project.  
 
 If you have disabled internet connectivity to test offline caching, you will see a variation of:
 ```objective-c
-2014-08-22 14:12:40.774 UICatalog[1589:60b] TEALIUM 3.3c: Init settings: {
+2014-10-07 07:43:22.230 UICatalog_TealiumFullLibrary[27046:863369] TEALIUM 4.0: Init settings: {
     AccountInfo =     {
         Account = tealiummobile;
         Profile = demo;
@@ -134,40 +134,30 @@ If you have disabled internet connectivity to test offline caching, you will see
         UseHTTPS = 1;
     };
 }
-2014-08-22 14:12:40.776 UICatalog[1589:60b] TEALIUM 3.3c: Initializing...
-2014-08-22 14:12:40.807 UICatalog[1589:60b] TEALIUM 3.3c: No saved remote library manager configuration found.
-2014-08-22 14:12:40.807 UICatalog[1589:3e13] TEALIUM 3.3c: Network is not available.
-2014-08-22 14:12:40.827 UICatalog[1589:60b] TEALIUM 3.3c: NO INTERNET connection detected.
-2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Library will continue running with last recorded settings & will queue calls until connection is re-established.
-2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Initialized.
-2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: Firing pre-init queue.
-2014-08-22 14:12:40.828 UICatalog[1589:60b] TEALIUM 3.3c: App Launch detected.
-2014-08-22 14:12:40.833 UICatalog[1589:3d07] TEALIUM 3.3c: Queued view dispatch for MainViewController : appeared : 2014-08-22T14:12:40. 1 dispatch queued.
-2014-08-22 14:12:40.834 UICatalog[1589:60b] TEALIUM 3.3c: Queued link dispatch for TealiumLifecycle : launch : 2014-08-22T14:12:40. 2 dispatches queued.
+2014-10-07 07:43:22.231 UICatalog_TealiumFullLibrary[27046:863369] TEALIUM 4.0: Initializing...
+2014-10-07 07:43:22.337 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Network is not available.
+2014-10-07 07:43:22.355 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: NO INTERNET connection detected.
+2014-10-07 07:43:22.355 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Trying to reconnect (attempt 1 of 3)...
+2014-10-07 07:43:22.761 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: 2 saved dispatches loaded.
+2014-10-07 07:43:22.761 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Queued view dispatch for MainViewController : appeared : 2014-10-07T07:43:22. 3 dispatches queued.
+2014-10-07 07:43:22.768 UICatalog_TealiumFullLibrary[27046:863407] TEALIUM 4.0: Queued view dispatch for UIInputWindowController : appeared : 2014-10-07T07:43:22. 4 dispatches queued.
+2014-10-07 07:43:23.362 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: NO INTERNET connection detected.
+2014-10-07 07:43:23.363 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Trying to reconnect (attempt 2 of 3)...
+2014-10-07 07:43:24.366 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: NO INTERNET connection detected.
+2014-10-07 07:43:24.366 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Trying to reconnect (attempt 3 of 3)...
+2014-10-07 07:43:25.461 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: NO INTERNET connection detected.
+2014-10-07 07:43:25.462 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Saved configuration loaded: false
+2014-10-07 07:43:25.462 UICatalog_TealiumFullLibrary[27046:863408] TEALIUM 4.0: Using default tracking configuration.
 ```
 
-####6. Dispatch Verification Options
-There are two recommended options to verify dispatches are being sent:
+####6. Dispatch Verification
+Use Tealium’s EvenStore to verify dispatches are available with the expected data sources in real-time:
 
-- [AudienceStream Trace](#2-audiencestream-trace)
-- Safari Web Inspector
-- HTTP Proxy
+![](../../wiki/images/EventStore.png)
 
-*Safari Web Inspector
-A device with the Settings:Safari:Web Inspector option, connected to an OS X machine with Safari can directly interact with the webkit object within the library. Additional info on how to enable this can be found at [this site](http://webdesign.tutsplus.com/articles/quick-tip-using-web-inspector-to-debug-mobile-safari--webdesign-8787).  A special extension can also be added in your TIQ publish to enable debug output into this web inspection. Consult your account manager for details.
+Please consult your Tealium Account Manager on how to enable Event Store.
 
-*HTTP Proxy*
-You can use an HTTP proxy to confirm successful retrieval of configuration data from our multi-CDN and to confirm successful delivery of a tracking call. Several popular third-party options are:
-
-- [Charles Proxy](http://www.charlesproxy.com)
-- [Wireshark](http://www.wireshark.org)
-- [HTTP Scoop](http://www.tuffcode.com)
-
-Tealium's multi-CDN configuration address is *http://tags.tiqcdn.com*.  You may have to use the [*TLDisableHTTPS*](../../wiki/API-3.x#tealium-options) option when you init the library to permit proxying.
-
-If you have access to the Tealium Community site, detailed instructions on how to setup Charles Proxy on an iDevice can be found at: https://community.tealiumiq.com/posts/624994
-
-To verify dispatches are mapped correctly, received and processed by your target analytic vendors, you will need to review dispatches sent through your vendor's provided dashboard.
+If data sources have been properly mapped to a target vendors’ variables, dispatches can also be verified by reviewing a vendor's provided dashboard. Note: vendors without real-time processing may take up to several hours to update their reporting.
 
 If you have not yet chosen a vendor to use, we recommend testing with an analytic service with real-time reporting, such as [Google Analytics](http://www.google.com/analytics/)), for detailed instructions, consult the Tealium community post at: https://community.tealiumiq.com/posts/568700
 
@@ -178,9 +168,9 @@ Now that you've successfully integrated the library, you should now determine if
 
 |     |Compact  |  Full
 -------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |~250* KB | ~600* KB
-Initialization Time                                 |+1 ms | +1 ms
-Memory Usage                                        |+7 MB |+20 MB
+Library Compile Size                                |~500* KB | ~500* KB
+Initialization Time                                 |+<1 ms | +1 ms
+Memory Usage                                        |+.3 MB |+30 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
 [UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-only)          |No  |  Yes
 [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
@@ -205,23 +195,26 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
-####1. iOS 8 Support
+####1. Mobile Publish Setting Support
+Remote configuration options found in the new mobile publish settings in TIQ are now supported by the library starting 4.0.
+
+####2. iOS 8 Support
 3.3.1 Has been tested to work with iOS 8 as the deployment target. Sample apps updated.
 
-####2. Exclusion Feature
+####3. Exclusion Feature
 Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
 
-####3. Recent Bug Fixes
+####4. Recent Bug Fixes
 - Disable & Enable calls working properly
 - Manual track calls firing as expected with event call type overrides
 
-####4. Self Thread Managing
+####5. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
 
-####5. AudienceStream Trace
+####6. AudienceStream Trace
 Starting 3.2, this feature is available in the Full Library version and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
 
-####6. New Class Level Methods
+####7. New Class Level Methods
 Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to work through version 3.3:
 
 ```objective-c
@@ -237,7 +230,7 @@ Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to 
 }
 ```
 
-####7. Update Import Statement
+####8. Update Import Statement
 If upgrading from a version earlier than 3.1, you will need to update your import statement:
 
 ```objective-c
