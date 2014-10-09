@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define TealiumLibraryVersion @"4.0"
+#define TealiumLibraryVersion @"4.0.1"
 
 // --------------------
 // *** INIT OPTIONS ***

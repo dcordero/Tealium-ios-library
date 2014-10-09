@@ -5,7 +5,7 @@
 //  *** INFO ***
 //  ------------
 //
-//  Library Type: COMPACT
+//  Library Type: FULL
 //
 //  Minimum OS Version supported: iOS 5.1.1+
 //
@@ -24,7 +24,8 @@
 // 2. Link the following framework to your project:
 //
 //      * SystemConfiguration.framework
-// 
+//      * CoreGraphics.framework
+//
 // 2a. Optionally link the following framework:
 // 
 //      * CoreTelephony.framework (for carrier data tracking)
@@ -32,6 +33,8 @@
 // 3. Add the class level init method (initSharedInstance:profile:target:options:globalCustomData:) to your app delegate or wherever your primary root controller is initialized
 // 
 // 4. Add "#import <TealiumLibrary/Tealium.h>" to your -Prefix.pch file, within the #ifdef __OBJC__ block statement for app wide access. Otherwise, add this import statment to the header file of every class that will use the library.
+//
+// 5. Add "-all_load -ObjC" as a flag option to your project's Build Settings: Other Linker Flags
 //
 //  -----------------------
 //  *** ADDITIONAL INFO ***
@@ -43,6 +46,7 @@
 //  Checkout our mobile related articles at http://community.tealiumiq.com for supplemental information. See your Tealium Account Manager for access.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "TealiumConstants.h"
 
 @interface Tealium : NSObject
@@ -72,12 +76,12 @@
            globalCustomData: (NSDictionary*)customData;
 
 /**
- Legacy version 3.0 Class-level init method. This method now calls the new recommended Class-level init method above, with no globalCustomData.
+ Legacy version 3.0 Class-level init method. This method now calls the new recommended Class-level init method above, with no  globalCustomData.
  
  @param accountName Name of Tealium account
  @param profileName Target Account profile
  @param environmentName Target profile environment (dev, qa, etc.)
- @param options USe Tealium Options constants to configure the library.
+ @param options Use Tealium Options constants to configure the library.
  */
 + (void) initSharedInstance: (NSString*) accountName
                     profile: (NSString*) profileName
@@ -96,10 +100,10 @@
                          target: (NSString*) environmentName;
 
 /**
- New universal method for firing all manual tracking calls. Takes advantage of the auto-detected default data sources and additional Custom Data methods below (ie addCustomData:to: and addGlobalCustomData:).
+ Universal method for firing all manual tracking calls. Takes advantage of the auto-detected default data sources and additional Custom Data methods below (ie customDataForObject: and globalCustomData).
  
  @param callType Enter either TealiumEventCall or TealiumViewCall for the appropriate track type
- @param eventData NSDictionary with custom data. Keys become Tealium IQ Data Sources. Values will be the value passed into the analytic variable mapped to the Data Source.
+ @param data NSDictionary of custom data. Keys become UDO Variable Keys.
  @param object NSObject source of the call if you want auto property detection added to the tracking call for a particular object */
 + (void) trackCallType:(NSString*)callType customData:(NSDictionary*)data object:(NSObject*)object;
 
