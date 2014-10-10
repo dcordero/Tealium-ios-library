@@ -168,7 +168,7 @@ Now that you've successfully integrated the library, you should now determine if
 
 |     |Compact  |  Full
 -------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |~500* KB | ~500* KB
+Library Compile Size                                |~500* KB | ~800* KB
 Initialization Time                                 |+<1 ms | +1 ms
 Memory Usage                                        |+.3 MB |+30 MB
 [Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
