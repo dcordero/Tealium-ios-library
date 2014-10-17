@@ -11,7 +11,6 @@
 		71E3820F19E29E7900DFC70E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71E3820219E29E7900DFC70E /* LaunchScreen.xib */; };
 		71E3821019E29E7900DFC70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71E3820419E29E7900DFC70E /* Main.storyboard */; };
 		71E3821119E29E7900DFC70E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71E3820619E29E7900DFC70E /* Images.xcassets */; };
-		71E3821219E29E7900DFC70E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71E3820719E29E7900DFC70E /* Info.plist */; };
 		71E3821319E29E7900DFC70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3820819E29E7900DFC70E /* main.m */; };
 		71E3821419E29E7900DFC70E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3820A19E29E7900DFC70E /* ViewController.m */; };
 		71E3822919E2A0E700DFC70E /* BlankApp_TealiumCompactLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3822819E2A0E700DFC70E /* BlankApp_TealiumCompactLibraryTests.m */; };
@@ -172,7 +171,7 @@
 		E77E035119C75C12009D81D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = tealium;
 				TargetAttributes = {
 					71E3822319E2A0E700DFC70E = {
@@ -215,7 +214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71E3821219E29E7900DFC70E /* Info.plist in Resources */,
 				71E3821119E29E7900DFC70E /* Images.xcassets in Resources */,
 				71E3820F19E29E7900DFC70E /* LaunchScreen.xib in Resources */,
 				71E3821019E29E7900DFC70E /* Main.storyboard in Resources */,
@@ -429,6 +427,7 @@
 				71E3822E19E2A0E700DFC70E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E77E035419C75C12009D81D5 /* Build configuration list for PBXProject "BlankApp_TealiumCompactLibrary" */ = {
 			isa = XCConfigurationList;
