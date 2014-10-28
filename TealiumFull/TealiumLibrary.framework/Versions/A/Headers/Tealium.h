@@ -53,7 +53,7 @@
 
 #pragma mark - INITIALIZATION
 
-/*
+/**
  Library status indicator.
  
  @return Boolean whether the Tealium library is currently active.
@@ -96,15 +96,16 @@
  @param environmentName Target profile environment (dev, qa, etc.)
  */
 + (void) initSharedInstance: (NSString*) accountName
-                        profile: (NSString*) profileName
-                         target: (NSString*) environmentName;
+                    profile: (NSString*) profileName
+                     target: (NSString*) environmentName;
 
 /**
  Universal method for firing all manual tracking calls. Takes advantage of the auto-detected default data sources and additional Custom Data methods below (ie customDataForObject: and globalCustomData).
  
  @param callType Enter either TealiumEventCall or TealiumViewCall for the appropriate track type
  @param data NSDictionary of custom data. Keys become UDO Variable Keys.
- @param object NSObject source of the call if you want auto property detection added to the tracking call for a particular object */
+ @param object NSObject source of the call if you want auto property detection added to the tracking call for a particular object 
+ */
 + (void) trackCallType:(NSString*)callType customData:(NSDictionary*)data object:(NSObject*)object;
 
 /**
@@ -117,39 +118,39 @@
  */
 + (void) enable;
 
-/*
+/**
  Use this method to access the library's global custom data dictionary.
  */
 + (NSMutableDictionary*) globalCustomData;
 
-/*
+/**
  Use this method to access any custom data dictionary associated with a given object.
  
  @param NSObject Required.
  */
 + (NSMutableDictionary*) customDataForObject:(NSObject*)object;
 
-/*
+/**
  Add this method to your app delegate's application:didRegisterForRemoteNotificationsWithDeviceToken:  Required if wanting to make use of dynamic Push services via TIQ.
  */
 + (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
-/*
+/**
  Add this method to your app delegate's application:didFailToRegisterForRemoteNotificationsWithError:  Required if wanting to make use of dynamic Push services via TIQ.
  */
 + (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
 
-/*
+/**
  Add this method to your app delegate's application:didReceiveRemoteNotification:  Optional if you want to auto-track push notification dispatches.
  */
 + (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo;
 
-/*
+/**
  Add this method to your app delegate's application:didReceiveRemoteNotification:fetchCompletionHandler:  Optional if you want to auto-track push notification dispatches.
  */
 + (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
-/*
+/**
  Use this method to add remote commands that can be triggered via tag triggers enabled in your TIQ dashboard.
  
  @param name NSString identifier for the command.  Do not use an underscore (_) at the start of your name, as these are reserved.
@@ -157,6 +158,9 @@
  @param queue The target thread that should process the command block.
  @param command A block of code to be executed in the event this remote command id is triggered.
  */
-+ (void) addRemoteCommandId:(NSString*)name description:(NSString*)description targetQueue:(dispatch_queue_t)queue block:(void(^)(NSDictionary *payload, NSError *error))command;
++ (void) addRemoteCommandId:(NSString*)name
+                description:(NSString*)description
+                targetQueue:(dispatch_queue_t)queue
+                      block:(void(^)(NSDictionary *payload, NSError *error))command;
 
 @end

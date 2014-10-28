@@ -1,4 +1,4 @@
-Tealium iOS Library - 4.0.4 & 4.0.4c
+Tealium iOS Library - 4.0.5 & 4.0.5c
 ==================================
 
 **********************
@@ -205,8 +205,9 @@ Remote configuration options found in the new mobile publish settings in TIQ are
 Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
 
 ####4. Recent Bug Fixes
-- 4.0.4 stability enchancements
-- 4.0.2 & 4.0.3 iOS 8.1 support and additional performance optimizations
+- 4.0.5 Improved configuration via TIQ & header documentation
+- 4.0.4 Stability enchancements
+- 4.0.2 & 4.0.3 iOS 8.1 Support and additional performance optimizations
 - 4.0.1 Fixed bug in autotracking performance optimizations
 - Disable & Enable calls working properly
 - Manual track calls firing as expected with event call type overrides
