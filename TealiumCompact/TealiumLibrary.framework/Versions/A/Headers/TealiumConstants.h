@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define TealiumLibraryVersion @"4.0.5"
+// -----------------------
+// *** CURRENT VERSION ***
+// -----------------------
+#define TealiumLibraryVersion @"4.0.6"
 
 // --------------------
 // *** INIT OPTIONS ***
@@ -34,6 +37,7 @@ extern NSString * const TealiumViewCall;
 // --------------------------------
 extern NSString * const TealiumRRC_RegisterPush;
 extern NSString * const TealiumRRC_HTTP;
+extern NSString * const TealiumRRC_MobileCompanion;
 
 // -----------------
 // *** PUSH KEYS ***

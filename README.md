@@ -1,4 +1,4 @@
-Tealium iOS Library - 4.0.5 & 4.0.5c
+Tealium iOS Library - 4.0.6 & 4.0.6c
 ==================================
 
 **********************
@@ -151,15 +151,18 @@ If you have disabled internet connectivity to test offline caching, you will see
 ```
 
 ####6. Dispatch Verification
-Use Tealium’s EvenStore to verify dispatches are available with the expected data sources in real-time:
+The two recommended methods for dispatch verification are:
+
+- AudienceStream Live Events
+- Vendor Dashboard
+
+AudienceStream live events provides real time visualization of dispatched data if the Tealium DataCloud Tag has been added the same TIQ account-profile used to init the library:
 
 ![](../../wiki/images/EventStore.png)
 
-Please consult your Tealium Account Manager on how to enable Event Store.
+An analytic vendor with real time processing, such as [Google Analytics](http://www.google.com/analytics/)), can also be used to verify dispatches if the data sources have been properly mapped to the target vendorsâ€™ variables. 
 
-If data sources have been properly mapped to a target vendors’ variables, dispatches can also be verified by reviewing a vendor's provided dashboard. Note: vendors without real-time processing may take up to several hours to update their reporting.
-
-If you have not yet chosen a vendor to use, we recommend testing with an analytic service with real-time reporting, such as [Google Analytics](http://www.google.com/analytics/)), for detailed instructions, consult the Tealium community post at: https://community.tealiumiq.com/posts/568700
+Note: vendors without real-time processing may take up to several hours to update their reporting.
 
 
 ### What Next###
@@ -168,13 +171,14 @@ Now that you've successfully integrated the library, you should now determine if
 
 |     |Compact  |  Full
 -------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |~500* KB | ~800* KB
-Initialization Time                                 |+<1 ms | +1 ms
-Memory Usage                                        |+.3 MB |+30 MB
-[Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  |Yes |  Yes
-[UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-only)          |No  |  Yes
-[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) |No  |  Yes
-[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No | Yes |
+Library Compile Size                                |~550* KB | ~800* KB
+Initialization Time                                 |+<1 ms | +<1 ms
+Runtime Memory Usage                                |+5.5 MB |+6 MB
+[Offline Caching](../../wiki/features#offline-tracking)               | Yes | Yes
+[Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  | Yes |  Yes
+[UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-only)   | No  |  Yes
+[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) | No  |  Yes
+[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No  | Yes |
 
 (*) The library makes use of Link-Time Optimization, so it's end compile size is dependent on the host application. The numbers listed are the averages from test builds.
 
@@ -205,12 +209,11 @@ Remote configuration options found in the new mobile publish settings in TIQ are
 Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
 
 ####4. Recent Bug Fixes
+- 4.0.6 Armv7s slice reintroduced, improved Mobile Companion unlock, log outputs, thread handling and low-memory handling 
 - 4.0.5 Improved configuration via TIQ & header documentation
 - 4.0.4 Stability enchancements
 - 4.0.2 & 4.0.3 iOS 8.1 Support and additional performance optimizations
-- 4.0.1 Fixed bug in autotracking performance optimizations
-- Disable & Enable calls working properly
-- Manual track calls firing as expected with event call type overrides
+- 4.0.1 Fixed bug in autotracking performance optimizations, disable & enable call fixes, manual track calls firing as expected with event call type overrides
 
 ####5. Self Thread Managing
 Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.

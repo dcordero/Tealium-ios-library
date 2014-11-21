@@ -24,6 +24,7 @@
 // 2. Link the following framework to your project:
 //
 //      * SystemConfiguration.framework
+//      * UIKit.framework
 // 
 // 2a. Optionally link the following framework:
 // 

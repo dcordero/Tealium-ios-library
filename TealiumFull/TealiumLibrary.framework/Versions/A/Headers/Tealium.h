@@ -23,8 +23,9 @@
 // 
 // 2. Link the following framework to your project:
 //
-//      * SystemConfiguration.framework
 //      * CoreGraphics.framework
+//      * SystemConfiguration.framework
+//      * UIKit.framework
 //
 // 2a. Optionally link the following framework:
 // 
@@ -119,7 +120,7 @@
 + (void) enable;
 
 /**
- Use this method to access the library's global custom data dictionary.
+ Use this method to access the library's global custom data dictionary. This data is persisted whenever the app goes to sleep or terminated.
  */
 + (NSMutableDictionary*) globalCustomData;
 

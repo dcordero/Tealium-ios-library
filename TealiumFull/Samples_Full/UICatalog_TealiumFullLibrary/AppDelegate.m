@@ -92,7 +92,7 @@
 
 	[self.window makeKeyAndVisible];
     
-    // TODO: Replace with TIQ your account-profile-target environment settings
+    //TODO: Replace with TIQ your account-profile-target environment settings
     [Tealium initSharedInstance:@"tealiummobile" profile:@"demo" target:@"dev" options:0 globalCustomData:nil];
     
     // Alternate init method with options + argument for adding/overwriting global custom data
