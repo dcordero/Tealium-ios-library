@@ -1,4 +1,4 @@
-Tealium iOS Library - 4.0.6 & 4.0.6c
+Tealium iOS Library - 4.1 & 4.1c
 ==================================
 
 **********************
@@ -19,7 +19,8 @@ The remainder of this document provides quick install instructions for implement
     - [1. Clone/Copy Library](#1-clonecopy-library)
     - [2. Add to Project](#2-add-to-project)
     - [3. Link Frameworks](#3-link-frameworks)
-    - [4. Import and Init](#4-import-and-init)
+    - [4o. Import and Init - Objective-C](#4o-import-and-init-objective-c)
+    - [4s. Import and Init - Swift](#4s-import-and-init-swift)
     - [5. Compile and Run](#5-compile-and-run)
     - [6. Dispatch Verification](#6-dispatch-verification)
 - [What Next](#what-next)
@@ -31,7 +32,7 @@ The remainder of this document provides quick install instructions for implement
 - Minimum target iOS Version 5.1.1+
 
 ###Quick Start###
-This guide presumes you have already created an [iOS app using XCode](https://developer.apple.com/library/iOS/referencelibrary/GettingStarted/RoadMapiOS/index.html).  Follow the below steps to add Tealium's Compact library (3.2c) to it. Discussion on which version is ultimately best for you can be found in the [What Next](#what-next) section.
+This guide presumes you have already created an [iOS app using XCode](https://developer.apple.com/library/iOS/referencelibrary/GettingStarted/RoadMapiOS/index.html).  Follow the below steps to add [Tealium's Compact library](../../wiki/compact-vs-full#compact) to it. Discussion on which version is ultimately best for you can be found in the [What Next](#what-next) section.
 
 ####1. Clone/Copy Library####
 onto your dev machine by clicking on the *Clone to Desktop* or *Download ZIP* buttons on the main repo page.
@@ -58,8 +59,8 @@ Your project-target-General tab should now look similar to:
 
 ![](../../wiki/images/iOSc_XCodeProjectGeneral.png)
 
-####4. Import and Init
-4a. Import the library into your project's .pch file into the following block:
+####4o. Import and Init Objective-C
+4o1. Import the library into your project's .pch file into the following block:
 
 ```objective-c
 #ifdef __OBJC__
@@ -69,7 +70,7 @@ Your project-target-General tab should now look similar to:
 #endif
 ```
 
-4b. Init the library in your appDelegate.m class:
+4o2. Init the library in your appDelegate.m class:
 ```objective-c
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
@@ -81,6 +82,26 @@ Your project-target-General tab should now look similar to:
 
 }
 ```
+
+####4s. Import and Init Swift
+4s1. Import Tealium-bridging-header.h
+
+![](../../wiki/images/swift_bridging_header.png)
+
+4s2. Update Project’s Build Settings: Swift Compiler - Code Generation:
+- Install objective-C Header: Yes
+- Objective-C Bridging Header: (path to the bridging-header)
+
+![](../../wiki/images/swift_compiler_code.png)
+
+4s3. Add Init statement: 
+
+```swift
+Tealium.initSharedInstance("tealiummobile", profile: "demo", target: "dev", options:TealiumOptions.TLNone, globalCustomData: nil)
+```
+
+![](../../wiki/images/swift_init.png)
+
 
 ####5. Compile and Run
 Your app is now ready to compile and run.  In the console output you should see a variation of:
@@ -160,7 +181,7 @@ AudienceStream live events provides real time visualization of dispatched data i
 
 ![](../../wiki/images/EventStore.png)
 
-An analytic vendor with real time processing, such as [Google Analytics](http://www.google.com/analytics/)), can also be used to verify dispatches if the data sources have been properly mapped to the target vendorsâ€™ variables. 
+An analytic vendor with real time processing, such as [Google Analytics](http://www.google.com/analytics/)), can also be used to verify dispatches if the data sources have been properly mapped to the target vendors' variables. 
 
 Note: vendors without real-time processing may take up to several hours to update their reporting.
 
@@ -171,18 +192,22 @@ Now that you've successfully integrated the library, you should now determine if
 
 |     |Compact  |  Full
 -------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |~550* KB | ~800* KB
+Library Compile Size                                |~819 KB | ~921 KB
 Initialization Time                                 |+<1 ms | +<1 ms
-Runtime Memory Usage                                |+5.5 MB |+6 MB
-[Offline Caching](../../wiki/features#offline-tracking)               | Yes | Yes
-[Non-UI AutoTracking](../../wiki/advanced-guide#non-ui-autotracking)  | Yes |  Yes
-[UI Autotracking](../../wiki/advanced-guide#ui-autotracking-full-only)   | No  |  Yes
-[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) | No  |  Yes
-[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No  | Yes |
+Runtime Memory Usage                                |+4.48 MB |+7.53 MB
+[Custom Data Tracking](../../wiki/features#custom-data-tracking) | Yes | Yes
+[Device Data Tracking](../../wiki/features#device-data-tracking) | Yes | Yes
+[Lifecycle Tracking](../../wiki/features#lifecycle-tracking)          | Yes | Yes
+[Offline Tracking](../../wiki/features#offline-tracking)              | Yes | Yes
+[Tag Bridge](../../wiki/advanced-guide#tag-bridge)                    | Yes | Yes
+[Timestamp Tracking](../../wiki/features#timestamp-tracking)         | Yes | Yes
+[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No  | Yes
+[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) | No  | Yes
+[UI Autotracking](../../wiki/features#optional-ui-tracking)              | No  | Yes 
+[Video Tracking](../../wiki/features#video-event-tracking)               | No  | Yes |
+ 
 
-(*) The library makes use of Link-Time Optimization, so it's end compile size is dependent on the host application. The numbers listed are the averages from test builds.
-
-(A) Continue with the Compact version, add any needed [additional tracking calls](../../wiki/API-3.x#trackcustomdataas) for events or view appearances.
+(A) Continue with the Compact version, add any needed [additional tracking calls](../../wiki/API-4.x#trackcalltypecustomdataobject) for events or view appearances.
 
 (B) Switch to the Full version, see our [Basic Implementation Guide](../../wiki/basic-guide), paying attention to the additional setup requirements.
 
@@ -199,49 +224,24 @@ Questions or comments?
 **********************
 ### UPGRADE NOTICE ###
 
-####1. Mobile Publish Setting Support
-Remote configuration options found in the new mobile publish settings in TIQ are now supported by the library starting 4.0.
+####New Features
+- 4.1   [Tag Bridge API](../../wiki/features#tag-bridge-api) added
+- 4.1   Swift Bridging Header provided
+- 4.0   Remote configuration options found in TIQ's new mobile publish settings now supported
+- 3.3.1 iOS 8.0+ support added
+- 3.3   Autotracking [Class Exclusion](../../wiki/advanced-guide#exclude-classes-from-tracking) support added
+- 3.2   Self thread managing added - library calls can safely be made from any thread.
+- 3.2   [Audience Stream Trace]{../../wiki/advanced-guide#audiencestream-trace) support added
+- 3.1   [Class Level Methods](../../wiki/api-4.x#class-methods) replaced older shared instance calls
+- 3.1   Import header renamed to ``<TealiumLibrary/Tealium.h>``
 
-####2. iOS 8 Support
-3.3.1 Has been tested to work with iOS 8 as the deployment target. Sample apps updated.
-
-####3. Exclusion Feature
-Starting 3.3, Object classes can be excluded from the library's tracking system by specifying classes in an app's [info.plist](../../wiki/advanced-guide#exclude-classes-from-tracking) dictionary.
-
-####4. Recent Bug Fixes
+####Recent Code Updates
+- 4.1   Direct custom data accesses replaced with thread-safe [read and write methods](../../wiki/API-4.x#addcustomdatatoobject)
+- 4.1   Dispatch data key lowercasing now strictly enforced
 - 4.0.6 Armv7s slice reintroduced, improved Mobile Companion unlock, log outputs, thread handling and low-memory handling 
 - 4.0.5 Improved configuration via TIQ & header documentation
 - 4.0.4 Stability enchancements
 - 4.0.2 & 4.0.3 iOS 8.1 Support and additional performance optimizations
 - 4.0.1 Fixed bug in autotracking performance optimizations, disable & enable call fixes, manual track calls firing as expected with event call type overrides
 
-####5. Self Thread Managing
-Starting 3.2, the Tealium iOS Library is self thread managing, meaning you can safely make calls to the library from any thread and it will correctly process calls on it's own background thread or on the main thread as needed.
-
-####6. AudienceStream Trace
-Starting 3.2, this feature is available in the Full Library version and is accessible through the Mobile Companion feature in the new tools tab. See the [Advanced Guide](../../wiki/advanced-guide#audiencestream-trace) for instructions to enable. Please contact your Tealium account manager to enable AudienceStream for your account.
-
-####7. New Class Level Methods
-Starting 3.1, [Tealium sharedInstance] is no longer needed but will continue to work through version 3.3:
-
-```objective-c
-- (void) myCode{
-
-    // The legacy shared instance call:
-    [[Tealium sharedInstance] track:self customData:nil as:TealiumEventCall];
-    
-    // is equal to the new recommended class method:
-    [Tealium trackCallType:TealiumEventCall customData:nil object:self];
-    
-    // Also notice the universal track call has been updated for readability
-}
-```
-
-####8. Update Import Statement
-If upgrading from a version earlier than 3.1, you will need to update your import statement:
-
-```objective-c
-// #import <TealiumiOSLibrary/TealiumiOSTagger.h>   // Legacy import statement
-#import <TealiumLibrary/Tealium.h>                  // New import statement
-```
 **********************

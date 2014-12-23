@@ -11,7 +11,7 @@
 // -----------------------
 // *** CURRENT VERSION ***
 // -----------------------
-#define TealiumLibraryVersion @"4.0.6"
+#define TealiumLibraryVersion @"4.1"
 
 // --------------------
 // *** INIT OPTIONS ***
@@ -38,6 +38,18 @@ extern NSString * const TealiumViewCall;
 extern NSString * const TealiumRRC_RegisterPush;
 extern NSString * const TealiumRRC_HTTP;
 extern NSString * const TealiumRRC_MobileCompanion;
+
+// ---------------------
+// REMOTE RESPONSE CODES
+// ---------------------
+typedef NS_ENUM(NSInteger, TealiumResponseCodes){
+    TealiumRC_Unknown   = 0,
+    TealiumRC_Success   = 200,
+    TealiumRC_NoContent = 204,
+    TealiumRC_Malformed = 400,
+    TealiumRC_Failure   = 404,
+    TealiumRC_Exception = 555
+};
 
 // -----------------
 // *** PUSH KEYS ***
@@ -67,8 +79,8 @@ extern NSString * const TealiumDSK_ConnectionType;
 extern NSString * const TealiumDSK_Device;
 extern NSString * const TealiumDSK_DeviceArchitecture;
 extern NSString * const TealiumDSK_DeviceBatteryLevel;
-extern NSString * const TealiumDSK_DeviceIsCharging;
 extern NSString * const TealiumDSK_DeviceCPUType;
+extern NSString * const TealiumDSK_DeviceIsCharging;
 extern NSString * const TealiumDSK_DeviceLanguage;
 extern NSString * const TealiumDSK_DeviceResolution;
 extern NSString * const TealiumDSK_DeviceToken;
@@ -141,6 +153,7 @@ extern NSString * const TealiumDSK_VideoWidth;
 extern NSString * const TealiumDSK_ViewWidth;
 extern NSString * const TealiumDSK_ViewHeight;
 extern NSString * const TealiumDSK_ViewSize;
+extern NSString * const TealiumDSK_WasQueued;
 extern NSString * const TealiumDSK_WebViewServiceType;
 extern NSString * const TealiumDSK_WebViewURL;
 

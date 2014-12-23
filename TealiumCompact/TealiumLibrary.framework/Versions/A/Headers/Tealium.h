@@ -43,8 +43,9 @@
 //
 //  Checkout our mobile related articles at http://community.tealiumiq.com for supplemental information. See your Tealium Account Manager for access.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "TealiumConstants.h"
+#import "TealiumRemoteCommandResponse.h"
 
 @interface Tealium : NSObject
 
@@ -116,16 +117,32 @@
 + (void) enable;
 
 /**
- Use this method to access the library's global custom data dictionary.
+ Use this method to access a copy of the library's global custom data dictionary.
+ 
  */
 + (NSMutableDictionary*) globalCustomData;
 
 /**
- Use this method to access any custom data dictionary associated with a given object.
+ Use this method to add or edit additional data points to the global custom data that is availabe to all dispatches.
  
- @param NSObject Required.
+ @param additionalCustomData NSDictionary collection of any additional key-value data points to add or replace key-value pairs in the global custom data.
+ */
++ (void) addGlobalCustomData:(NSDictionary*)additionalCustomData;
+
+/**
+ Use this method to access a copy of any custom data dictionary associated with a given object.
+ 
+ @param object is the target object to associate the custom data with. Required.
  */
 + (NSMutableDictionary*) customDataForObject:(NSObject*)object;
+
+/**
+ Use this method to add or edit custom data with a dispatch from a target object.
+ 
+ @param customData NSDictionary collection of any additional key-value data points to associate with the target object. Required.
+ @param object Any NSObject subclass that is the source trigger for the custom data. Required.
+ */
++ (void) addCustomData:(NSDictionary*)customData toObject:(NSObject*)object;
 
 /**
  Add this method to your app delegate's application:didRegisterForRemoteNotificationsWithDeviceToken:  Required if wanting to make use of dynamic Push services via TIQ.
@@ -155,6 +172,9 @@
  @param queue The target thread that should process the command block.
  @param command A block of code to be executed in the event this remote command id is triggered.
  */
-+ (void) addRemoteCommandId:(NSString*)name description:(NSString*)description targetQueue:(dispatch_queue_t)queue block:(void(^)(NSDictionary *payload, NSError *error))command;
++ (void) addRemoteCommandId:(NSString*)name
+                description:(NSString*)description
+                targetQueue:(dispatch_queue_t)queue
+                      block:(void(^)(TealiumRemoteCommandResponse*response))command;
 
 @end
