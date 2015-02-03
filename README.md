@@ -232,7 +232,7 @@ Questions or comments?
 - 3.3.1 iOS 8.0+ support added
 - 3.3   Autotracking [Class Exclusion](../../wiki/advanced-guide#exclude-classes-from-tracking) support added
 - 3.2   Self thread managing added - library calls can safely be made from any thread.
-- 3.2   [Audience Stream Trace]{../../wiki/advanced-guide#audiencestream-trace) support added
+- 3.2   [Audience Stream Trace](../../wiki/advanced-guide#audiencestream-trace) support added
 - 3.1   [Class Level Methods](../../wiki/api-4.x#class-methods) replaced older shared instance calls
 - 3.1   Import header renamed to ``<TealiumLibrary/Tealium.h>``
 
