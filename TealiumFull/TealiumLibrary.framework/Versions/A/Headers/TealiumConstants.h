@@ -11,7 +11,7 @@
 // -----------------------
 // *** CURRENT VERSION ***
 // -----------------------
-#define TealiumLibraryVersion @"4.1"
+#define TealiumLibraryVersion @"4.1.1"
 
 // --------------------
 // *** INIT OPTIONS ***

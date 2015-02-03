@@ -130,6 +130,13 @@
 + (void) addGlobalCustomData:(NSDictionary*)additionalCustomData;
 
 /**
+ Use this method to remove data points from the global custom data that is availabe to all dispatches.
+ 
+ @param keys NSArray collection of keys whose key-value pairs you wish to remove from the global custom data.
+ */
++ (void) removeGlobalCustomDataForKeys:(NSArray *)keys;
+
+/**
  Use this method to access a copy of any custom data dictionary associated with a given object.
  
  @param object is the target object to associate the custom data with. Required.
@@ -143,6 +150,13 @@
  @param object Any NSObject subclass that is the source trigger for the custom data. Required.
  */
 + (void) addCustomData:(NSDictionary*)customData toObject:(NSObject*)object;
+
+/**
+ Use this method to remove custom data associated with the target object.
+ 
+ @param keys NSArray collection of keys whose key-value pairs you wish to remove from the target object's custom data.
+ */
++ (void) removeCustomDataForKeys:(NSArray *)keys forObject:(NSObject*)object;
 
 /**
  Add this method to your app delegate's application:didRegisterForRemoteNotificationsWithDeviceToken:  Required if wanting to make use of dynamic Push services via TIQ.

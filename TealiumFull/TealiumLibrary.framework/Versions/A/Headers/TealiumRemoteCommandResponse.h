@@ -22,7 +22,7 @@
 
 typedef void (^ TealiumRemoteResponseBlock)(TealiumRemoteCommandResponse *response);
 
-- (TealiumRemoteCommandResponse*) initWithURLString:(NSString*)urlString completionHandler:(TealiumRemoteResponseBlock)responseBlock;
+- (instancetype) initWithURLString:(NSString*)urlString completionHandler:(TealiumRemoteResponseBlock)responseBlock;
 - (void) send;
 
 @end

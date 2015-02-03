@@ -1,5 +1,5 @@
-Tealium iOS Library - 4.1 & 4.1c
-==================================
+Tealium iOS Library - 4.1.1 & 4.1.1c
+====================================
 
 **********************
 ![](../../wiki/images/warning_30.png) Upgrading from an earlier version? See the [Upgrade Notice](#upgrade-notice)
@@ -190,21 +190,21 @@ Note: vendors without real-time processing may take up to several hours to updat
 Now that you've successfully integrated the library, you should now determine if the [Compact or Full Library versions](../../wiki/compact-vs-full) best fit your needs. Below are the key differences:
 
 
-|     |Compact  |  Full
--------------------------------------|:-------------------------------:|:----:
-Library Compile Size                                |~819 KB | ~921 KB
-Initialization Time                                 |+<1 ms | +<1 ms
-Runtime Memory Usage                                |+4.48 MB |+7.53 MB
-[Custom Data Tracking](../../wiki/features#custom-data-tracking) | Yes | Yes
-[Device Data Tracking](../../wiki/features#device-data-tracking) | Yes | Yes
-[Lifecycle Tracking](../../wiki/features#lifecycle-tracking)          | Yes | Yes
-[Offline Tracking](../../wiki/features#offline-tracking)              | Yes | Yes
-[Tag Bridge](../../wiki/advanced-guide#tag-bridge)                    | Yes | Yes
-[Timestamp Tracking](../../wiki/features#timestamp-tracking)         | Yes | Yes
-[AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)   | No  | Yes
-[Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only) | No  | Yes
-[UI Autotracking](../../wiki/features#optional-ui-tracking)              | No  | Yes 
-[Video Tracking](../../wiki/features#video-event-tracking)               | No  | Yes |
+|                                                                       | Compact | Full |
+|-----------------------------------------------------------------------|:-------:|:-------:|
+| Library Compile Size                                                  | ~600 KB | ~900 KB |
+| Initialization Time                                                    | +<1 ms | +<1 ms |
+| Runtime Memory Usage                                                  | +3.3 MB |+5.0 MB |
+| [Custom Data Tracking](../../wiki/features#custom-data-tracking)          | Yes | Yes |
+| [Device Data Tracking](../../wiki/features#device-data-tracking)          | Yes | Yes |
+| [Lifecycle Tracking](../../wiki/features#lifecycle-tracking)              | Yes | Yes |
+| [Offline Tracking](../../wiki/features#offline-tracking)                  | Yes | Yes |
+| [Tag Bridge](../../wiki/advanced-guide#tag-bridge)                        | Yes | Yes |
+| [Timestamp Tracking](../../wiki/features#timestamp-tracking)              | Yes | Yes |
+| [AudienceStream Trace](../../wiki/advanced-guide#audiencestream-trace)    | No  | Yes |
+| [Mobile Companion](../../wiki/advanced-guide#mobile-companion-full-only)  | No  | Yes |
+| [UI Autotracking](../../wiki/features#optional-ui-tracking)               | No  | Yes |
+| [Video Tracking](../../wiki/features#video-event-tracking)                | No  | Yes |
  
 
 (A) Continue with the Compact version, add any needed [additional tracking calls](../../wiki/API-4.x#trackcalltypecustomdataobject) for events or view appearances.
@@ -225,6 +225,7 @@ Questions or comments?
 ### UPGRADE NOTICE ###
 
 ####New Features
+- 4.1.1 Remove custom data APIs added
 - 4.1   [Tag Bridge API](../../wiki/features#tag-bridge-api) added
 - 4.1   Swift Bridging Header provided
 - 4.0   Remote configuration options found in TIQ's new mobile publish settings now supported
@@ -236,6 +237,12 @@ Questions or comments?
 - 3.1   Import header renamed to ``<TealiumLibrary/Tealium.h>``
 
 ####Recent Code Updates
+- 4.1.1 Strict data source lowercasing removed
+- 4.1.1 Queuing & dispatch system updates
+- 4.1.1 Swift Bridging Header cleaned
+- 4.1.1 Wifi only toggle now being properly respected
+- 4.1.1 Lifecycle data reporting fixes
+- 4.1.1 Minor TagBridge compatibility fixes
 - 4.1   Direct custom data accesses replaced with thread-safe [read and write methods](../../wiki/API-4.x#addcustomdatatoobject)
 - 4.1   Dispatch data key lowercasing now strictly enforced
 - 4.0.6 Armv7s slice reintroduced, improved Mobile Companion unlock, log outputs, thread handling and low-memory handling 
