@@ -1,4 +1,4 @@
-Tealium iOS Library - 4.1.1 & 4.1.1c
+Tealium iOS Library - 4.1.2 & 4.1.2c
 ====================================
 
 **********************
@@ -237,10 +237,9 @@ Questions or comments?
 - 3.1   Import header renamed to ``<TealiumLibrary/Tealium.h>``
 
 ####Recent Code Updates
+- 4.1.2 Exclude classes fix
 - 4.1.1 Strict data source lowercasing removed
 - 4.1.1 Queuing & dispatch system updates
-- 4.1.1 Swift Bridging Header cleaned
-- 4.1.1 Wifi only toggle now being properly respected
 - 4.1.1 Lifecycle data reporting fixes
 - 4.1.1 Minor TagBridge compatibility fixes
 - 4.1   Direct custom data accesses replaced with thread-safe [read and write methods](../../wiki/API-4.x#addcustomdatatoobject)
